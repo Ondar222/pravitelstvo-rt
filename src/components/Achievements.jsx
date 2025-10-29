@@ -2,13 +2,13 @@ import React from "react";
 
 const ACH = [
   {
-    title:
-      'Республика Тыва завоевала четыре награды федеральной премии "Социальные лидеры России"',
-    image: "/img/tile.svg",
+    title: 'Сельское хозяйство"',
+    image:
+      "https://agroexpert.press/wp-content/uploads/2024/05/avrora-bch-zgykibafvyq-unsplash.jpg",
   },
   {
-    title: "Республика Тыва по кибербезопасности госуправления",
-    image: "/img/slide-1.svg",
+    title: "Республика Тыва по добывающему промышленности",
+    image: "https://old.bigenc.ru/media/2016/10/27/1238808512/32647.jpg",
   },
 ];
 

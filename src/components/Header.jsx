@@ -2,6 +2,8 @@ import React from "react";
 import { useA11y } from "../context/A11yContext.jsx";
 import { useI18n } from "../context/I18nContext.jsx";
 import Link from "./Link.jsx";
+import { UserOutlined } from "@ant-design/icons";
+import { Avatar, Space } from "antd";
 
 export default function Header() {
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -156,15 +158,14 @@ export default function Header() {
         <div className="sheet-grid container">
           <div className="sheet-card">
             <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-              <div
-                style={{
-                  width: 56,
-                  height: 56,
-                  borderRadius: 14,
-                  overflow: "hidden",
-                  background: "#e5e7eb",
-                }}
-              ></div>
+              <Space wrap size={16}>
+                <Avatar
+                  size={64}
+                  icon={
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Vladislav_Khovalyg_portrait.jpg/250px-Vladislav_Khovalyg_portrait.jpg" />
+                  }
+                />
+              </Space>
               <div>
                 <div style={{ fontWeight: 700 }}>
                   Социальные сети Главы Республики Тыва

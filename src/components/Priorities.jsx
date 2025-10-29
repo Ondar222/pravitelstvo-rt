@@ -24,7 +24,7 @@ export default function Priorities() {
               key={p.id}
               className="tile"
               style={{
-                background: `linear-gradient(135deg, ${p.color}, rgba(0,0,0,0.75)), url(https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1600&auto=format&fit=crop) center/cover`,
+                background: `linear-gradient(135deg, ${p.color}, rgba(0,0,0,0.75)), url(/img/slide-2.svg) center/cover`,
                 color: "#fff",
                 padding: 28,
               }}

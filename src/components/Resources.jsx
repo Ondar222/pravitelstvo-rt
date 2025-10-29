@@ -34,8 +34,10 @@ export default function Resources() {
               style={{ overflow: "hidden", padding: 0 }}
             >
               <img
-                src="https://images.unsplash.com/photo-1606761568499-6d2451b23c56?q=80&w=800&auto=format&fit=crop"
+                src="/img/banner.svg"
                 alt="баннер"
+                loading="lazy"
+                decoding="async"
                 style={{ width: "100%", height: 240, objectFit: "cover" }}
               />
             </a>
@@ -45,8 +47,10 @@ export default function Resources() {
               style={{ overflow: "hidden", padding: 0 }}
             >
               <img
-                src="https://images.unsplash.com/photo-1542831371-d531d36971e6?q=80&w=800&auto=format&fit=crop"
+                src="/img/banner.svg"
                 alt="баннер"
+                loading="lazy"
+                decoding="async"
                 style={{ width: "100%", height: 180, objectFit: "cover" }}
               />
             </a>

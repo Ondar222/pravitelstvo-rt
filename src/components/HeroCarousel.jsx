@@ -4,18 +4,15 @@ const SLIDES = [
   {
     title:
       "Минцифры региона составило карту точек бесплатного Wi‑Fi в Нижегородской области",
-    image:
-      "https://images.unsplash.com/photo-1565106430486-43719e39fca3?q=80&w=1600&auto=format&fit=crop",
+    image: "/img/slide-1.svg",
   },
   {
     title: "Нижегородская область — регион возможностей",
-    image:
-      "https://images.unsplash.com/photo-1581614494571-61146c7d2a46?q=80&w=1600&auto=format&fit=crop",
+    image: "/img/slide-2.svg",
   },
   {
     title: "Инновации, туризм и открытый диалог",
-    image:
-      "https://images.unsplash.com/photo-1505764706515-aa95265c5abc?q=80&w=1600&auto=format&fit=crop",
+    image: "/img/slide-3.svg",
   },
 ];
 

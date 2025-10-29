@@ -4,20 +4,17 @@ const NEWS = [
   {
     title: 'Более 60 студентов приняли участие в Дне ОЭЗ "Кулибин"',
     tag: "Образование",
-    image:
-      "https://images.unsplash.com/photo-1501504905252-473c47e087f8?q=80&w=1200&auto=format&fit=crop",
+    image: "/img/tile.svg",
   },
   {
     title: 'Выскa поборется за звание "Город молодёжи"',
     tag: "Молодёжная политика",
-    image:
-      "https://images.unsplash.com/photo-1517059224940-d4af9eec41e5?q=80&w=1200&auto=format&fit=crop",
+    image: "/img/slide-2.svg",
   },
   {
     title: "В Нижнем Новгороде прошло выездное совещание Секретаря Совбеза",
     tag: "Безопасность",
-    image:
-      "https://images.unsplash.com/photo-1557800636-894a64c1696f?q=80&w=1200&auto=format&fit=crop",
+    image: "/img/slide-3.svg",
   },
 ];
 
@@ -43,6 +40,8 @@ export default function NewsPreview() {
                 <img
                   src={n.image}
                   alt=""
+                  loading="lazy"
+                  decoding="async"
                   style={{ width: "100%", height: "100%", objectFit: "cover" }}
                 />
               </div>

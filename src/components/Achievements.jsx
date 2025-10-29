@@ -4,13 +4,11 @@ const ACH = [
   {
     title:
       'Нижегородская область завоевала четыре награды федеральной премии "Социальные лидеры России"',
-    image:
-      "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?q=80&w=1400&auto=format&fit=crop",
+    image: "/img/tile.svg",
   },
   {
     title: "Нижний Новгород по кибербезопасности госуправления",
-    image:
-      "https://images.unsplash.com/photo-1549923746-c502d488b3ea?q=80&w=1400&auto=format&fit=crop",
+    image: "/img/slide-1.svg",
   },
 ];
 
@@ -34,6 +32,8 @@ export default function Achievements() {
                 <img
                   src={a.image}
                   alt=""
+                  loading="lazy"
+                  decoding="async"
                   style={{ width: "100%", height: "100%", objectFit: "cover" }}
                 />
                 <div

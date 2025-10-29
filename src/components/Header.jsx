@@ -1,7 +1,6 @@
 import React from "react";
 
 export default function Header() {
-  const [open, setOpen] = React.useState(false);
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [sheetOpen, setSheetOpen] = React.useState(false);
 
@@ -24,15 +23,29 @@ export default function Header() {
     }
   };
 
+  const onNavOpen = React.useCallback((e) => {
+    if (e && e.preventDefault) e.preventDefault();
+    setSheetOpen(true);
+  }, []);
+
+  React.useEffect(() => {
+    const anyOpen = mobileOpen || sheetOpen;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = anyOpen ? "hidden" : prev || "";
+    return () => {
+      document.body.style.overflow = prev || "";
+    };
+  }, [mobileOpen, sheetOpen]);
+
   return (
     <>
       <header className="site-header">
         <div className="container topbar">
-          <a href="#">Прием обращений</a>
-          <a href="#">Пресс-служба</a>
-          <a href="#">Деятельность</a>
-          <a href="#">Документы</a>
-          <a href="#">Контакты</a>
+          <a href="#/feedback">Прием обращений</a>
+          <a href="#/press">Пресс-служба</a>
+          <a href="#/activity">Деятельность</a>
+          <a href="#/docs">Документы</a>
+          <a href="#/contacts">Контакты</a>
         </div>
         <div className="container row">
           <div className="row">
@@ -49,27 +62,18 @@ export default function Header() {
             </div>
           </div>
 
-          <nav className="main-nav" onMouseLeave={() => setOpen(false)}>
-            <a href="#" onMouseEnter={() => setOpen(false)}>
-              О регионе
-            </a>
-            <a href="#" onMouseEnter={() => setOpen(false)}>
-              Новости
-            </a>
+          <nav className="main-nav">
+            <a href="#/region">О регионе</a>
+            <a href="#/news">Новости</a>
             <a
-              href="#"
-              onMouseEnter={() => setOpen(true)}
+              href="#/government"
               aria-haspopup="true"
-              aria-expanded={open}
+              aria-expanded={sheetOpen}
             >
               Правительство
             </a>
-            <a href="#" onMouseEnter={() => setOpen(false)}>
-              Органы власти
-            </a>
-            <a href="#" onMouseEnter={() => setOpen(false)}>
-              Карта WiFi
-            </a>
+            <a href="#/authorities">Органы власти</a>
+            <a href="#/wifi">Карта WiFi</a>
           </nav>
 
           <div className="header-actions">
@@ -93,37 +97,7 @@ export default function Header() {
           </div>
         </div>
 
-        <div className={`mega ${open ? "open" : ""}`} role="menu">
-          <div className="container cols">
-            <div className="col">
-              <h4>Правительство</h4>
-              <a href="#">Губернатор</a>
-              <a href="#">Состав Правительства</a>
-              <a href="#">Исполнительные органы</a>
-              <a href="#">Пресс-служба</a>
-            </div>
-            <div className="col">
-              <h4>Деятельность</h4>
-              <a href="#">Стратегия</a>
-              <a href="#">Планы и прогнозы</a>
-              <a href="#">Итоги и отчёты</a>
-              <a href="#">Объявления</a>
-            </div>
-            <div className="col">
-              <h4>О регионе</h4>
-              <a href="#">Карта области</a>
-              <a href="#">Приоритеты</a>
-              <a href="#">Достижения</a>
-              <a href="#">Документы</a>
-            </div>
-            <div className="col">
-              <h4>Обратная связь</h4>
-              <a href="#">Приём обращений граждан</a>
-              <a href="#">Карта Wi‑Fi</a>
-              <a href="#">Контакты</a>
-            </div>
-          </div>
-        </div>
+        {/* убрали старое узкое мегаменю */}
       </header>
       <div
         className={`sheet-backdrop ${sheetOpen ? "open" : ""}`}
@@ -174,27 +148,27 @@ export default function Header() {
           </div>
           <div className="sheet-col">
             <h3>О регионе</h3>
-            <a href="#">Нижегородская область</a>
-            <a href="#">Карта области</a>
-            <a href="#">Летопись</a>
-            <a href="#">Приоритеты</a>
-            <a href="#">Достижения</a>
-            <a href="#">Официальные символы</a>
+            <a href="#/region">Нижегородская область</a>
+            <a href="#/region">Карта области</a>
+            <a href="#/region">Летопись</a>
+            <a href="#/region">Приоритеты</a>
+            <a href="#/region">Достижения</a>
+            <a href="#/region">Официальные символы</a>
           </div>
           <div className="sheet-col">
             <h3>Органы власти</h3>
-            <a href="#">Местное самоуправление</a>
-            <a href="#">Законодательное Собрание</a>
-            <a href="#">Территориальные отделения</a>
-            <a href="#">Руководители органов</a>
+            <a href="#/authorities">Местное самоуправление</a>
+            <a href="#/authorities">Законодательное Собрание</a>
+            <a href="#/authorities">Территориальные отделения</a>
+            <a href="#/authorities">Руководители органов</a>
           </div>
           <div className="sheet-col">
             <h3>Деятельность</h3>
-            <a href="#">Стратегия</a>
-            <a href="#">Планы и прогнозы</a>
-            <a href="#">Итоги и отчёты</a>
-            <a href="#">Объявления</a>
-            <a href="#">Противодействие коррупции</a>
+            <a href="#/government">Стратегия</a>
+            <a href="#/government">Планы и прогнозы</a>
+            <a href="#/government">Итоги и отчёты</a>
+            <a href="#/government">Объявления</a>
+            <a href="#/government">Противодействие коррупции</a>
           </div>
         </div>
       </div>
@@ -210,19 +184,19 @@ export default function Header() {
         >
           ✕
         </button>
-        <a href="#" onClick={() => setMobileOpen(false)}>
+        <a href="#/region" onClick={() => setMobileOpen(false)}>
           О регионе
         </a>
-        <a href="#" onClick={() => setMobileOpen(false)}>
+        <a href="#/news" onClick={() => setMobileOpen(false)}>
           Новости
         </a>
-        <a href="#" onClick={() => setMobileOpen(false)}>
+        <a href="#/government" onClick={() => setMobileOpen(false)}>
           Правительство
         </a>
-        <a href="#" onClick={() => setMobileOpen(false)}>
+        <a href="#/authorities" onClick={() => setMobileOpen(false)}>
           Органы власти
         </a>
-        <a href="#" onClick={() => setMobileOpen(false)}>
+        <a href="#/wifi" onClick={() => setMobileOpen(false)}>
           Карта Wi‑Fi
         </a>
       </nav>

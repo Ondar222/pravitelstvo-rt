@@ -14,8 +14,8 @@ export default function Footer() {
                 <img
                   src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Coat_of_arms_of_Tuva.svg"
                   alt=""
-                  width={30}
-                  height={30}
+                  width={42}
+                  height={42}
                 />
               </div>
               <div>

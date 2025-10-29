@@ -87,8 +87,8 @@ export default function Header() {
                 <img
                   src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Coat_of_arms_of_Tuva.svg"
                   alt=""
-                  width={36}
-                  height={36}
+                  width={42}
+                  height={42}
                 />
               </a>
               <div className="brand-text">

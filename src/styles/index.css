@@ -718,22 +718,24 @@ a {
 .mobile-drawer {
   position: fixed;
   top: 0;
+  left: 0;
   right: 0;
-  bottom: 0;
-  width: 84vw;
-  max-width: 360px;
   background: #fff;
-  transform: translateX(100%);
-  transition: transform 220ms ease;
-  box-shadow: -8px 0 24px rgba(0, 0, 0, 0.08);
+  transform: translateY(-110%);
+  transition: transform 240ms ease, opacity 240ms ease;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.12);
   padding: 20px;
   display: flex;
   flex-direction: column;
   gap: 12px;
   z-index: 60;
+  border-bottom-left-radius: 24px;
+  border-bottom-right-radius: 24px;
+  max-height: 92vh;
+  overflow: auto;
 }
 .mobile-drawer.open {
-  transform: translateX(0);
+  transform: translateY(0);
 }
 .mobile-drawer a {
   padding: 12px 0;
@@ -809,6 +811,90 @@ a {
   grid-template-columns: 1.2fr 1fr 1fr 1fr;
   gap: 24px;
   padding: 8px 24px 40px;
+}
+.social-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: #eef2f7;
+}
+.social-card__header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.social-avatar {
+  width: 70px;
+  height: 52px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.social-card__title {
+  font-weight: 800;
+}
+.social-card__subtitle {
+  color: #6b7280;
+  font-size: 14px;
+}
+.social-card__actions {
+  display: flex;
+  gap: 8px;
+}
+.sbtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 36px;
+  padding: 0 14px;
+  border-radius: 18px;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  text-decoration: none;
+  font-weight: 800;
+  color: var(--primary);
+}
+.sbtn--vk {
+  color: #0077ff;
+  border-color: #cfe3ff;
+}
+.sbtn--tg {
+  color: #229ed9;
+  border-color: #bfe6f7;
+}
+.sbtn--ok {
+  color: #f58220;
+  border-color: #ffd5b2;
+}
+.sbtn--mx {
+  color: #6c47ff;
+  border-color: #d4ccff;
+}
+/* compact circular icon buttons for social links */
+.social-icons {
+  display: flex;
+  gap: 10px;
+}
+.sicon {
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  color: #111827;
+  text-decoration: none;
+}
+.sicon svg {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+@media (max-width: 959px) {
+  .social-avatar {
+    width: 60px;
+    height: 60px;
+  }
 }
 .sheet-card {
   background: #fff;

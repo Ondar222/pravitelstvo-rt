@@ -23,15 +23,19 @@ export default function HeroCarousel() {
 
   React.useEffect(() => {
     const id = setInterval(() => {
-      setActive((i) => (i + 1) % SLIDES.length);
+      setActive(
+        (i) =>
+          (i + 1) %
+          (dataSlides && dataSlides.length ? dataSlides.length : SLIDES.length)
+      );
     }, 6000);
     return () => clearInterval(id);
-  }, []);
+  }, [dataSlides]);
 
   const slides = dataSlides && dataSlides.length ? dataSlides : SLIDES;
 
   return (
-    <section className="hero container" aria-label="Главные события">
+    <section className="hero" aria-label="Главные события">
       <div className="slides" aria-hidden>
         {slides.map((s, i) => (
           <div
@@ -42,45 +46,49 @@ export default function HeroCarousel() {
         ))}
         <div className="overlay" />
       </div>
-      <div className="caption">
-        <h1 className="title">{slides[active].title}</h1>
-        {slides[active].desc && (
-          <p style={{ color: "#e5e7eb", maxWidth: 720 }}>
-            {slides[active].desc}
-          </p>
-        )}
-        {slides[active].link && (
-          <a className="btn" href={slides[active].link}>
-            Подробнее →
-          </a>
-        )}
+      <div className="caption center">
+        <h1 className="title center">{slides[active].title}</h1>
       </div>
-      <div className="arrows" aria-hidden>
-        <button
-          className="arrow"
-          onClick={() =>
-            setActive((active - 1 + SLIDES.length) % SLIDES.length)
-          }
-          aria-label="Предыдущий слайд"
+      <div className="social-left" aria-hidden>
+        <a
+          className="sbtn sbtn--vk"
+          href="https://vk.com"
+          target="_blank"
+          rel="noreferrer"
+          aria-label="VK"
         >
-          ←
-        </button>
-        <button
-          className="arrow"
-          onClick={() => setActive((active + 1) % SLIDES.length)}
-          aria-label="Следующий слайд"
+          vk
+        </a>
+        <a
+          className="sbtn sbtn--ok"
+          href="https://ok.ru"
+          target="_blank"
+          rel="noreferrer"
+          aria-label="OK"
         >
-          →
-        </button>
-        <div className="dots">
-          {SLIDES.map((_, i) => (
-            <div
-              key={i}
-              className={`dot ${i === active ? "active" : ""}`}
-              onClick={() => setActive(i)}
-            />
-          ))}
-        </div>
+          ok
+        </a>
+        <a
+          className="sbtn sbtn--tg"
+          href="https://t.me"
+          target="_blank"
+          rel="noreferrer"
+          aria-label="Telegram"
+        >
+          tg
+        </a>
+        <a className="sbtn sbtn--mx" href="#" aria-label="MAX">
+          mx
+        </a>
+      </div>
+      <div className="dots center">
+        {slides.map((_, i) => (
+          <div
+            key={i}
+            className={`dot ${i === active ? "active" : ""}`}
+            onClick={() => setActive(i)}
+          />
+        ))}
       </div>
     </section>
   );

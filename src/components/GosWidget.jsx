@@ -28,11 +28,13 @@ export default function GosWidget({
       script.async = true;
       script.onerror = () => {
         if (!ref.current) return;
-        if (variant === 2) renderCard2(); else renderCard1();
+        if (variant === 2) renderCard2();
+        else renderCard1();
       };
       ref.current.appendChild(script);
     } else {
-      if (variant === 2) renderCard2(); else renderCard1();
+      if (variant === 2) renderCard2();
+      else renderCard1();
     }
   }, [src, variant, fallbackImg]);
 

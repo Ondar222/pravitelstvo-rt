@@ -24,7 +24,8 @@ body,
 }
 body {
   margin: 0;
-  font-family: 'Noto Sans', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  font-family: "Noto Sans", ui-sans-serif, system-ui, -apple-system, Segoe UI,
+    Roboto, Arial;
   color: var(--text);
   background: var(--bg);
   font-size: calc(16px * var(--font-scale, 1));
@@ -53,7 +54,7 @@ h2,
 h3 {
   color: var(--primary);
   margin: 0 0 16px;
-  font-family: 'Noto Serif SC', serif;
+  font-family: "Noto Serif SC", serif;
 }
 h1 {
   font-size: 44px;
@@ -405,8 +406,14 @@ a {
   gap: 16px;
 }
 /* Resources responsive */
-.resources-grid { grid-template-columns: 2fr 1fr; }
-@media (max-width: 959px) { .resources-grid { grid-template-columns: 1fr !important; } }
+.resources-grid {
+  grid-template-columns: 2fr 1fr;
+}
+@media (max-width: 959px) {
+  .resources-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
 /* Achievements responsive grid */
 .achievements-grid {
   display: grid;

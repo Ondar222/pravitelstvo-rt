@@ -3,7 +3,7 @@ import React from "react";
 const ACH = [
   {
     title:
-      'Нижегородская область завоевала четыре награды федеральной премии "Социальные лидеры России"',
+      'Республика Тыва завоевала четыре награды федеральной премии "Социальные лидеры России"',
     image: "/img/tile.svg",
   },
   {
@@ -17,46 +17,13 @@ export default function Achievements() {
     <section className="section">
       <div className="container">
         <h2>Достижения региона</h2>
-        <div
-          className="grid cols-3"
-          style={{ gridTemplateColumns: "2fr 1fr 1fr" }}
-        >
+        <div className="achievements-grid">
           {ACH.map((a, i) => (
-            <a
-              key={i}
-              href="#"
-              className="tile"
-              style={{ padding: 0, overflow: "hidden" }}
-            >
-              <div style={{ position: "relative", height: 280 }}>
-                <img
-                  src={a.image}
-                  alt=""
-                  loading="lazy"
-                  decoding="async"
-                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                />
-                <div
-                  style={{
-                    position: "absolute",
-                    inset: 0,
-                    background:
-                      "linear-gradient(180deg, rgba(0,0,0,0.0), rgba(0,0,0,0.5))",
-                  }}
-                />
-                <div
-                  style={{
-                    position: "absolute",
-                    left: 20,
-                    right: 20,
-                    bottom: 20,
-                    color: "#fff",
-                    fontSize: 24,
-                    fontWeight: 800,
-                  }}
-                >
-                  {a.title}
-                </div>
+            <a key={i} href="#" className="tile achievement-card">
+              <div className="achievement-image">
+                <img src={a.image} alt="" loading="lazy" decoding="async" />
+                <div className="achievement-overlay" />
+                <div className="achievement-title">{a.title}</div>
               </div>
             </a>
           ))}

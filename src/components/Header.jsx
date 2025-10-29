@@ -167,7 +167,7 @@ export default function Header() {
               ></div>
               <div>
                 <div style={{ fontWeight: 700 }}>
-                  Социальные сети Губернатора Республики Тыва
+                  Социальные сети Главы Республики Тыва
                 </div>
                 <div style={{ color: "#6b7280", fontSize: 14 }}>
                   Подписывайтесь

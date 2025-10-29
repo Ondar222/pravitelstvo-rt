@@ -5,9 +5,7 @@ export default function Region() {
     <section className="section">
       <div className="container">
         <h1>О регионе</h1>
-        <p>
-          Информация о Нижегородской области, карта, приоритеты и достижения.
-        </p>
+        <p>Информация о Республика Тыва, карта, приоритеты и достижения.</p>
       </div>
     </section>
   );

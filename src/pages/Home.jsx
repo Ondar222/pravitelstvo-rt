@@ -5,7 +5,7 @@ import Achievements from "../components/Achievements.jsx";
 import Resources from "../components/Resources.jsx";
 import NewsPreview from "../components/NewsPreview.jsx";
 import NewsBlock from "../components/NewsBlock.jsx";
-import CalendarPreview from "../components/CalendarPreview.jsx";
+import CalendarWidget from "../components/CalendarWidget.jsx";
 
 export default function Home() {
   return (
@@ -13,7 +13,7 @@ export default function Home() {
       <HeroCarousel />
       <Priorities />
       <NewsBlock />
-      <CalendarPreview />
+      <CalendarWidget />
       <Achievements />
       <Resources />
       <NewsPreview />

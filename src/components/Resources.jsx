@@ -1,12 +1,13 @@
 import React from "react";
+import GosWidget from "./GosWidget.jsx";
 
 const LINKS = [
-  "Портал государственных услуг Нижегородской области",
+  "Портал государственных услуг Республики Тыва",
   "АНО Региональный центр поддержки цифровых технологий",
   "Единая платформа предоставления субсидий",
   "Оценка регулирующего воздействия",
-  "Военный комиссариат Нижегородской области",
-  "Финансовая грамотность. Нижегородская область",
+  "Военный комиссариат Республики Тыва",
+  "Финансовая грамотность. Республика Тыва",
   "Портал помощи в переезде и поиске работы",
 ];
 
@@ -28,32 +29,8 @@ export default function Resources() {
             ))}
           </div>
           <div className="grid" style={{ gap: 24 }}>
-            <a
-              className="tile"
-              href="#"
-              style={{ overflow: "hidden", padding: 0 }}
-            >
-              <img
-                src="/img/banner.svg"
-                alt="баннер"
-                loading="lazy"
-                decoding="async"
-                style={{ width: "100%", height: 240, objectFit: "cover" }}
-              />
-            </a>
-            <a
-              className="tile"
-              href="#"
-              style={{ overflow: "hidden", padding: 0 }}
-            >
-              <img
-                src="/img/banner.svg"
-                alt="баннер"
-                loading="lazy"
-                decoding="async"
-                style={{ width: "100%", height: 180, objectFit: "cover" }}
-              />
-            </a>
+            <GosWidget id="gos-widget-1" src="/js/gos_stub1.js" variant={1} />
+            <GosWidget id="gos-widget-2" src="/js/gos_stub2.js" variant={2} />
           </div>
         </div>
       </div>

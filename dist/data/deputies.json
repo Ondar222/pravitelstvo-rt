@@ -1,0 +1,5 @@
+[
+  {"id":"d1","name":"Сат Чинчи","district":"Кызыл","convocation":"VII","faction":"Единая Россия","contacts":{"phone":"+7 (999) 111-22-33","email":"d1@example.com"},"reception":"Пн 15:00-18:00"},
+  {"id":"d2","name":"Монгун Тумат","district":"Тере-Холь","convocation":"VII","faction":"Справедливая Россия","contacts":{"phone":"+7 (999) 222-33-44","email":"d2@example.com"},"reception":"Ср 10:00-12:00"},
+  {"id":"d3","name":"Саян Хопу","district":"Тес-Хем","convocation":"VII","faction":"КПРФ","contacts":{"phone":"+7 (999) 333-44-55","email":"d3@example.com"},"reception":"Чт 14:00-17:00"}
+]

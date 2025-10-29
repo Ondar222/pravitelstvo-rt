@@ -310,6 +310,111 @@ a {
   color: var(--link);
 }
 
+/* Priorities (stacked banners) */
+.priorities-list {
+  display: grid;
+  gap: 16px;
+}
+.priority {
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  min-height: 180px;
+  color: #fff;
+  box-shadow: var(--shadow);
+  transform: translateZ(0) scale(1);
+  transition: transform 220ms ease, box-shadow 220ms ease;
+}
+.priority:hover {
+  transform: scale(1.015);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
+}
+.priority .bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+}
+.priority .overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.6));
+}
+.priority .content {
+  position: relative;
+  padding: 32px;
+  font-weight: 900;
+  font-size: 40px;
+  letter-spacing: -0.01em;
+}
+.priority .badge {
+  position: absolute;
+  right: 16px;
+  top: 16px;
+  background: #ef4444;
+  color: #fff;
+  border-radius: 10px;
+  padding: 6px 10px;
+  font-weight: 800;
+}
+
+/* Priority details expand */
+.priority.open {
+  min-height: 420px;
+}
+.priority .details {
+  position: absolute;
+  right: 24px;
+  bottom: 24px;
+  background: #ffffff;
+  color: #111827;
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  padding: 20px;
+  width: min(420px, 90%);
+  display: none;
+}
+.priority.open .details {
+  display: block;
+}
+.priority .details p {
+  margin: 0 0 12px;
+  color: #334155;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  color: #0a1f44;
+  font-weight: 700;
+  text-decoration: none;
+}
+.btn:hover {
+  background: #f8fafc;
+}
+
+@media (max-width: 959px) {
+  .priority {
+    min-height: 200px;
+  }
+  .priority .content {
+    font-size: 28px;
+    padding: 20px;
+  }
+  .priority.open {
+    min-height: 360px;
+  }
+  .priority .details {
+    position: static;
+    margin: 12px;
+    width: auto;
+  }
+}
+
 /* Footer */
 .site-footer {
   margin-top: 48px;

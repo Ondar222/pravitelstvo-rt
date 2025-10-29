@@ -16,10 +16,7 @@ export default function Resources() {
     <section className="section">
       <div className="container">
         <h2>Полезные ресурсы</h2>
-        <div
-          className="grid"
-          style={{ gridTemplateColumns: "2fr 1fr", gap: 24 }}
-        >
+        <div className="grid resources-grid" style={{ gap: 24 }}>
           <div className="grid cols-3">
             {LINKS.map((t, i) => (
               <a key={i} className="tile link" href="#" style={{ height: 120 }}>

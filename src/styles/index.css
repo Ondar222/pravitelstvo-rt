@@ -103,8 +103,6 @@ a {
   height: 64px;
 }
 
-.container row {
-}
 .brand {
   display: flex;
   align-items: center;
@@ -400,6 +398,23 @@ a {
   align-items: baseline;
   justify-content: space-between;
   margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.section-head .link {
+  white-space: normal;
+  word-break: break-word;
+  text-align: right;
+}
+@media (max-width: 959px) {
+  .section-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+  .section-head .link {
+    text-align: left;
+  }
 }
 .grid {
   display: grid;
@@ -428,6 +443,8 @@ a {
 .achievement-card {
   padding: 0;
   overflow: hidden;
+  background: transparent; /* remove white background */
+  box-shadow: none; /* remove card shadow */
 }
 .achievement-image {
   position: relative;
@@ -452,6 +469,22 @@ a {
   color: #fff;
   font-size: 22px;
   font-weight: 800;
+}
+/* Achievements carousel */
+.ach-carousel {
+  border-radius: var(--radius);
+}
+.ach-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+}
+.ach-arrow.left {
+  left: 12px;
+}
+.ach-arrow.right {
+  right: 12px;
 }
 @media (max-width: 959px) {
   .achievement-image {

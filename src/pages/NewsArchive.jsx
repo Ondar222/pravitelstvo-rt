@@ -6,6 +6,20 @@ export default function NewsArchive() {
   const { news } = useData();
   const [category, setCategory] = React.useState("Все");
   const [month, setMonth] = React.useState("Все");
+  const [selected, setSelected] = React.useState(() => {
+    const h = window.location.hash;
+    const id = new URLSearchParams(h.split("?")[1]).get("id");
+    return id || null;
+  });
+  React.useEffect(() => {
+    const onHash = () => {
+      const h = window.location.hash;
+      const id = new URLSearchParams(h.split("?")[1]).get("id");
+      setSelected(id || null);
+    };
+    window.addEventListener("hashchange", onHash);
+    return () => window.removeEventListener("hashchange", onHash);
+  }, []);
 
   const categories = React.useMemo(
     () => ["Все", ...Array.from(new Set(news.map((n) => n.category)))],
@@ -25,6 +39,27 @@ export default function NewsArchive() {
       ),
     [news, category, month]
   );
+
+  if (selected) {
+    const item = news.find((n) => n.id === selected);
+    if (!item) return null;
+    return (
+      <section className="section">
+        <div className="container">
+          <a className="btn" href="#/news" style={{ marginBottom: 12 }}>
+            ← К списку
+          </a>
+          <h1 style={{ marginBottom: 8 }}>{item.title}</h1>
+          <div style={{ color: "#6b7280", marginBottom: 16 }}>
+            {new Date(item.date).toLocaleDateString("ru-RU")} · {item.category}
+          </div>
+          <div className="card" style={{ padding: 16 }}>
+            <p>{item.excerpt}</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="section">
@@ -55,6 +90,9 @@ export default function NewsArchive() {
                 {n.category}
               </div>
               <p>{n.excerpt}</p>
+              <a className="link" href={`#/news?id=${n.id}`}>
+                Читать полностью →
+              </a>
             </Card>
           ))}
         </div>

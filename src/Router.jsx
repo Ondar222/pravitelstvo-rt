@@ -18,6 +18,7 @@ export function useHashRoute() {
 
 export default function Router({ routes }) {
   const { route } = useHashRoute();
-  const Component = routes[route] || routes["/"];
+  const base = route.split("?")[0];
+  const Component = routes[base] || routes["/"];
   return <Component />;
 }

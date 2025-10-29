@@ -29,6 +29,7 @@ import About from "./pages/About.jsx";
 import Documents from "./pages/Documents.jsx";
 import Deputies from "./pages/Deputies.jsx";
 import Appeals from "./pages/Appeals.jsx";
+import AchievementsPage from "./pages/Achievements.jsx";
 import { ConfigProvider, theme } from "antd";
 
 export default function App() {
@@ -57,6 +58,7 @@ export default function App() {
                   "/region": Region,
                   "/about": About,
                   "/news": NewsArchive,
+                  "/achievements": AchievementsPage,
                   "/calendar": CalendarPage,
                   "/documents": Documents,
                   "/deputies": Deputies,

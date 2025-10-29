@@ -52,12 +52,18 @@ export default function Header() {
             <div className="brand">
               <div className="logo">∷</div>
               <div>
-                <div style={{ fontSize: 14, lineHeight: 1, color: "#6b7280" }}>
-                  ПРАВИТЕЛЬСТВО
-                </div>
-                <div style={{ fontSize: 16, lineHeight: 1.1, fontWeight: 800 }}>
-                  НИЖЕГОРОДСКОЙ ОБЛАСТИ
-                </div>
+                <a href="/" style={{ textDecoration: "none" }}>
+                  <div
+                    style={{ fontSize: 14, lineHeight: 1, color: "#6b7280" }}
+                  >
+                    ХУРАЛ (ПРАВИТЕЛЬСТВО)
+                  </div>
+                  <div
+                    style={{ fontSize: 16, lineHeight: 1.1, fontWeight: 800 }}
+                  >
+                    РЕСПУБЛИКИ ТЫВА
+                  </div>
+                </a>
               </div>
             </div>
           </div>
@@ -137,7 +143,7 @@ export default function Header() {
               ></div>
               <div>
                 <div style={{ fontWeight: 700 }}>
-                  Социальные сети Губернатора Нижегородской области
+                  Социальные сети Губернатора Республики Тыва
                 </div>
                 <div style={{ color: "#6b7280", fontSize: 14 }}>
                   Подписывайтесь
@@ -148,7 +154,7 @@ export default function Header() {
           </div>
           <div className="sheet-col">
             <h3>О регионе</h3>
-            <a href="#/region">Нижегородская область</a>
+            <a href="#/region">Республика Тыва</a>
             <a href="#/region">Карта области</a>
             <a href="#/region">Летопись</a>
             <a href="#/region">Приоритеты</a>

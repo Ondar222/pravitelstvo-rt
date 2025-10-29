@@ -1,5 +1,6 @@
 import React from "react";
 import { useData } from "../context/DataContext.jsx";
+import { Table, Input, Select, Tag } from "antd";
 
 export default function Documents() {
   const { documents } = useData();
@@ -34,50 +35,35 @@ export default function Documents() {
             margin: "12px 0 20px",
           }}
         >
-          <input
+          <Input.Search
             placeholder="Поиск по названию, номеру, тексту"
             value={q}
             onChange={(e) => setQ(e.target.value)}
-            style={{
-              flex: "1 1 280px",
-              padding: 10,
-              borderRadius: 10,
-              border: "1px solid #e5e7eb",
-            }}
+            style={{ minWidth: 280, maxWidth: 520 }}
           />
-          <select value={cat} onChange={(e) => setCat(e.target.value)}>
-            {cats.map((c) => (
-              <option key={c} value={c}>
-                {c}
-              </option>
-            ))}
-          </select>
+          <Select
+            value={cat}
+            onChange={setCat}
+            options={cats.map((c) => ({ value: c, label: c }))}
+            style={{ minWidth: 200 }}
+          />
         </div>
-        <div className="grid">
-          {filtered.map((d) => (
-            <div key={d.id} className="tile">
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "baseline",
-                }}
-              >
-                <h3 style={{ margin: 0 }}>{d.title}</h3>
-                <span style={{ color: "#6b7280" }}>{d.date}</span>
-              </div>
-              <div style={{ color: "#6b7280" }}>
-                {d.category} · № {d.number}
-              </div>
-              <p>{d.text}</p>
-              <div>
-                <a className="btn" href="#">
-                  Открыть PDF
-                </a>
-              </div>
-            </div>
-          ))}
-        </div>
+        <Table
+          rowKey="id"
+          dataSource={filtered}
+          columns={[
+            { title: "Название", dataIndex: "title", key: "title" },
+            { title: "№", dataIndex: "number", key: "number", width: 120 },
+            {
+              title: "Категория",
+              dataIndex: "category",
+              key: "category",
+              render: (v) => <Tag color="blue">{v}</Tag>,
+            },
+            { title: "Дата", dataIndex: "date", key: "date", width: 140 },
+          ]}
+          pagination={{ pageSize: 10 }}
+        />
       </div>
     </section>
   );

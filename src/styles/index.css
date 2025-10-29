@@ -92,6 +92,7 @@ a {
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: saturate(140%) blur(8px);
   border-bottom: 1px solid #e5e7eb;
+  /* ornament removed for cleaner look; can be re-added subtly */
 }
 .site-header .row {
   display: flex;
@@ -123,12 +124,31 @@ a {
   gap: 18px;
   font-weight: 600;
 }
-.main-nav a {
+.main-nav a,
+.main-nav a:visited {
   color: #111827;
   text-decoration: none;
 }
 .main-nav a:hover {
   color: var(--link);
+}
+.main-nav a {
+  position: relative;
+  padding-bottom: 6px;
+}
+.main-nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  background: transparent;
+  border-radius: 3px;
+  transition: background 160ms ease;
+}
+.main-nav a:hover::after {
+  background: var(--gold);
 }
 .header-actions {
   margin-left: auto;
@@ -497,10 +517,11 @@ a {
 .site-footer {
   margin-top: 48px;
   color: #e5e7eb;
-  background: linear-gradient(135deg, #003366, #3b1465);
+  background: #003366;
   border-top-left-radius: 24px;
   border-top-right-radius: 24px;
   padding: 40px 0;
+  /* ornament removed per request */
 }
 .site-footer .cols {
   display: grid;

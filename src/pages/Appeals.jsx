@@ -1,4 +1,5 @@
 import React from "react";
+import { Form, Input, Button, Result } from "antd";
 
 export default function Appeals() {
   const [form, setForm] = React.useState({
@@ -8,60 +9,69 @@ export default function Appeals() {
     text: "",
   });
   const [ok, setOk] = React.useState(false);
-  const onChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
-  const onSubmit = (e) => {
-    e.preventDefault();
-    setOk(true);
-  };
+  const onSubmit = () => setOk(true);
 
   return (
     <section className="section">
       <div className="container">
         <h1>Обращения граждан</h1>
         {ok ? (
-          <div className="tile">
-            Спасибо! Ваше обращение отправлено. Номер регистрации: A-
-            {Date.now().toString().slice(-6)}
-          </div>
+          <Result
+            status="success"
+            title="Спасибо! Ваше обращение отправлено"
+            subTitle={`Номер регистрации: A-${Date.now().toString().slice(-6)}`}
+          />
         ) : (
-          <form
-            className="tile"
-            onSubmit={onSubmit}
-            style={{ display: "grid", gap: 12 }}
-          >
-            <input
-              required
+          <Form layout="vertical" className="tile" onFinish={onSubmit}>
+            <Form.Item
+              label="ФИО"
               name="name"
-              placeholder="ФИО"
-              value={form.name}
-              onChange={onChange}
-            />
-            <input
-              required
-              type="email"
+              rules={[{ required: true, message: "Укажите ФИО" }]}
+            >
+              <Input
+                value={form.name}
+                onChange={(e) => setForm({ ...form, name: e.target.value })}
+              />
+            </Form.Item>
+            <Form.Item
+              label="Email"
               name="email"
-              placeholder="Email"
-              value={form.email}
-              onChange={onChange}
-            />
-            <input
-              name="phone"
-              placeholder="Телефон"
-              value={form.phone}
-              onChange={onChange}
-            />
-            <textarea
-              required
+              rules={[
+                {
+                  required: true,
+                  type: "email",
+                  message: "Укажите корректный Email",
+                },
+              ]}
+            >
+              <Input
+                value={form.email}
+                onChange={(e) => setForm({ ...form, email: e.target.value })}
+              />
+            </Form.Item>
+            <Form.Item label="Телефон" name="phone">
+              <Input
+                value={form.phone}
+                onChange={(e) => setForm({ ...form, phone: e.target.value })}
+              />
+            </Form.Item>
+            <Form.Item
+              label="Текст обращения"
               name="text"
-              placeholder="Текст обращения"
-              value={form.text}
-              onChange={onChange}
-              rows={6}
-            ></textarea>
-            <button className="btn" type="submit">
-              Отправить
-            </button>
-          </form>
+              rules={[{ required: true, message: "Введите текст обращения" }]}
+            >
+              <Input.TextArea
+                rows={6}
+                value={form.text}
+                onChange={(e) => setForm({ ...form, text: e.target.value })}
+              />
+            </Form.Item>
+            <Form.Item>
+              <Button type="primary" htmlType="submit">
+                Отправить
+              </Button>
+            </Form.Item>
+          </Form>
         )}
       </div>
     </section>

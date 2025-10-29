@@ -29,42 +29,57 @@ import About from "./pages/About.jsx";
 import Documents from "./pages/Documents.jsx";
 import Deputies from "./pages/Deputies.jsx";
 import Appeals from "./pages/Appeals.jsx";
+import { ConfigProvider, theme } from "antd";
 
 export default function App() {
   return (
     <I18nProvider>
       <A11yProvider>
-        <DataProvider>
-          <div>
-            <Header />
-            <Router
-              routes={{
-                "/": Home,
-                "/region": Region,
-                "/about": About,
-                "/news": NewsArchive,
-                "/calendar": CalendarPage,
-                "/documents": Documents,
-                "/deputies": Deputies,
-                "/appeals": Appeals,
-                "/government": Government,
-                "/authorities": Authorities,
-                "/wifi": Wifi,
-                "/feedback": Feedback,
-                "/press": Press,
-                "/activity": Activity,
-                "/docs": Docs,
-                "/contacts": Contacts,
-                "/priority/01": Priority01,
-                "/priority/02": Priority02,
-                "/priority/03": Priority03,
-                "/priority/04": Priority04,
-                "/priority/05": Priority05,
-              }}
-            />
-            <Footer />
-          </div>
-        </DataProvider>
+        <ConfigProvider
+          theme={{
+            algorithm: theme.defaultAlgorithm,
+            token: {
+              colorPrimary: "#003366",
+              colorInfo: "#003366",
+              colorWarning: "#FFD700",
+              colorTextBase: "#111827",
+              colorBgBase: "#ffffff",
+              borderRadius: 8,
+            },
+          }}
+        >
+          <DataProvider>
+            <div>
+              <Header />
+              <Router
+                routes={{
+                  "/": Home,
+                  "/region": Region,
+                  "/about": About,
+                  "/news": NewsArchive,
+                  "/calendar": CalendarPage,
+                  "/documents": Documents,
+                  "/deputies": Deputies,
+                  "/appeals": Appeals,
+                  "/government": Government,
+                  "/authorities": Authorities,
+                  "/wifi": Wifi,
+                  "/feedback": Feedback,
+                  "/press": Press,
+                  "/activity": Activity,
+                  "/docs": Docs,
+                  "/contacts": Contacts,
+                  "/priority/01": Priority01,
+                  "/priority/02": Priority02,
+                  "/priority/03": Priority03,
+                  "/priority/04": Priority04,
+                  "/priority/05": Priority05,
+                }}
+              />
+              <Footer />
+            </div>
+          </DataProvider>
+        </ConfigProvider>
       </A11yProvider>
     </I18nProvider>
   );

@@ -65,6 +65,10 @@ export default function CalendarPage() {
             display: "grid",
             gridTemplateColumns: "repeat(7, 1fr)",
             gap: 8,
+            background: "#fff",
+            borderRadius: 16,
+            boxShadow: "var(--shadow)",
+            padding: 12,
           }}
         >
           {["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"].map((h) => (
@@ -84,6 +88,7 @@ export default function CalendarPage() {
                   padding: 10,
                   opacity: inMonth ? 1 : 0.4,
                   border: has ? `2px solid var(--gold)` : undefined,
+                  cursor: has ? "pointer" : "default",
                 }}
                 onClick={() => setSelected(key)}
               >

@@ -1,5 +1,6 @@
 import React from "react";
 import { useData } from "../context/DataContext.jsx";
+import { Select, Card, Tag, Space, Button } from "antd";
 
 export default function Deputies() {
   const { deputies } = useData();
@@ -35,68 +36,44 @@ export default function Deputies() {
     <section className="section">
       <div className="container">
         <h1>Депутаты</h1>
-        <div
-          style={{
-            display: "flex",
-            gap: 12,
-            flexWrap: "wrap",
-            margin: "12px 0 20px",
-          }}
-        >
-          <select
+        <Space size="middle" style={{ margin: "12px 0 20px" }} wrap>
+          <Select
             value={district}
-            onChange={(e) => setDistrict(e.target.value)}
-          >
-            {districts.map((x) => (
-              <option key={x} value={x}>
-                {x}
-              </option>
-            ))}
-          </select>
-          <select
+            onChange={setDistrict}
+            options={districts.map((x) => ({ value: x, label: x }))}
+            style={{ minWidth: 200 }}
+          />
+          <Select
             value={convocation}
-            onChange={(e) => setConvocation(e.target.value)}
-          >
-            {convocations.map((x) => (
-              <option key={x} value={x}>
-                {x}
-              </option>
-            ))}
-          </select>
-          <select value={faction} onChange={(e) => setFaction(e.target.value)}>
-            {factions.map((x) => (
-              <option key={x} value={x}>
-                {x}
-              </option>
-            ))}
-          </select>
-        </div>
+            onChange={setConvocation}
+            options={convocations.map((x) => ({ value: x, label: x }))}
+            style={{ minWidth: 200 }}
+          />
+          <Select
+            value={faction}
+            onChange={setFaction}
+            options={factions.map((x) => ({ value: x, label: x }))}
+            style={{ minWidth: 200 }}
+          />
+        </Space>
         <div className="grid cols-3">
           {filtered.map((d) => (
-            <div key={d.id} className="tile">
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "baseline",
-                }}
-              >
-                <h3 style={{ margin: 0 }}>{d.name}</h3>
-                <span style={{ color: "#6b7280" }}>{d.convocation}</span>
-              </div>
-              <div style={{ color: "#6b7280" }}>
+            <Card
+              key={d.id}
+              title={d.name}
+              extra={<Tag color="gold">{d.convocation}</Tag>}
+            >
+              <div style={{ color: "#6b7280", marginBottom: 6 }}>
                 {d.district} · {d.faction}
               </div>
               <p>Приём граждан: {d.reception}</p>
-              <div style={{ display: "flex", gap: 12 }}>
-                <a className="btn" href={`tel:${d.contacts.phone}`}>
-                  Позвонить
-                </a>
-                <a className="btn" href={`mailto:${d.contacts.email}`}>
+              <Space>
+                <Button href={`tel:${d.contacts.phone}`}>Позвонить</Button>
+                <Button href={`mailto:${d.contacts.email}`} type="primary">
                   Написать
-                </a>
-              </div>
-            </div>
+                </Button>
+              </Space>
+            </Card>
           ))}
         </div>
       </div>

@@ -1,6 +1,7 @@
 import React from "react";
 import { useA11y } from "../context/A11yContext.jsx";
 import { useI18n } from "../context/I18nContext.jsx";
+import Link from "./Link.jsx";
 
 export default function Header() {
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -86,12 +87,12 @@ export default function Header() {
           </div>
 
           <nav className="main-nav">
-            <a href="#/about">О парламенте</a>
-            <a href="#/documents">Документы</a>
-            <a href="#/deputies">Депутаты</a>
-            <a href="#/appeals">Обращения</a>
-            <a href="#/calendar">Календарь</a>
-            <a href="#/news">Архив новостей</a>
+            <Link to="/about">О парламенте</Link>
+            <Link to="/documents">Документы</Link>
+            <Link to="/deputies">Депутаты</Link>
+            <Link to="/appeals">Обращения</Link>
+            <Link to="/calendar">Календарь</Link>
+            <Link to="/news">Архив новостей</Link>
           </nav>
 
           <div className="header-actions">
@@ -213,24 +214,24 @@ export default function Header() {
         >
           ✕
         </button>
-        <a href="#/about" onClick={() => setMobileOpen(false)}>
+        <Link to="/about" onClick={() => setMobileOpen(false)}>
           О парламенте
-        </a>
-        <a href="#/documents" onClick={() => setMobileOpen(false)}>
+        </Link>
+        <Link to="/documents" onClick={() => setMobileOpen(false)}>
           Документы
-        </a>
-        <a href="#/deputies" onClick={() => setMobileOpen(false)}>
+        </Link>
+        <Link to="/deputies" onClick={() => setMobileOpen(false)}>
           Депутаты
-        </a>
-        <a href="#/appeals" onClick={() => setMobileOpen(false)}>
+        </Link>
+        <Link to="/appeals" onClick={() => setMobileOpen(false)}>
           Обращения
-        </a>
-        <a href="#/calendar" onClick={() => setMobileOpen(false)}>
+        </Link>
+        <Link to="/calendar" onClick={() => setMobileOpen(false)}>
           Календарь
-        </a>
-        <a href="#/news" onClick={() => setMobileOpen(false)}>
+        </Link>
+        <Link to="/news" onClick={() => setMobileOpen(false)}>
           Архив новостей
-        </a>
+        </Link>
       </nav>
     </>
   );

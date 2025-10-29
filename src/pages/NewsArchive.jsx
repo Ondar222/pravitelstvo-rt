@@ -1,5 +1,6 @@
 import React from "react";
 import { useData } from "../context/DataContext.jsx";
+import { Select, Card, Space } from "antd";
 
 export default function NewsArchive() {
   const { news } = useData();
@@ -29,41 +30,32 @@ export default function NewsArchive() {
     <section className="section">
       <div className="container">
         <h1>Архив новостей</h1>
-        <div
-          style={{
-            display: "flex",
-            gap: 12,
-            flexWrap: "wrap",
-            margin: "12px 0 20px",
-          }}
-        >
-          <select
+        <Space size="middle" style={{ margin: "12px 0 20px" }} wrap>
+          <Select
             value={category}
-            onChange={(e) => setCategory(e.target.value)}
-          >
-            {categories.map((c) => (
-              <option key={c} value={c}>
-                {c}
-              </option>
-            ))}
-          </select>
-          <select value={month} onChange={(e) => setMonth(e.target.value)}>
-            {months.map((m) => (
-              <option key={m} value={m}>
-                {m}
-              </option>
-            ))}
-          </select>
-        </div>
+            onChange={setCategory}
+            options={categories.map((c) => ({ value: c, label: c }))}
+            style={{ minWidth: 200 }}
+          />
+          <Select
+            value={month}
+            onChange={setMonth}
+            options={months.map((m) => ({ value: m, label: m }))}
+            style={{ minWidth: 200 }}
+          />
+        </Space>
         <div className="grid">
           {filtered.map((n) => (
-            <a key={n.id} className="tile" href={`#/news?id=${n.id}`}>
-              <div style={{ fontWeight: 700, fontSize: 18 }}>{n.title}</div>
-              <div style={{ color: "#6b7280", marginTop: 6 }}>
-                {new Date(n.date).toLocaleDateString("ru-RU")} · {n.category}
+            <Card
+              key={n.id}
+              title={n.title}
+              extra={new Date(n.date).toLocaleDateString("ru-RU")}
+            >
+              <div style={{ color: "#6b7280", marginBottom: 6 }}>
+                {n.category}
               </div>
               <p>{n.excerpt}</p>
-            </a>
+            </Card>
           ))}
         </div>
       </div>

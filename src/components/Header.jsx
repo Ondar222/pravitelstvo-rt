@@ -50,7 +50,14 @@ export default function Header() {
         <div className="container row">
           <div className="row">
             <div className="brand">
-              <div className="logo">∷</div>
+              <div className="logo">
+                <img
+                  src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Coat_of_arms_of_Tuva.svg"
+                  alt=""
+                  width={30}
+                  height={30}
+                />
+              </div>
               <div>
                 <a href="/" style={{ textDecoration: "none" }}>
                   <div

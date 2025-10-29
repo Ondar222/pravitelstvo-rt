@@ -11,7 +11,12 @@ export default function Footer() {
                 className="logo"
                 style={{ borderColor: "#fff", color: "#fff" }}
               >
-                ∷
+                <img
+                  src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Coat_of_arms_of_Tuva.svg"
+                  alt=""
+                  width={30}
+                  height={30}
+                />
               </div>
               <div>
                 <div style={{ fontSize: 14, lineHeight: 1, opacity: 0.8 }}>

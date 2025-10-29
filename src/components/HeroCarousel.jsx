@@ -8,11 +8,11 @@ const SLIDES = [
   },
   {
     title: "Республика Тыва — регион возможностей",
-    image: "/img/slide-2.svg",
+    image: "/img/slider1.jpg",
   },
   {
     title: "Инновации, туризм и открытый диалог",
-    image: "/img/slide-3.svg",
+    image: "/img/slider2.jpg",
   },
 ];
 

@@ -150,6 +150,39 @@ a {
 .main-nav a:hover::after {
   background: var(--gold);
 }
+.dropdown {
+  position: relative;
+}
+.dropdown__menu {
+  position: absolute;
+  left: 0;
+  top: calc(100% + 8px);
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  box-shadow: var(--shadow);
+  border-radius: 12px;
+  padding: 8px 0;
+  min-width: 260px;
+  display: none;
+  z-index: 70;
+}
+.dropdown__menu a {
+  display: block;
+  padding: 8px 12px;
+  text-decoration: none;
+  color: #111827;
+}
+.dropdown__menu a:hover {
+  background: #f8fafc;
+}
+.dropdown.open .dropdown__menu {
+  display: block;
+}
+.dropdown__menu hr {
+  border: none;
+  border-top: 1px solid #eef2f7;
+  margin: 6px 0;
+}
 .header-actions {
   margin-left: auto;
   display: flex;

@@ -291,6 +291,13 @@ a {
   font-weight: 800;
   border: 1px solid #e5e7eb;
 }
+.hero .sbtn svg,
+.hero .sbtn img {
+  width: 24px;
+  height: 24px;
+  display: block;
+  object-fit: contain;
+}
 .hero .social-left {
   position: absolute;
   left: 24px;

@@ -28,7 +28,7 @@ export default function Footer() {
               </div>
             </div>
             <div style={{ marginTop: 16, color: "#cbd5e1" }}>
-              © 2002—2025 Правительство Нижегородской области
+              © 2025 Верховный Хурал РТ
             </div>
           </div>
 

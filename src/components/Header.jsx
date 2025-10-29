@@ -78,23 +78,28 @@ export default function Header() {
         <div className="container row">
           <div className="row">
             <div className="brand">
-              <div className="logo">
+              <a
+                href="/"
+                className="logo"
+                aria-label="На главную"
+                style={{ textDecoration: "none" }}
+              >
                 <img
                   src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Coat_of_arms_of_Tuva.svg"
                   alt=""
-                  width={30}
-                  height={30}
+                  width={36}
+                  height={36}
                 />
-              </div>
-              <div>
+              </a>
+              <div className="brand-text">
                 <a href="/" style={{ textDecoration: "none" }}>
                   <div
-                    style={{ fontSize: 14, lineHeight: 1, color: "#6b7280" }}
+                    style={{ fontSize: 18, lineHeight: 1, color: "#6b7280" }}
                   >
                     ВЕРХОВНЫЙ ХУРАЛ
                   </div>
                   <div
-                    style={{ fontSize: 16, lineHeight: 1.1, fontWeight: 800 }}
+                    style={{ fontSize: 22, lineHeight: 1.1, fontWeight: 800 }}
                   >
                     РЕСПУБЛИКИ ТЫВА
                   </div>
@@ -354,8 +359,27 @@ export default function Header() {
               Карта WiFi
             </Link>
             <div className="sheet-card" style={{ marginTop: 12 }}>
-              <div style={{ fontWeight: 700, marginBottom: 8 }}>
-                Социальные сети Главы
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 12,
+                  marginBottom: 8,
+                }}
+              >
+                <span>
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Vladislav_Khovalyg_portrait.jpg/250px-Vladislav_Khovalyg_portrait.jpg"
+                    alt=""
+                    style={{
+                      width: 48,
+                      height: 48,
+                      borderRadius: "50%",
+                      objectFit: "cover",
+                    }}
+                  />
+                </span>
+                <div style={{ fontWeight: 700 }}>Социальные сети Главы</div>
               </div>
               <div style={{ display: "flex", gap: 8 }}>
                 <a className="btn" href="#">

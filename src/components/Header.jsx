@@ -1,4 +1,6 @@
 import React from "react";
+import { useA11y } from "../context/A11yContext.jsx";
+import { useI18n } from "../context/I18nContext.jsx";
 
 export default function Header() {
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -26,6 +28,14 @@ export default function Header() {
   const onNavOpen = React.useCallback((e) => {
     if (e && e.preventDefault) e.preventDefault();
     setSheetOpen(true);
+  }, []);
+  const { cycleMode } = useA11y();
+  const { lang, setLang } = useI18n();
+
+  React.useEffect(() => {
+    const onHash = () => setSheetOpen(false);
+    window.addEventListener("hashchange", onHash);
+    return () => window.removeEventListener("hashchange", onHash);
   }, []);
 
   React.useEffect(() => {
@@ -63,7 +73,7 @@ export default function Header() {
                   <div
                     style={{ fontSize: 14, lineHeight: 1, color: "#6b7280" }}
                   >
-                    ХУРАЛ (ПРАВИТЕЛЬСТВО)
+                    ВЕРХОВНЫЙ ХУРАЛ
                   </div>
                   <div
                     style={{ fontSize: 16, lineHeight: 1.1, fontWeight: 800 }}
@@ -76,22 +86,28 @@ export default function Header() {
           </div>
 
           <nav className="main-nav">
-            <a href="#/region">О регионе</a>
-            <a href="#/news">Новости</a>
-            <a
-              href="#/government"
-              aria-haspopup="true"
-              aria-expanded={sheetOpen}
-            >
-              Правительство
-            </a>
-            <a href="#/authorities">Органы власти</a>
-            <a href="#/wifi">Карта WiFi</a>
+            <a href="#/about">О парламенте</a>
+            <a href="#/documents">Документы</a>
+            <a href="#/deputies">Депутаты</a>
+            <a href="#/appeals">Обращения</a>
+            <a href="#/calendar">Календарь</a>
+            <a href="#/news">Архив новостей</a>
           </nav>
 
           <div className="header-actions">
-            <button className="icon-btn" aria-label="Версия для слабовидящих">
+            <button
+              className="icon-btn"
+              aria-label="Версия для слабовидящих"
+              onClick={cycleMode}
+            >
               👁️
+            </button>
+            <button
+              className="icon-btn"
+              aria-label="Сменить язык"
+              onClick={() => setLang(lang === "ru" ? "ty" : "ru")}
+            >
+              {lang.toUpperCase()}
             </button>
             <button className="icon-btn" aria-label="Поиск">
               🔍
@@ -197,20 +213,23 @@ export default function Header() {
         >
           ✕
         </button>
-        <a href="#/region" onClick={() => setMobileOpen(false)}>
-          О регионе
+        <a href="#/about" onClick={() => setMobileOpen(false)}>
+          О парламенте
+        </a>
+        <a href="#/documents" onClick={() => setMobileOpen(false)}>
+          Документы
+        </a>
+        <a href="#/deputies" onClick={() => setMobileOpen(false)}>
+          Депутаты
+        </a>
+        <a href="#/appeals" onClick={() => setMobileOpen(false)}>
+          Обращения
+        </a>
+        <a href="#/calendar" onClick={() => setMobileOpen(false)}>
+          Календарь
         </a>
         <a href="#/news" onClick={() => setMobileOpen(false)}>
-          Новости
-        </a>
-        <a href="#/government" onClick={() => setMobileOpen(false)}>
-          Правительство
-        </a>
-        <a href="#/authorities" onClick={() => setMobileOpen(false)}>
-          Органы власти
-        </a>
-        <a href="#/wifi" onClick={() => setMobileOpen(false)}>
-          Карта Wi‑Fi
+          Архив новостей
         </a>
       </nav>
     </>

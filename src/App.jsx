@@ -4,6 +4,7 @@ import Router from "./Router.jsx";
 import Home from "./pages/Home.jsx";
 import Region from "./pages/Region.jsx";
 import News from "./pages/News.jsx";
+import NewsArchive from "./pages/NewsArchive.jsx";
 import Government from "./pages/Government.jsx";
 import Authorities from "./pages/Authorities.jsx";
 import Wifi from "./pages/Wifi.jsx";
@@ -20,32 +21,51 @@ import Priority03 from "./pages/priorities/Priority03.jsx";
 import Priority04 from "./pages/priorities/Priority04.jsx";
 import Priority05 from "./pages/priorities/Priority05.jsx";
 import Footer from "./components/Footer.jsx";
+import DataProvider from "./context/DataContext.jsx";
+import I18nProvider from "./context/I18nContext.jsx";
+import A11yProvider from "./context/A11yContext.jsx";
+import CalendarPage from "./pages/Calendar.jsx";
+import About from "./pages/About.jsx";
+import Documents from "./pages/Documents.jsx";
+import Deputies from "./pages/Deputies.jsx";
+import Appeals from "./pages/Appeals.jsx";
 
 export default function App() {
   return (
-    <div>
-      <Header />
-      <Router
-        routes={{
-          "/": Home,
-          "/region": Region,
-          "/news": News,
-          "/government": Government,
-          "/authorities": Authorities,
-          "/wifi": Wifi,
-          "/feedback": Feedback,
-          "/press": Press,
-          "/activity": Activity,
-          "/docs": Docs,
-          "/contacts": Contacts,
-          "/priority/01": Priority01,
-          "/priority/02": Priority02,
-          "/priority/03": Priority03,
-          "/priority/04": Priority04,
-          "/priority/05": Priority05,
-        }}
-      />
-      <Footer />
-    </div>
+    <I18nProvider>
+      <A11yProvider>
+        <DataProvider>
+          <div>
+            <Header />
+            <Router
+              routes={{
+                "/": Home,
+                "/region": Region,
+                "/about": About,
+                "/news": NewsArchive,
+                "/calendar": CalendarPage,
+                "/documents": Documents,
+                "/deputies": Deputies,
+                "/appeals": Appeals,
+                "/government": Government,
+                "/authorities": Authorities,
+                "/wifi": Wifi,
+                "/feedback": Feedback,
+                "/press": Press,
+                "/activity": Activity,
+                "/docs": Docs,
+                "/contacts": Contacts,
+                "/priority/01": Priority01,
+                "/priority/02": Priority02,
+                "/priority/03": Priority03,
+                "/priority/04": Priority04,
+                "/priority/05": Priority05,
+              }}
+            />
+            <Footer />
+          </div>
+        </DataProvider>
+      </A11yProvider>
+    </I18nProvider>
   );
 }

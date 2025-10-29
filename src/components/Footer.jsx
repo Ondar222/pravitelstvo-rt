@@ -20,7 +20,7 @@ export default function Footer() {
               </div>
               <div>
                 <div style={{ fontSize: 14, lineHeight: 1, opacity: 0.8 }}>
-                  ХУРАЛ(ПРАВИТЕЛЬСТВО)
+                  ВЕРХОВНЫЙ ХУРАЛ
                 </div>
                 <div style={{ fontSize: 16, lineHeight: 1.1, fontWeight: 800 }}>
                   РЕСПУБЛИКИ ТЫВА

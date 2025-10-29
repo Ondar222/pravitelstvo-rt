@@ -1,4 +1,5 @@
 import React from "react";
+import { useData } from "../context/DataContext.jsx";
 
 const SLIDES = [
   {
@@ -17,6 +18,7 @@ const SLIDES = [
 ];
 
 export default function HeroCarousel() {
+  const { slides: dataSlides } = useData();
   const [active, setActive] = React.useState(0);
 
   React.useEffect(() => {
@@ -26,10 +28,12 @@ export default function HeroCarousel() {
     return () => clearInterval(id);
   }, []);
 
+  const slides = dataSlides && dataSlides.length ? dataSlides : SLIDES;
+
   return (
     <section className="hero container" aria-label="Главные события">
       <div className="slides" aria-hidden>
-        {SLIDES.map((s, i) => (
+        {slides.map((s, i) => (
           <div
             key={i}
             className={`slide ${i === active ? "active" : ""}`}
@@ -39,7 +43,17 @@ export default function HeroCarousel() {
         <div className="overlay" />
       </div>
       <div className="caption">
-        <h1 className="title">{SLIDES[active].title}</h1>
+        <h1 className="title">{slides[active].title}</h1>
+        {slides[active].desc && (
+          <p style={{ color: "#e5e7eb", maxWidth: 720 }}>
+            {slides[active].desc}
+          </p>
+        )}
+        {slides[active].link && (
+          <a className="btn" href={slides[active].link}>
+            Подробнее →
+          </a>
+        )}
       </div>
       <div className="arrows" aria-hidden>
         <button

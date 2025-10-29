@@ -3,8 +3,9 @@
   --card: #fff;
   --text: #111827;
   --muted: #6b7280;
-  --primary: #0a1f44; /* deep navy like nobl.ru */
-  --accent: #ef4444; /* red accent */
+  --primary: #003366; /* Tuva deep navy */
+  --gold: #ffd700;
+  --accent: #ef4444;
   --link: #1f3b8a;
   --brand: #0a1f44;
   --brand-contrast: #ffffff;
@@ -26,6 +27,7 @@ body {
   font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
   color: var(--text);
   background: var(--bg);
+  font-size: calc(16px * var(--font-scale, 1));
 }
 .section {
   padding: 40px 20px;
@@ -96,6 +98,9 @@ a {
   align-items: center;
   gap: 16px;
   height: 64px;
+}
+
+.container row {
 }
 .brand {
   display: flex;
@@ -419,7 +424,7 @@ a {
 .site-footer {
   margin-top: 48px;
   color: #e5e7eb;
-  background: linear-gradient(135deg, #0a1f44, #3b1465);
+  background: linear-gradient(135deg, #003366, #3b1465);
   border-top-left-radius: 24px;
   border-top-right-radius: 24px;
   padding: 40px 0;
@@ -573,4 +578,18 @@ a {
   color: #4b5563;
   font-size: 14px;
   margin-top: 16px;
+}
+
+/* High contrast modes */
+body.hc-bw {
+  --bg: #ffffff;
+  --text: #000000;
+  --primary: #000000;
+  --link: #000000;
+}
+body.hc-yb {
+  --bg: #000000;
+  --text: #ffd700;
+  --primary: #ffd700;
+  --link: #ffd700;
 }

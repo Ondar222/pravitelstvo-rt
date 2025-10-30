@@ -208,7 +208,7 @@ a {
   flex-direction: row;
   justify-content: end;
   text-align: end;
-  margin-left: 650px;
+  margin-left: 630px;
   background-color: #0d4b8f;
   border: #0d4b8f;
   font-weight: bold;
@@ -231,7 +231,7 @@ a {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    margin-left: 330px;
+    margin-left: 310px;
     background-color: #0d4b8f;
     border: #0d4b8f;
     font-weight: bold;
@@ -1151,20 +1151,34 @@ body.hc-yb {
 
 /* Search modal layout */
 .search-form {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 8px;
-  align-items: stretch;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.search-form .btn {
+  width: 40px;
+  height: 40px;
+  margin-right: 18px !important;
 }
 
 .search-form input {
   background-color: #ffffff;
+  width: 90% !important;
 }
 @media (max-width: 520px) {
   .search-form {
-    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .search-form input {
+    background-color: #ffffff;
+    width: 80% !important;
   }
   .search-form .btn {
-    width: 100%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
   }
 }

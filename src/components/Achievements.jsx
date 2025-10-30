@@ -45,7 +45,7 @@ export default function Achievements() {
             Больше достопримечательностей →
           </a>
         </div>
-        <div className="grid cols-3">
+        <div className="ach-row">
           {list.slice(0, 5).map((a) => (
             <a
               key={a.id}

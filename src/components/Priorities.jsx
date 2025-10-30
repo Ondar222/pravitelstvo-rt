@@ -1,4 +1,5 @@
 import React from "react";
+import PriorityModal from "./PriorityModal.jsx";
 
 const PRIORITIES = [
   {
@@ -46,8 +47,14 @@ const PRIORITIES = [
 ];
 
 export default function Priorities() {
-  const [openId, setOpenId] = React.useState(null);
-  const open = (id) => setOpenId((cur) => (cur === id ? null : id));
+  const [selected, setSelected] = React.useState(null);
+  const onOpen = (item) => setSelected(item);
+  const onKey = (e, item) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      setSelected(item);
+    }
+  };
   return (
     <section className="section">
       <div className="container">
@@ -61,13 +68,11 @@ export default function Priorities() {
           {PRIORITIES.map((p) => (
             <div
               key={p.id}
-              className={`priority ${openId === p.id ? "open" : ""}`}
+              className="priority"
               role="button"
               tabIndex={0}
-              onClick={() => open(p.id)}
-              onKeyDown={(e) => {
-                if (e.key === "Enter" || e.key === " ") open(p.id);
-              }}
+              onClick={() => onOpen(p)}
+              onKeyDown={(e) => onKey(e, p)}
             >
               <div
                 className="bg"
@@ -80,16 +85,15 @@ export default function Priorities() {
               <div className="overlay" />
               <div className="content">{p.title}</div>
               <div className="badge">{p.id}</div>
-              <div className="details">
-                <p>{p.desc}</p>
-                <a className="btn" href={`#${p.slug}`}>
-                  Подробнее →
-                </a>
-              </div>
             </div>
           ))}
         </div>
       </div>
+      <PriorityModal
+        open={!!selected}
+        onClose={() => setSelected(null)}
+        item={selected}
+      />
     </section>
   );
 }

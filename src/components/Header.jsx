@@ -2,6 +2,7 @@ import React from "react";
 import { useA11y } from "../context/A11yContext.jsx";
 import { useI18n } from "../context/I18nContext.jsx";
 import Link from "./Link.jsx";
+import SearchModal from "./SearchModal.jsx";
 import { useData } from "../context/DataContext.jsx";
 // removed unused UI icon libs
 
@@ -10,6 +11,7 @@ export default function Header() {
   const [sheetOpen, setSheetOpen] = React.useState(false);
   const [openMenu, setOpenMenu] = React.useState(null); // 'region' | 'news' | 'gov' | 'auth'
   const [mobileSection, setMobileSection] = React.useState(null);
+  const [searchOpen, setSearchOpen] = React.useState(false);
 
   React.useEffect(() => {
     const onKey = (e) => {
@@ -180,7 +182,11 @@ export default function Header() {
             >
               {lang.toUpperCase()}
             </button>
-            <button className="icon-btn" aria-label="Поиск">
+            <button
+              className="icon-btn"
+              aria-label="Поиск"
+              onClick={() => setSearchOpen(true)}
+            >
               🔍
             </button>
             <button
@@ -209,10 +215,25 @@ export default function Header() {
         aria-modal="true"
       >
         <div className="sheet-header">
-          <button className="icon-btn" aria-label="Версия для слабовидящих">
+          <button
+            className="icon-btn"
+            aria-label="Версия для слабовидящих"
+            onClick={cycleMode}
+          >
             👁️
           </button>
-          <button className="icon-btn" aria-label="Поиск">
+          <button
+            className="icon-btn"
+            aria-label="Сменить язык"
+            onClick={() => setLang(lang === "ru" ? "ty" : "ru")}
+          >
+            {lang.toUpperCase()}
+          </button>
+          <button
+            className="icon-btn"
+            aria-label="Поиск"
+            onClick={() => setSearchOpen(true)}
+          >
             🔍
           </button>
           <button
@@ -368,8 +389,19 @@ export default function Header() {
           >
             👁️
           </button>
-          <button className="icon-btn" aria-label="Поиск">
+          <button
+            className="icon-btn"
+            aria-label="Поиск"
+            onClick={() => setSearchOpen(true)}
+          >
             🔍
+          </button>
+          <button
+            className="icon-btn"
+            aria-label="Сменить язык"
+            onClick={() => setLang(lang === "ru" ? "ty" : "ru")}
+          >
+            {lang.toUpperCase()}
           </button>
           <button
             className="icon-btn"
@@ -643,6 +675,7 @@ export default function Header() {
           </>
         )}
       </nav>
+      <SearchModal open={searchOpen} onClose={() => setSearchOpen(false)} />
     </>
   );
 }

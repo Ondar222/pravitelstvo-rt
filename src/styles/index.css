@@ -63,6 +63,9 @@ h3 {
   color: var(--primary);
   margin: 0 0 16px;
   font-family: "Noto Serif SC", serif;
+  position: relative;
+  display: inline-block; /* underline matches text width */
+  padding-bottom: 10px;
 }
 h1 {
   font-size: 44px;
@@ -715,6 +718,20 @@ a {
   }
 }
 
+/* Gold underline for headings */
+h1::after,
+h2::after,
+h3::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 4px;
+  background: var(--gold);
+  border-radius: 3px;
+}
+
 /* Footer */
 .site-footer {
   margin-top: 48px;
@@ -1085,4 +1102,20 @@ body.hc-yb {
 }
 .modal__content {
   margin-top: 12px;
+}
+
+/* Search modal layout */
+.search-form {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px;
+  align-items: stretch;
+}
+@media (max-width: 520px) {
+  .search-form {
+    grid-template-columns: 1fr;
+  }
+  .search-form .btn {
+    width: 100%;
+  }
 }

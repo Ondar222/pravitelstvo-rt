@@ -70,7 +70,7 @@ export default function SearchModal({ open, onClose }) {
           ✕
         </button>
         <div className="modal__content">
-          <div style={{ display: "flex", gap: 8 }}>
+          <div className="search-form">
             <input
               ref={inputRef}
               type="search"
@@ -78,7 +78,7 @@ export default function SearchModal({ open, onClose }) {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               style={{
-                flex: 1,
+                width: "100%",
                 padding: "10px 12px",
                 border: "1px solid #e5e7eb",
                 borderRadius: 8,

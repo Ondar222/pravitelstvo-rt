@@ -47,6 +47,14 @@ body {
   margin: 0 auto;
   padding: 0 24px;
 }
+.layout {
+  min-height: 100vh; /* stick footer to bottom */
+  display: flex;
+  flex-direction: column;
+}
+.main-content {
+  flex: 1;
+}
 
 /* Typography approximating nobl.ru */
 h1,
@@ -156,12 +164,13 @@ a {
 .dropdown__menu {
   position: absolute;
   left: 0;
-  top: calc(100% + 8px);
+  top: 100%; /* remove gap so cursor doesn't fall through */
   background: #fff;
   border: 1px solid #e5e7eb;
   box-shadow: var(--shadow);
   border-radius: 12px;
-  padding: 8px 0;
+  padding: 8px 0 12px; /* vertical comfort */
+  padding-top: 8px; /* visual offset but keeps hover area continuous */
   min-width: 260px;
   display: none;
   z-index: 70;
@@ -175,8 +184,9 @@ a {
 .dropdown__menu a:hover {
   background: #f8fafc;
 }
-.dropdown.open .dropdown__menu {
-  display: block;
+.dropdown.open .dropdown__menu,
+.dropdown:hover .dropdown__menu {
+  display: block; /* keep open when hovering menu itself */
 }
 .dropdown__menu hr {
   border: none;
@@ -1051,7 +1061,9 @@ body.hc-yb {
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(255, 255, 255, 0.65); /* light, on-brand */
+  backdrop-filter: blur(6px) saturate(140%);
+  -webkit-backdrop-filter: blur(6px) saturate(140%);
   display: grid;
   place-items: center;
   z-index: 100;

@@ -50,34 +50,36 @@ export default function App() {
           }}
         >
           <DataProvider>
-            <div>
+            <div className="layout">
               <Header />
-              <Router
-                routes={{
-                  "/": Home,
-                  "/region": Region,
-                  "/about": About,
-                  "/news": NewsArchive,
-                  "/achievements": AchievementsPage,
-                  "/calendar": CalendarPage,
-                  "/documents": Documents,
-                  "/deputies": Deputies,
-                  "/appeals": Appeals,
-                  "/government": Government,
-                  "/authorities": Authorities,
-                  "/wifi": Wifi,
-                  "/feedback": Feedback,
-                  "/press": Press,
-                  "/activity": Activity,
-                  "/docs": Docs,
-                  "/contacts": Contacts,
-                  "/priority/01": Priority01,
-                  "/priority/02": Priority02,
-                  "/priority/03": Priority03,
-                  "/priority/04": Priority04,
-                  "/priority/05": Priority05,
-                }}
-              />
+              <main className="main-content">
+                <Router
+                  routes={{
+                    "/": Home,
+                    "/region": Region,
+                    "/about": About,
+                    "/news": NewsArchive,
+                    "/achievements": AchievementsPage,
+                    "/calendar": CalendarPage,
+                    "/documents": Documents,
+                    "/deputies": Deputies,
+                    "/appeals": Appeals,
+                    "/government": Government,
+                    "/authorities": Authorities,
+                    "/wifi": Wifi,
+                    "/feedback": Feedback,
+                    "/press": Press,
+                    "/activity": Activity,
+                    "/docs": Docs,
+                    "/contacts": Contacts,
+                    "/priority/01": Priority01,
+                    "/priority/02": Priority02,
+                    "/priority/03": Priority03,
+                    "/priority/04": Priority04,
+                    "/priority/05": Priority05,
+                  }}
+                />
+              </main>
               <Footer />
             </div>
           </DataProvider>

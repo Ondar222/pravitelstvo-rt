@@ -109,13 +109,17 @@ export default function Header() {
             </div>
           </div>
 
-          <nav className="main-nav" onMouseLeave={() => setOpenMenu(null)}>
+          <nav className="main-nav">
             <div
               className={`dropdown ${openMenu === "region" ? "open" : ""}`}
               onMouseEnter={() => setOpenMenu("region")}
+              onMouseLeave={() => setOpenMenu(null)}
             >
               <Link to="/about">О регионе ▾</Link>
-              <div className="dropdown__menu">
+              <div
+                className="dropdown__menu"
+                onMouseEnter={() => setOpenMenu("region")}
+              >
                 <a href="#/region">Республика Тыва</a>
                 <a href="#/region">Карта области</a>
                 <a href="#/region">Летопись</a>
@@ -127,9 +131,13 @@ export default function Header() {
             <div
               className={`dropdown ${openMenu === "news" ? "open" : ""}`}
               onMouseEnter={() => setOpenMenu("news")}
+              onMouseLeave={() => setOpenMenu(null)}
             >
               <Link to="/news">Новости ▾</Link>
-              <div className="dropdown__menu">
+              <div
+                className="dropdown__menu"
+                onMouseEnter={() => setOpenMenu("news")}
+              >
                 {newsCategories.map((c, i) =>
                   c === "—" ? (
                     <hr key={`hr-${i}`} />
@@ -144,9 +152,13 @@ export default function Header() {
             <div
               className={`dropdown ${openMenu === "gov" ? "open" : ""}`}
               onMouseEnter={() => setOpenMenu("gov")}
+              onMouseLeave={() => setOpenMenu(null)}
             >
               <Link to="/government">Правительство ▾</Link>
-              <div className="dropdown__menu">
+              <div
+                className="dropdown__menu"
+                onMouseEnter={() => setOpenMenu("gov")}
+              >
                 <a href="#/government">Губернатор</a>
                 <a href="#/government">Состав Правительства</a>
                 <a href="#/government">Исполнительные органы</a>
@@ -156,9 +168,13 @@ export default function Header() {
             <div
               className={`dropdown ${openMenu === "auth" ? "open" : ""}`}
               onMouseEnter={() => setOpenMenu("auth")}
+              onMouseLeave={() => setOpenMenu(null)}
             >
               <Link to="/authorities">Органы власти ▾</Link>
-              <div className="dropdown__menu">
+              <div
+                className="dropdown__menu"
+                onMouseEnter={() => setOpenMenu("auth")}
+              >
                 <a href="#/authorities">Местное самоуправление</a>
                 <a href="#/authorities">Законодательное Собрание</a>
                 <a href="#/authorities">Территориальные отделения</a>

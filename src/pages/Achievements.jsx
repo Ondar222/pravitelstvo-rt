@@ -39,7 +39,6 @@ function AchievementModal({ open, onClose, item }) {
 
 export default function AchievementsPage() {
   const { achievements } = useData();
-  const rowRef = React.useRef(null);
   const [open, setOpen] = React.useState(null);
   const [selected, setSelected] = React.useState(() => {
     const h = window.location.hash;
@@ -61,57 +60,24 @@ export default function AchievementsPage() {
     return () => window.removeEventListener("hashchange", onHash);
   }, []);
 
-  React.useEffect(() => {
-    const el = rowRef.current;
-    if (!el) return;
-    let x = 0;
-    const id = setInterval(() => {
-      x += 2; // px per tick
-      if (x > el.scrollWidth) x = 0;
-      el.scrollTo({ left: x, behavior: "smooth" });
-    }, 80);
-    return () => clearInterval(id);
-  }, []);
+  // Remove auto-scroll on desktop: static grid is more stable and predictable
 
   return (
     <section className="section">
       <div className="container">
         <h1>Достопримечательности</h1>
-        <div
-          ref={rowRef}
-          style={{
-            display: "flex",
-            gap: 12,
-            overflowX: "auto",
-            scrollSnapType: "x mandatory",
-            paddingBottom: 6,
-          }}
-        >
+        <div className="grid ach-row">
           {achievements.map((a) => (
             <button
               key={a.id}
               className="tile"
-              style={{
-                width: 320,
-                flex: "0 0 auto",
-                padding: 0,
-                scrollSnapAlign: "start",
-                overflow: "hidden",
-              }}
+              style={{ padding: 0, overflow: "hidden" }}
               onClick={() => setOpen(a)}
             >
-              <div style={{ height: 180, overflow: "hidden" }}>
-                <img
-                  src={(a.images && a.images[0]) || ""}
-                  alt=""
-                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                />
-              </div>
-              <div style={{ padding: 16 }}>
-                <div style={{ fontWeight: 800 }}>{a.title}</div>
-                {a.desc ? (
-                  <div style={{ color: "#6b7280", marginTop: 6 }}>{a.desc}</div>
-                ) : null}
+              <div className="achievement-image">
+                <img src={(a.images && a.images[0]) || ""} alt="" />
+                <div className="achievement-overlay"></div>
+                <div className="achievement-title">{a.title}</div>
               </div>
             </button>
           ))}

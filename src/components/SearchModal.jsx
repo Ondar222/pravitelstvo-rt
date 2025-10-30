@@ -63,11 +63,11 @@ export default function SearchModal({ open, onClose }) {
     >
       <div className="modal" onClick={(e) => e.stopPropagation()}>
         <button
-          className="modal__close icon-btn"
+          className="modal__close_icon-btn_header"
           onClick={onClose}
           aria-label="Закрыть"
         >
-          ✕
+          <p>X</p>
         </button>
         <div className="modal__content">
           <div className="search-form">
@@ -80,7 +80,8 @@ export default function SearchModal({ open, onClose }) {
               style={{
                 width: "100%",
                 padding: "10px 12px",
-                border: "1px solid #e5e7eb",
+                border: "1px solid #003366",
+                color: "#ffd700",
                 borderRadius: 8,
               }}
               aria-label={t("search")}

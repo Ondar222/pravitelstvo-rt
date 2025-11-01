@@ -671,6 +671,13 @@ export default function Header() {
             </a>
             <a
               className="tile link"
+              href="#/deputies"
+              onClick={() => setMobileOpen(false)}
+            >
+              Депутаты
+            </a>
+            <a
+              className="tile link"
               href="#/government"
               onClick={() => setMobileOpen(false)}
             >

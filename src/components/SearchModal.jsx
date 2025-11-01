@@ -63,11 +63,11 @@ export default function SearchModal({ open, onClose }) {
     >
       <div className="modal" onClick={(e) => e.stopPropagation()}>
         <button
-          className="modal__close_icon-btn_header"
+          className="icon-btn modal__close"
           onClick={onClose}
           aria-label="Закрыть"
         >
-          <p>X</p>
+          ×
         </button>
         <div className="modal__content">
           <div className="search-form">
@@ -77,13 +77,7 @@ export default function SearchModal({ open, onClose }) {
               placeholder={t("search")}
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              style={{
-                width: "100%",
-                padding: "10px 12px",
-                border: "1px solid #003366",
-                color: "#ffd700",
-                borderRadius: 8,
-              }}
+              className="search-input"
               aria-label={t("search")}
             />
             <button

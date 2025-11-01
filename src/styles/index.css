@@ -24,7 +24,7 @@ body,
 }
 body {
   margin: 0;
-  font-family: "Noto Sans", ui-sans-serif, system-ui, -apple-system, Segoe UI,
+  font-family: "Manrope", ui-sans-serif, system-ui, -apple-system, Segoe UI,
     Roboto, Arial;
   color: var(--text);
   background: var(--bg);
@@ -62,7 +62,7 @@ h2,
 h3 {
   color: var(--primary);
   margin: 0 0 16px;
-  font-family: "Noto Serif SC", serif;
+  font-family: "Merriweather", serif;
   position: relative;
   display: inline-block; /* underline matches text width */
   padding-bottom: 10px;
@@ -1154,6 +1154,33 @@ body.hc-yb {
   display: flex;
   flex-direction: row;
   gap: 20px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 2px solid #0a3b72;
+  border-radius: 10px;
+  outline: none;
+  background: #ffffff;
+  color: #111827;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+.search-input::placeholder {
+  color: #9aa4b2;
+}
+.search-input:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.25);
+}
+
+.modal .icon-btn {
+  background: #ffffff;
+  color: #111827;
+  border-color: #e5e7eb;
+}
+.modal .icon-btn:hover {
+  background: #f8fafc;
 }
 
 .search-form .btn {

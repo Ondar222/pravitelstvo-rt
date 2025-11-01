@@ -159,7 +159,7 @@ export default function Header() {
                 className="dropdown__menu"
                 onMouseEnter={() => setOpenMenu("gov")}
               >
-                <a href="#/government">Губернатор</a>
+                <a href="#/government">Глава</a>
                 <a href="#/deputies">Депутаты</a>
                 <a href="#/government">Состав Правительства</a>
                 <a href="#/government">Исполнительные органы</a>

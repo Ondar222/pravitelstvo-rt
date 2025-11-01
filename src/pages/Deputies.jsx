@@ -36,7 +36,12 @@ export default function Deputies() {
     <section className="section">
       <div className="container">
         <h1>Депутаты</h1>
-        <Space size="middle" style={{ margin: "12px 0 20px" }} wrap>
+        <Space
+          className="filters"
+          size="middle"
+          style={{ margin: "12px 0 20px" }}
+          wrap
+        >
           <Select
             value={district}
             onChange={setDistrict}
@@ -67,7 +72,7 @@ export default function Deputies() {
                 {d.district} · {d.faction}
               </div>
               <p>Приём граждан: {d.reception}</p>
-              <Space>
+              <Space wrap style={{ width: "100%" }}>
                 <Button href={`tel:${d.contacts.phone}`}>Позвонить</Button>
                 <Button href={`mailto:${d.contacts.email}`} type="primary">
                   Написать

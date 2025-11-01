@@ -31,6 +31,7 @@ import Deputies from "./pages/Deputies.jsx";
 import Appeals from "./pages/Appeals.jsx";
 import AchievementsPage from "./pages/Achievements.jsx";
 import { ConfigProvider, theme } from "antd";
+import CookieBanner from "./components/CookieBanner.jsx";
 
 export default function App() {
   return (
@@ -81,6 +82,7 @@ export default function App() {
                 />
               </main>
               <Footer />
+              <CookieBanner />
             </div>
           </DataProvider>
         </ConfigProvider>

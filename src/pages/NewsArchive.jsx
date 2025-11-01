@@ -52,7 +52,8 @@ export default function NewsArchive() {
   };
 
   if (selected) {
-    const item = news.find((n) => n.id === selected);
+    const idx = news.findIndex((n) => n.id === selected);
+    const item = idx >= 0 ? news[idx] : null;
     if (!item) return null;
     return (
       <section className="section">
@@ -64,8 +65,60 @@ export default function NewsArchive() {
           <div style={{ color: "#6b7280", marginBottom: 16 }}>
             {new Date(item.date).toLocaleDateString("ru-RU")} · {item.category}
           </div>
-          <div className="card" style={{ padding: 16 }}>
-            <p>{item.excerpt}</p>
+          <div className="news-detail">
+            <article className="card" style={{ padding: 16 }}>
+              <div
+                style={{ height: 340, overflow: "hidden", borderRadius: 12 }}
+              >
+                <img
+                  src={getImage(Math.max(0, idx))}
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                />
+              </div>
+              <div className="prose" style={{ marginTop: 16 }}>
+                <p>{item.excerpt}</p>
+                {Array.isArray(item.content) && item.content.length > 0 ? (
+                  item.content.map((p, i) => <p key={i}>{p}</p>)
+                ) : (
+                  <>
+                    <p>
+                      Полный текст новости будет дополнен. Сейчас отображается
+                      расширенное описание на основе краткой выжимки.
+                    </p>
+                    <p>
+                      При необходимости вы можете добавить поле
+                      <strong> content</strong> и <strong> image</strong> в
+                      файле данных, чтобы вывести официальный текст и фотографию
+                      события.
+                    </p>
+                  </>
+                )}
+              </div>
+            </article>
+            <aside>
+              <h3 style={{ marginBottom: 8 }}>Другие новости</h3>
+              <div className="grid">
+                {news
+                  .filter((n) => n.id !== item.id)
+                  .slice(0, 6)
+                  .map((n, i) => (
+                    <a
+                      key={n.id}
+                      className="tile link"
+                      href={`#/news?id=${n.id}`}
+                      style={{ display: "block", padding: 12 }}
+                    >
+                      <div style={{ fontSize: 14, color: "#6b7280" }}>
+                        {new Date(n.date).toLocaleDateString("ru-RU")}
+                      </div>
+                      <div style={{ fontWeight: 700 }}>{n.title}</div>
+                    </a>
+                  ))}
+              </div>
+            </aside>
           </div>
         </div>
       </section>

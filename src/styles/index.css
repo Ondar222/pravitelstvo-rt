@@ -627,6 +627,20 @@ a {
   padding: 20px 20px;
 }
 
+/* News detail layout */
+.news-detail {
+  display: grid;
+  gap: 20px;
+}
+@media (min-width: 960px) {
+  .news-detail {
+    grid-template-columns: 2fr 1fr;
+  }
+}
+.prose p {
+  margin: 0 0 14px;
+}
+
 /* Priorities (stacked banners) */
 .priorities-list {
   display: grid;

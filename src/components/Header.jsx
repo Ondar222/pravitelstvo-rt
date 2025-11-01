@@ -666,7 +666,7 @@ export default function Header() {
               href="#/government"
               onClick={() => setMobileOpen(false)}
             >
-              Губернатор
+              Глава
             </a>
             <a
               className="tile link"

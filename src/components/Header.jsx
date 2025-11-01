@@ -370,7 +370,8 @@ export default function Header() {
           </div>
           <div className="sheet-col">
             <h3>Правительство</h3>
-            <a href="#/government">Губернатор</a>
+            <a href="#/government">Глава</a>
+            <a href="#/deputies">Депутаты</a>
             <a href="#/government">Состав Правительства</a>
             <a href="#/government">Исполнительные органы</a>
             <a href="#/government">Пресс‑служба</a>

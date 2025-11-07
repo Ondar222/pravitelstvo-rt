@@ -88,8 +88,8 @@ export default function Header() {
                 <img
                   src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Coat_of_arms_of_Tuva.svg"
                   alt=""
-                  width={42}
-                  height={42}
+                  width={56}
+                  height={56}
                 />
               </a>
               <div className="brand-text">
@@ -232,6 +232,23 @@ export default function Header() {
         aria-modal="true"
       >
         <div className="sheet-header">
+          <a
+            href="/"
+            className="logo"
+            aria-label="На главную"
+            onClick={() => setSheetOpen(false)}
+            style={{
+              marginRight: "auto",
+              textDecoration: "none",
+            }}
+          >
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Coat_of_arms_of_Tuva.svg"
+              alt=""
+              width={44}
+              height={44}
+            />
+          </a>
           <button
             className="icon-btn"
             aria-label="Версия для слабовидящих"
@@ -397,9 +414,23 @@ export default function Header() {
             display: "flex",
             alignItems: "center",
             gap: 8,
-            justifyContent: "flex-end",
+            justifyContent: "space-between",
           }}
         >
+          <a
+            href="/"
+            className="logo"
+            aria-label="На главную"
+            onClick={() => setMobileOpen(false)}
+            style={{ textDecoration: "none" }}
+          >
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Coat_of_arms_of_Tuva.svg"
+              alt=""
+              width={36}
+              height={36}
+            />
+          </a>
           <button
             className="icon-btn"
             aria-label="Версия для слабовидящих"

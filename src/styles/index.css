@@ -662,6 +662,25 @@ a {
   align-items: center;
   gap: 10px;
 }
+.card-title--stack {
+  align-items: flex-start;
+}
+.card-title__text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.card-title__name {
+  font-weight: 800;
+  line-height: 1.2;
+}
+.card-subtitle {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+}
 .avatar {
   width: 44px;
   height: 44px;

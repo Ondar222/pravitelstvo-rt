@@ -202,17 +202,21 @@ export default function Government() {
                 <Card
                   key={p.id}
                   title={
-                    <div className="card-title">
+                    <div className="card-title card-title--stack">
                       <img
                         className="avatar"
                         src={p.photo || "/img/ok.png"}
                         alt=""
                         loading="lazy"
                       />
-                      <span>{p.name}</span>
+                      <div className="card-title__text">
+                        <span className="card-title__name">{p.name}</span>
+                        {p.role && (
+                          <span className="card-subtitle">{p.role}</span>
+                        )}
+                      </div>
                     </div>
                   }
-                  extra={<Tag color="gold">{p.role}</Tag>}
                 >
                   <div style={{ color: "#6b7280", marginBottom: 6 }}>
                     {p.agency}

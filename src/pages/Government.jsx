@@ -146,7 +146,17 @@ export default function Government() {
               {filteredDeps.map((d) => (
                 <Card
                   key={d.id}
-                  title={d.name}
+                  title={
+                    <div className="card-title">
+                      <img
+                        className="avatar"
+                        src={d.photo || "/img/max.png"}
+                        alt=""
+                        loading="lazy"
+                      />
+                      <span>{d.name}</span>
+                    </div>
+                  }
                   extra={<Tag color="gold">{d.convocation}</Tag>}
                 >
                   <div style={{ color: "#6b7280", marginBottom: 6 }}>
@@ -191,7 +201,17 @@ export default function Government() {
               {filtered.map((p) => (
                 <Card
                   key={p.id}
-                  title={p.name}
+                  title={
+                    <div className="card-title">
+                      <img
+                        className="avatar"
+                        src={p.photo || "/img/ok.png"}
+                        alt=""
+                        loading="lazy"
+                      />
+                      <span>{p.name}</span>
+                    </div>
+                  }
                   extra={<Tag color="gold">{p.role}</Tag>}
                 >
                   <div style={{ color: "#6b7280", marginBottom: 6 }}>

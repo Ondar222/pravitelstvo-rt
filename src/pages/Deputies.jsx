@@ -65,7 +65,17 @@ export default function Deputies() {
           {filtered.map((d) => (
             <Card
               key={d.id}
-              title={d.name}
+              title={
+                <div className="card-title">
+                  <img
+                    className="avatar"
+                    src={d.photo || "/img/max.png"}
+                    alt=""
+                    loading="lazy"
+                  />
+                  <span>{d.name}</span>
+                </div>
+              }
               extra={<Tag color="gold">{d.convocation}</Tag>}
             >
               <div style={{ color: "#6b7280", marginBottom: 6 }}>

@@ -73,6 +73,9 @@ export default function Deputies() {
               </div>
               <p>Приём граждан: {d.reception}</p>
               <Space wrap style={{ width: "100%" }}>
+                <Button href={`#/government?type=dep&id=${d.id}`}>
+                  Подробнее
+                </Button>
                 <Button href={`tel:${d.contacts.phone}`}>Позвонить</Button>
                 <Button href={`mailto:${d.contacts.email}`} type="primary">
                   Написать

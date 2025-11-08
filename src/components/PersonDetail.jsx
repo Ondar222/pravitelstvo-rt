@@ -1,0 +1,195 @@
+import React from "react";
+
+export default function PersonDetail({ item, type, backHref }) {
+  const isDeputy = type === "dep";
+  const title = item.name || item.title;
+  const phone = isDeputy ? item.contacts?.phone : item.phone;
+  const email = isDeputy ? item.contacts?.email : item.email;
+  const avatarSrc = "/img/max.png";
+
+  return (
+    <section className="section">
+      <div className="container">
+        {backHref && (
+          <a className="btn" href={backHref} style={{ marginBottom: 12 }}>
+            ← К списку
+          </a>
+        )}
+
+        <div className="card person-hero">
+          <img
+            className="person-portrait"
+            src={avatarSrc}
+            alt={title}
+            loading="lazy"
+          />
+          <div className="person-hero__body">
+            <h1 className="person-name">{title}</h1>
+            <div className="person-meta">
+              {isDeputy ? (
+                <>
+                  <div>
+                    Первый заместитель секретаря Регионального политического
+                    совета
+                  </div>
+                  <div>созыв {item.convocation}</div>
+                  <div>Избирательный округ: {item.district}</div>
+                  <div>Фракция: «{item.faction}»</div>
+                </>
+              ) : (
+                <>
+                  <div>{item.role}</div>
+                  {item.agency && <div>{item.agency}</div>}
+                </>
+              )}
+            </div>
+            <div style={{ marginTop: 12 }}>
+              <a
+                className="btn btn--primary"
+                href={email ? `mailto:${email}` : "#"}
+              >
+                Обратиться к депутату
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div className="person-tabs">
+          <a className="pill" href="#bio">
+            Биография
+          </a>
+          <a className="pill" href="#contacts">
+            Контакты
+          </a>
+          <a className="pill" href="#laws">
+            Законодательная деятельность
+          </a>
+          <a className="pill" href="#income">
+            Сведения о доходах
+          </a>
+          <a className="pill" href="#schedule">
+            График приема граждан
+          </a>
+        </div>
+
+        <div id="bio" className="person-block">
+          <h2>Биография</h2>
+          <div className="prose">
+            <p>
+              Родился в с. Суг‑Бажы Каа‑Хемского района Республики Тыва. Окончил
+              институт по специальности «Лечебное дело».
+            </p>
+            <p>
+              Работал врачом и руководителем медицинских учреждений.
+              Зарекомендовал себя компетентным, грамотным и опытным
+              специалистом.
+            </p>
+          </div>
+        </div>
+
+        <div id="contacts" className="person-block">
+          <h2>Контакты</h2>
+          <div className="tile contact-card">
+            <div className="contact-row">
+              <div className="contact-ico">📞</div>
+              <div className="contact-text">
+                <div className="contact-title">Телефон</div>
+                <a className="link" href={phone ? `tel:${phone}` : "#"}>
+                  {phone || "—"}
+                </a>
+              </div>
+            </div>
+            <div className="contact-row">
+              <div className="contact-ico">✉️</div>
+              <div className="contact-text">
+                <div className="contact-title">Email</div>
+                <a className="link" href={email ? `mailto:${email}` : "#"}>
+                  {email || "—"}
+                </a>
+              </div>
+            </div>
+            <div className="contact-row">
+              <div className="contact-ico">📍</div>
+              <div className="contact-text">
+                <div className="contact-title">Адрес</div>
+                <div>г. Кызыл, ул. Ленина, 40</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="laws" className="person-block">
+          <h2>Законодательная деятельность</h2>
+          <div className="law-list">
+            {[1, 2].map((i) => (
+              <div key={i} className="law-item tile">
+                <div className="law-left">
+                  <div className="law-ico">📄</div>
+                  <div className="law-text">
+                    <div className="law-title">№ 1056580-{i}</div>
+                    <div className="law-desc">
+                      О внесении изменений в Федеральный закон «О
+                      государственной регистрации транспортных средств в РФ»
+                    </div>
+                    <div className="law-status">На рассмотрении</div>
+                  </div>
+                </div>
+                <a className="law-link" href="#" aria-label="Перейти">
+                  ↗
+                </a>
+              </div>
+            ))}
+          </div>
+          <div style={{ textAlign: "center", marginTop: 12 }}>
+            <button className="btn btn--gold">Показать больше</button>
+          </div>
+        </div>
+
+        <div id="income" className="person-block">
+          <h2>Сведения о доходах</h2>
+          <p>
+            Скачать информацию о доходах, расходах, об имуществе и
+            обязательствах имущественного характера:
+          </p>
+          <div className="grid docs-grid">
+            {[2024, 2023, 2022].map((year) => (
+              <div key={year} className="doc-card tile">
+                <div className="doc-header">
+                  <div className="doc-ico">🗂</div>
+                  <div>
+                    <div className="doc-title">Декларация за {year} год</div>
+                    <div className="doc-meta">PDF, 122.9 kB</div>
+                  </div>
+                </div>
+                <div>
+                  <a className="btn btn--gold" href="#">
+                    Перейти к документу
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div id="schedule" className="person-block">
+          <h2>График приема граждан</h2>
+          <div className="sched-grid">
+            {[
+              ["Понедельник", "10:00 - 12:00"],
+              ["Вторник", "10:00 - 12:00"],
+              ["Среда", "10:00 - 12:00"],
+              ["Четверг", "10:00 - 12:00"],
+              ["Пятница", "10:00 - 12:00"],
+              ["Суббота-Воскресенье", "Выходной"],
+            ].map(([day, time]) => (
+              <React.Fragment key={day}>
+                <div className="sched-cell tile">{day}</div>
+                <div className="sched-cell tile">{time}</div>
+              </React.Fragment>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}

@@ -1,6 +1,7 @@
 import React from "react";
 import { useData } from "../context/DataContext.jsx";
 import { Select, Card, Tag, Space, Button } from "antd";
+import PersonDetail from "../components/PersonDetail.jsx";
 
 export default function Government() {
   const { government, deputies } = useData();
@@ -85,46 +86,11 @@ export default function Government() {
     const item = dataset.find((p) => p.id === selected);
     if (!item) return null;
     return (
-      <section className="section">
-        <div className="container">
-          <a
-            className="btn"
-            href={`#/government?type=${section === "Депутаты" ? "dep" : "gov"}`}
-            style={{ marginBottom: 12 }}
-          >
-            ← К списку
-          </a>
-          <h1 style={{ marginBottom: 8 }}>{item.name || item.title}</h1>
-          {section === "Депутаты" ? (
-            <div className="card" style={{ padding: 16 }}>
-              <div style={{ color: "#6b7280", marginBottom: 6 }}>
-                {item.district} · {item.faction} · созыв {item.convocation}
-              </div>
-              <p>Приём граждан: {item.reception}</p>
-              <Space wrap style={{ width: "100%" }}>
-                <Button href={`tel:${item.contacts?.phone}`}>Позвонить</Button>
-                <Button href={`mailto:${item.contacts?.email}`} type="primary">
-                  Написать
-                </Button>
-              </Space>
-            </div>
-          ) : (
-            <div className="card" style={{ padding: 16 }}>
-              <div style={{ color: "#6b7280", marginBottom: 6 }}>
-                {item.role} · {item.agency}
-              </div>
-              <p>{item.bio}</p>
-              <p>Приём граждан: {item.reception}</p>
-              <Space wrap style={{ width: "100%" }}>
-                <Button href={`tel:${item.phone}`}>Позвонить</Button>
-                <Button href={`mailto:${item.email}`} type="primary">
-                  Написать
-                </Button>
-              </Space>
-            </div>
-          )}
-        </div>
-      </section>
+      <PersonDetail
+        item={item}
+        type={section === "Депутаты" ? "dep" : "gov"}
+        backHref={`#/government?type=${section === "Депутаты" ? "dep" : "gov"}`}
+      />
     );
   }
 

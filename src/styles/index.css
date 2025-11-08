@@ -426,21 +426,21 @@ a {
   gap: 12px;
 }
 .hero .sbtn {
-  width: 44px;
-  height: 44px;
+  width: 68px;
+  height: 68px;
   border-radius: 999px;
   display: grid;
   place-items: center;
-  background: rgba(255, 255, 255, 0.9);
-  color: #111827;
+  background: transparent; /* remove bg */
+  color: #ffffff; /* make icon visible on banner */
   text-decoration: none;
   font-weight: 800;
-  border: 1px solid #e5e7eb;
+  border: none;
 }
 .hero .sbtn svg,
 .hero .sbtn img {
-  width: 24px;
-  height: 24px;
+  width: 58px;
+  height: 58px;
   display: block;
   object-fit: contain;
 }
@@ -449,27 +449,26 @@ a {
   left: 24px;
   bottom: 24px;
   display: flex;
-  gap: 8px;
 }
 .hero .sbtn--vk {
-  background: #0077ff;
+  background: transparent;
   color: #fff;
-  border-color: #0077ff;
+  border-color: transparent;
 }
 .hero .sbtn--ok {
-  background: #f58220;
+  background: transparent;
   color: #fff;
-  border-color: #f58220;
+  border-color: transparent;
 }
 .hero .sbtn--tg {
-  background: #229ed9;
+  background: transparent;
   color: #fff;
-  border-color: #229ed9;
+  border-color: transparent;
 }
 .hero .sbtn--mx {
-  background: #6c47ff;
+  background: transparent;
   color: #fff;
-  border-color: #6c47ff;
+  border-color: transparent;
 }
 /* Hero controls */
 .hero .arrows {
@@ -1235,8 +1234,8 @@ a {
     font-size: 30px;
   }
   .hero .sbtn {
-    width: 40px;
-    height: 40px;
+    width: 64px;
+    height: 64px;
   }
 }
 

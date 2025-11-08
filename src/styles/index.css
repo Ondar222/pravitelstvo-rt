@@ -436,6 +436,7 @@ a {
   text-decoration: none;
   font-weight: 800;
   border: none;
+  position: relative; /* for hover underline */
 }
 .hero .sbtn svg,
 .hero .sbtn img {
@@ -443,6 +444,21 @@ a {
   height: 58px;
   display: block;
   object-fit: contain;
+}
+/* Gold underline on hover, consistent with header */
+.hero .sbtn::after {
+  content: "";
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  bottom: -6px;
+  height: 3px;
+  background: transparent;
+  border-radius: 3px;
+  transition: background 160ms ease;
+}
+.hero .sbtn:hover::after {
+  background: var(--gold);
 }
 .hero .social-left {
   position: absolute;
@@ -528,6 +544,12 @@ a {
   text-align: right;
 }
 @media (max-width: 959px) {
+  .hero .social-left {
+    position: absolute;
+    left: 0;
+    bottom: 30px;
+    display: flex;
+  }
   .section-head {
     flex-direction: column;
     align-items: flex-start;
@@ -1234,8 +1256,8 @@ a {
     font-size: 30px;
   }
   .hero .sbtn {
-    width: 64px;
-    height: 64px;
+    width: 54px;
+    height: 54px;
   }
 }
 

@@ -31,6 +31,14 @@ body {
   font-size: calc(16px * var(--font-scale, 1));
   overflow-x: hidden; /* avoid accidental horizontal scroll */
 }
+/* Media should never overflow container */
+img,
+svg,
+video,
+canvas {
+  max-width: 100%;
+  height: auto;
+}
 .section {
   padding: 40px 20px;
   max-width: 1280px;
@@ -209,7 +217,7 @@ a {
   flex-direction: row;
   justify-content: end;
   text-align: end;
-  margin-left: 630px;
+  margin-left: auto; /* avoid fixed offsets that cause overflow */
   background-color: #0d4b8f;
   border: #0d4b8f;
   font-weight: bold;
@@ -232,7 +240,7 @@ a {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    margin-left: 310px;
+    margin-left: auto; /* keep aligned without forcing width */
     background-color: #0d4b8f;
     border: #0d4b8f;
     font-weight: bold;
@@ -674,6 +682,7 @@ a {
 .card-title__name {
   font-weight: 800;
   line-height: 1.2;
+  overflow-wrap: anywhere; /* prevent long names from forcing width */
 }
 .card-subtitle {
   color: var(--muted);
@@ -1073,6 +1082,38 @@ a {
   }
 }
 
+/* Ant Design Card: ensure no horizontal overflow and better stacking on mobile */
+@media (max-width: 720px) {
+  .ant-card {
+    width: 100%;
+    overflow: hidden;
+    border-radius: var(--radius);
+  }
+  .ant-card-head {
+    padding: 0 16px;
+  }
+  .ant-card-body {
+    padding: 16px;
+  }
+  /* Stack action buttons */
+  .ant-card .ant-space {
+    display: grid !important;
+    grid-template-columns: 1fr;
+    gap: 8px !important;
+    width: 100% !important;
+  }
+  .ant-card .ant-space .ant-btn {
+    width: 100%;
+    justify-content: center;
+  }
+  /* Stack title text vertically if space is tight */
+  .card-title--stack {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+}
+
 /* Priorities (stacked banners) */
 .priorities-list {
   display: grid;
@@ -1363,6 +1404,11 @@ h3::after {
   gap: 24px;
   padding: 8px 24px 40px;
 }
+@media (max-width: 959px) {
+  .mega-sheet .sheet-grid {
+    grid-template-columns: 1fr; /* single column on mobile */
+  }
+}
 .social-card {
   display: flex;
   flex-direction: column;
@@ -1462,9 +1508,9 @@ h3::after {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 100%;
-    height: 100%;
-    border-radius: 10%;
+    width: 40px; /* keep icon compact on mobile */
+    height: 40px;
+    border-radius: 999px;
   }
 }
 .sheet-card {
@@ -1653,5 +1699,20 @@ body.hc-yb {
     height: 40px;
     display: flex;
     flex-direction: row;
+  }
+}
+/* Safer responsive search form: prevent overflow on small screens */
+@media (max-width: 959px) {
+  .search-form {
+    align-items: stretch;
+    gap: 12px;
+  }
+  .search-form input {
+    width: auto !important; /* override percentage widths */
+    flex: 1 1 0;
+    min-width: 0;
+  }
+  .search-form .btn {
+    margin-right: 0 !important;
   }
 }

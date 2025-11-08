@@ -28,7 +28,7 @@ body {
     Roboto, Arial;
   color: var(--text);
   background: var(--bg);
-  font-size: calc(16px * var(--font-scale, 1));
+  font-size: calc(14px * var(--font-scale, 1)); /* slightly smaller base */
   overflow-x: hidden; /* avoid accidental horizontal scroll */
 }
 /* Media should never overflow container */
@@ -77,16 +77,16 @@ h3 {
   padding-bottom: 10px;
 }
 h1 {
-  font-size: 44px;
+  font-size: 38px;
   line-height: 1.15;
   letter-spacing: -0.01em;
 }
 h2 {
-  font-size: 36px;
+  font-size: 30px;
   line-height: 1.2;
 }
 h3 {
-  font-size: 28px;
+  font-size: 22px;
   line-height: 1.25;
 }
 p {
@@ -184,8 +184,11 @@ a {
   padding: 8px 0 12px; /* vertical comfort */
   padding-top: 8px; /* visual offset but keeps hover area continuous */
   min-width: 260px;
-  display: none;
   z-index: 70;
+  opacity: 0;
+  transform: translateY(6px);
+  pointer-events: none;
+  transition: opacity 160ms ease, transform 200ms ease;
 }
 .dropdown__menu a {
   display: block;
@@ -198,7 +201,9 @@ a {
 }
 .dropdown.open .dropdown__menu,
 .dropdown:hover .dropdown__menu {
-  display: block; /* keep open when hovering menu itself */
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto; /* keep open when hovering menu itself */
 }
 .dropdown__menu hr {
   border: none;
@@ -328,9 +333,14 @@ a {
   background: #f7f7fb;
   border-bottom: 1px solid #e5e7eb;
   display: none;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: opacity 160ms ease, transform 200ms ease;
 }
 .mega.open {
   display: block;
+  opacity: 1;
+  transform: translateY(0);
 }
 .mega .cols {
   display: grid;
@@ -401,7 +411,7 @@ a {
   text-align: center;
 }
 .hero .title {
-  font-size: 56px;
+  font-size: 44px;
   line-height: 1.1;
   color: #fff;
   max-width: 1100px;
@@ -591,7 +601,7 @@ a {
   right: 20px;
   bottom: 20px;
   color: #fff;
-  font-size: 22px;
+  font-size: 19px;
   font-weight: 800;
 }
 /* Achievements carousel */
@@ -615,7 +625,7 @@ a {
     height: 200px;
   }
   .achievement-title {
-    font-size: 18px;
+    font-size: 16px;
   }
 }
 @media (min-width: 960px) {
@@ -805,7 +815,7 @@ a {
   justify-content: center;
 }
 .person-name {
-  font-size: 40px;
+  font-size: 34px;
   line-height: 1.15;
   color: var(--primary);
   margin: 0 0 12px;
@@ -985,7 +995,7 @@ a {
     justify-content: flex-start;
   }
   .person-name {
-    font-size: 32px;
+    font-size: 26px;
   }
   .person-meta {
     font-size: 15px;
@@ -1106,11 +1116,11 @@ a {
     width: 100%;
     justify-content: center;
   }
-  /* Stack title text vertically if space is tight */
+  /* Keep avatar + name + role in a single row on small screens */
   .card-title--stack {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 6px;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
   }
 }
 
@@ -1148,7 +1158,7 @@ a {
   position: relative;
   padding: 32px;
   font-weight: 900;
-  font-size: 40px;
+  font-size: 34px;
   letter-spacing: -0.01em;
 }
 .priority .badge {
@@ -1206,7 +1216,7 @@ a {
     min-height: 200px;
   }
   .priority .content {
-    font-size: 28px;
+    font-size: 22px;
     padding: 20px;
   }
   .priority.open {
@@ -1222,7 +1232,7 @@ a {
     min-height: 380px;
   }
   .hero .title {
-    font-size: 36px;
+    font-size: 30px;
   }
   .hero .sbtn {
     width: 40px;
@@ -1233,13 +1243,13 @@ a {
 /* Mobile typography adjustments */
 @media (max-width: 959px) {
   h1 {
-    font-size: 32px;
-  }
-  h2 {
     font-size: 26px;
   }
-  h3 {
+  h2 {
     font-size: 20px;
+  }
+  h3 {
+    font-size: 17px;
   }
   h1,
   h2,

@@ -176,7 +176,10 @@ export default function Apparatus() {
                   <li>lol@mail.ru</li>
                   <li>г. Кызыл, ул. Ленина, 40</li>
                 </ul>
-                <a className="btn btn--primary" href="#/government?type=gov">
+                <a
+                  className="btn btn--primary btn--compact"
+                  href="#/government?type=gov"
+                >
                   Подробнее
                 </a>
               </div>
@@ -201,7 +204,10 @@ export default function Apparatus() {
                   <li>lol@mail.ru</li>
                   <li>г. Кызыл, ул. Ленина, 40</li>
                 </ul>
-                <a className="btn btn--primary" href="#/government?type=gov">
+                <a
+                  className="btn btn--primary btn--compact"
+                  href="#/government?type=gov"
+                >
                   Подробнее
                 </a>
               </div>

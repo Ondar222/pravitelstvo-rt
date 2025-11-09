@@ -178,18 +178,59 @@ export default function Government() {
               </div>
 
               <div className="orgv2__pillset">
-                <div className="orgv2__pill">Депутаты всех созывов</div>
-                <div className="orgv2__pill">
+                <a className="orgv2__pill" href="#/deputies">
+                  Депутаты всех созывов
+                </a>
+                <a
+                  className="orgv2__pill"
+                  href={
+                    "#/section?title=" +
+                    encodeURIComponent("Представительство в Совете Федерации")
+                  }
+                >
                   Представительство в Совете Федерации
-                </div>
-                <div className="orgv2__pill">
+                </a>
+                <a
+                  className="orgv2__pill"
+                  href={
+                    "#/section?title=" +
+                    encodeURIComponent(
+                      "Совет по взаимодействию с представительными органами муниципальных образований"
+                    )
+                  }
+                >
                   Совет по взаимодействию с представительными органами
                   муниципальных образований
-                </div>
-                <div className="orgv2__pill">Молодежный Хурал</div>
-                <div className="orgv2__pill">Комиссии</div>
-                <div className="orgv2__pill">Комитеты</div>
-                <div className="orgv2__pill">Депутатские фракции</div>
+                </a>
+                <a
+                  className="orgv2__pill"
+                  href={
+                    "#/section?title=" + encodeURIComponent("Молодежный Хурал")
+                  }
+                >
+                  Молодежный Хурал
+                </a>
+                <a
+                  className="orgv2__pill"
+                  href={"#/section?title=" + encodeURIComponent("Комиссии")}
+                >
+                  Комиссии
+                </a>
+                <a
+                  className="orgv2__pill"
+                  href={"#/section?title=" + encodeURIComponent("Комитеты")}
+                >
+                  Комитеты
+                </a>
+                <a
+                  className="orgv2__pill"
+                  href={
+                    "#/section?title=" +
+                    encodeURIComponent("Депутатские фракции")
+                  }
+                >
+                  Депутатские фракции
+                </a>
                 <a className="orgv2__pill orgv2__pill--wide" href="#/apparatus">
                   Аппарат Верховного Хурала (парламента) Республики Тыва
                 </a>

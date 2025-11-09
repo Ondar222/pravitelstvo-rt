@@ -33,6 +33,8 @@ import Appeals from "./pages/Appeals.jsx";
 import AchievementsPage from "./pages/Achievements.jsx";
 import { ConfigProvider, theme } from "antd";
 import CookieBanner from "./components/CookieBanner.jsx";
+import Apparatus from "./pages/Apparatus.jsx";
+import SectionPage from "./pages/Section.jsx";
 
 export default function App() {
   return (
@@ -65,6 +67,8 @@ export default function App() {
                     "/calendar": CalendarPage,
                     "/documents": Documents,
                     "/committee": Committee,
+                    "/apparatus": Apparatus,
+                    "/section": SectionPage,
                     "/deputies": Deputies,
                     "/appeals": Appeals,
                     "/government": Government,

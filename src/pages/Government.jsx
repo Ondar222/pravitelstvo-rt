@@ -190,21 +190,70 @@ export default function Government() {
                   ))}
               </div>
 
-              <div className="orgv2__pillrow">
+              <div className="orgv2__strip">
                 <span className="pill pill--solid">
                   Фракция «Единая Россия»
                 </span>
                 <span className="pill pill--solid">Фракция ЛДПР</span>
                 <span className="pill pill--solid">Фракция КПРФ</span>
                 <span className="pill pill--solid">Фракция «Новые люди»</span>
+                <a
+                  href="#/government"
+                  className="btn btn--primary orgv2__strip_btn"
+                >
+                  Подробнее о комитете
+                </a>
               </div>
 
               <div className="orgv2__list">
-                <div className="orgv2__pill orgv2__pill--outline">
+                <div className="orgv2__pill orgv2__pill--outline orgv2__pill--highlight">
                   Комитет по аграрной политике, земельным отношениям,
                   природопользованию, экологии и делам коренных малочисленных
                   народов
                 </div>
+                {/* Комитет — карточка депутата и кнопка под ней */}
+                {Array.isArray(deputies) && deputies[0] ? (
+                  <div className="orgv2__committee">
+                    <div className="person-card person-card--committee">
+                      <img
+                        className="person-card__photo"
+                        src={deputies[0].photo || "/img/max.png"}
+                        alt=""
+                        loading="lazy"
+                      />
+                      <div className="person-card__body">
+                        <div className="person-card__name">
+                          {deputies[0].name}
+                        </div>
+                        <div className="person-card__role">
+                          {deputies[0].position || "Председатель комитета"}
+                        </div>
+                        <ul className="person-card__meta">
+                          {deputies[0].contacts?.phone && (
+                            <li>+ {deputies[0].contacts.phone}</li>
+                          )}
+                          {deputies[0].contacts?.email && (
+                            <li>{deputies[0].contacts.email}</li>
+                          )}
+                          {deputies[0].district && (
+                            <li>{deputies[0].district}</li>
+                          )}
+                        </ul>
+                        <a
+                          className="btn btn--primary"
+                          href={`#/government?type=dep&id=${deputies[0].id}`}
+                        >
+                          Подробнее
+                        </a>
+                      </div>
+                    </div>
+                    <div className="orgv2__actions">
+                      <a href="#/government" className="btn btn--primary">
+                        Подробнее о комитете
+                      </a>
+                    </div>
+                  </div>
+                ) : null}
                 <div className="orgv2__pill orgv2__pill--outline">
                   Комитет по развитию инфраструктуры и промышленной политике
                 </div>

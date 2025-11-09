@@ -18,7 +18,7 @@ export default function Apparatus() {
             <div className="person-card">
               <img
                 className="person-card__photo person-card__photo--xl"
-                src="/img/slider2.jpg"
+                src="https://khural.rtyva.ru/upload/iblock/c37/%D0%A3%D1%81%D0%BF%D1%83%D0%BD%20%D0%9C.%D0%98..jpg"
                 alt=""
                 loading="lazy"
               />
@@ -42,7 +42,7 @@ export default function Apparatus() {
             <div className="person-card">
               <img
                 className="person-card__photo"
-                src="/img/news1.jpeg"
+                src="https://khural.rtyva.ru/upload/iblock/2d3/IMG_1348.JPG"
                 alt=""
                 loading="lazy"
               />
@@ -77,7 +77,7 @@ export default function Apparatus() {
             <div className="person-card person-card--committee">
               <img
                 className="person-card__photo"
-                src="/img/news2.jpeg"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrm9qv4DwbeHFaIDG39k6DjPnAb8ue71tAJ6ZFX1j5WQbSLbibwC_XiG4x42Zy_dE97Fk&usqp=CAU"
                 alt=""
                 loading="lazy"
               />
@@ -127,7 +127,7 @@ export default function Apparatus() {
             <div className="person-card">
               <img
                 className="person-card__photo"
-                src="/img/ok.png"
+                src="https://khural.rtyva.ru/upload/iblock/a62/DSC_5473.jpg"
                 alt=""
                 loading="lazy"
               />
@@ -152,7 +152,7 @@ export default function Apparatus() {
             <div className="person-card">
               <img
                 className="person-card__photo"
-                src="/img/ok.png"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrm9qv4DwbeHFaIDG39k6DjPnAb8ue71tAJ6ZFX1j5WQbSLbibwC_XiG4x42Zy_dE97Fk&usqp=CAU"
                 alt=""
                 loading="lazy"
               />
@@ -173,7 +173,7 @@ export default function Apparatus() {
             <div className="person-card">
               <img
                 className="person-card__photo"
-                src="/img/ok.png"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrm9qv4DwbeHFaIDG39k6DjPnAb8ue71tAJ6ZFX1j5WQbSLbibwC_XiG4x42Zy_dE97Fk&usqp=CAU"
                 alt=""
                 loading="lazy"
               />

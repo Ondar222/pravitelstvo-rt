@@ -4,7 +4,7 @@ import { Select, Card, Tag, Space, Button } from "antd";
 import PersonDetail from "../components/PersonDetail.jsx";
 
 export default function Government() {
-  const { government, deputies } = useData();
+  const { government, deputies, committees } = useData();
 
   const [section, setSection] = React.useState(() => {
     const h = window.location.hash;
@@ -84,6 +84,45 @@ export default function Government() {
       ),
     [deputies, district, convocation, faction]
   );
+
+  // Committees expand/collapse (Структура)
+  const [openCommittee, setOpenCommittee] = React.useState(null);
+  const renderCommittee = (id) => {
+    const committee = (committees || []).find((c) => c.id === id) || null;
+    const leader = committee?.members?.[0] || null;
+    if (!leader) return null;
+    return (
+      <div className="orgv2__committee">
+        <div className="person-card person-card--committee">
+          <img
+            className="person-card__photo"
+            src={leader.photo || "/img/max.png"}
+            alt=""
+            loading="lazy"
+          />
+          <div className="person-card__body">
+            <div className="person-card__name">{leader.name}</div>
+            <div className="person-card__role">
+              {leader.role || "Представитель Комитета"}
+            </div>
+            <ul className="person-card__meta">
+              {leader.phone && <li>+ {leader.phone}</li>}
+              {leader.email && <li>{leader.email}</li>}
+              {leader.address && <li>{leader.address}</li>}
+            </ul>
+            <a className="btn btn--primary" href={`#/committee?id=${id}`}>
+              Подробнее
+            </a>
+          </div>
+        </div>
+        <div className="orgv2__actions">
+          <a href={`#/committee?id=${id}`} className="btn btn--primary">
+            Подробнее о комитете
+          </a>
+        </div>
+      </div>
+    );
+  };
 
   if (selected) {
     const dataset = section === "Депутаты" ? deputies : government;
@@ -206,92 +245,136 @@ export default function Government() {
               </div>
 
               <div className="orgv2__list">
-                <div className="orgv2__pill orgv2__pill--outline orgv2__pill--highlight">
+                <div
+                  className={`orgv2__pill orgv2__pill--outline orgv2__pill--button ${
+                    openCommittee === "agro" ? "orgv2__pill--open" : ""
+                  }`}
+                  onClick={() =>
+                    setOpenCommittee(openCommittee === "agro" ? null : "agro")
+                  }
+                >
                   Комитет по аграрной политике, земельным отношениям,
                   природопользованию, экологии и делам коренных малочисленных
                   народов
                 </div>
-                {/* Комитет — карточка депутата и кнопка под ней */}
-                {Array.isArray(deputies) && deputies[0] ? (
-                  <div className="orgv2__committee">
-                    <div className="person-card person-card--committee">
-                      <img
-                        className="person-card__photo"
-                        src={deputies[0].photo || "/img/max.png"}
-                        alt=""
-                        loading="lazy"
-                      />
-                      <div className="person-card__body">
-                        <div className="person-card__name">
-                          {deputies[0].name}
-                        </div>
-                        <div className="person-card__role">
-                          {deputies[0].position || "Председатель комитета"}
-                        </div>
-                        <ul className="person-card__meta">
-                          {deputies[0].contacts?.phone && (
-                            <li>+ {deputies[0].contacts.phone}</li>
-                          )}
-                          {deputies[0].contacts?.email && (
-                            <li>{deputies[0].contacts.email}</li>
-                          )}
-                          {deputies[0].district && (
-                            <li>{deputies[0].district}</li>
-                          )}
-                        </ul>
-                        <a
-                          className="btn btn--primary"
-                          href={`#/government?type=dep&id=${deputies[0].id}`}
-                        >
-                          Подробнее
-                        </a>
-                      </div>
-                    </div>
-                    <div className="orgv2__actions">
-                      <a
-                        href="#/committee?id=agro"
-                        className="btn btn--primary"
-                      >
-                        Подробнее о комитете
-                      </a>
-                    </div>
-                  </div>
-                ) : null}
-                <div className="orgv2__pill orgv2__pill--outline">
+                {openCommittee === "agro" ? renderCommittee("agro") : null}
+                <div
+                  className={`orgv2__pill orgv2__pill--outline orgv2__pill--button ${
+                    openCommittee === "infra" ? "orgv2__pill--open" : ""
+                  }`}
+                  onClick={() =>
+                    setOpenCommittee(openCommittee === "infra" ? null : "infra")
+                  }
+                >
                   Комитет по развитию инфраструктуры и промышленной политике
                 </div>
-                <div className="orgv2__pill orgv2__pill--outline">
+                {openCommittee === "infra" ? renderCommittee("infra") : null}
+                <div
+                  className={`orgv2__pill orgv2__pill--outline orgv2__pill--button ${
+                    openCommittee === "youth" ? "orgv2__pill--open" : ""
+                  }`}
+                  onClick={() =>
+                    setOpenCommittee(openCommittee === "youth" ? null : "youth")
+                  }
+                >
                   Комитет по молодежной, информационной политике, физической
                   культуре и спорту, развитию институтов гражданского общества
                 </div>
-                <div className="orgv2__pill orgv2__pill--outline">
+                {openCommittee === "youth" ? renderCommittee("youth") : null}
+                <div
+                  className={`orgv2__pill orgv2__pill--outline orgv2__pill--button ${
+                    openCommittee === "security" ? "orgv2__pill--open" : ""
+                  }`}
+                  onClick={() =>
+                    setOpenCommittee(
+                      openCommittee === "security" ? null : "security"
+                    )
+                  }
+                >
                   Комитет по безопасности и правопорядку
                 </div>
-                <div className="orgv2__pill orgv2__pill--outline">
+                {openCommittee === "security"
+                  ? renderCommittee("security")
+                  : null}
+                <div
+                  className={`orgv2__pill orgv2__pill--outline orgv2__pill--button ${
+                    openCommittee === "health" ? "orgv2__pill--open" : ""
+                  }`}
+                  onClick={() =>
+                    setOpenCommittee(
+                      openCommittee === "health" ? null : "health"
+                    )
+                  }
+                >
                   Комитет по охране здоровья, занятости населения и социальной
                   политике
                 </div>
-                <div className="orgv2__pill orgv2__pill--outline">
+                {openCommittee === "health" ? renderCommittee("health") : null}
+                <div
+                  className={`orgv2__pill orgv2__pill--outline orgv2__pill--button ${
+                    openCommittee === "const" ? "orgv2__pill--open" : ""
+                  }`}
+                  onClick={() =>
+                    setOpenCommittee(openCommittee === "const" ? null : "const")
+                  }
+                >
                   Комитет по конституционно‑правовой политике и местному
                   самоуправлению
                 </div>
-                <div className="orgv2__pill orgv2__pill--outline">
+                {openCommittee === "const" ? renderCommittee("const") : null}
+                <div
+                  className={`orgv2__pill orgv2__pill--outline orgv2__pill--button ${
+                    openCommittee === "econ" ? "orgv2__pill--open" : ""
+                  }`}
+                  onClick={() =>
+                    setOpenCommittee(openCommittee === "econ" ? null : "econ")
+                  }
+                >
                   Комитет по экономической, финансово‑бюджетной и налоговой
                   политике, предпринимательству, туризму и государственной
                   собственности
                 </div>
-                <div className="orgv2__pill orgv2__pill--outline">
+                {openCommittee === "econ" ? renderCommittee("econ") : null}
+                <div
+                  className={`orgv2__pill orgv2__pill--outline orgv2__pill--button ${
+                    openCommittee === "edu" ? "orgv2__pill--open" : ""
+                  }`}
+                  onClick={() =>
+                    setOpenCommittee(openCommittee === "edu" ? null : "edu")
+                  }
+                >
                   Комитет по образованию, культуре, науке и национальной
                   политике
                 </div>
-                <div className="orgv2__pill orgv2__pill--outline">
+                {openCommittee === "edu" ? renderCommittee("edu") : null}
+                <div
+                  className={`orgv2__pill orgv2__pill--outline orgv2__pill--button ${
+                    openCommittee === "health2" ? "orgv2__pill--open" : ""
+                  }`}
+                  onClick={() =>
+                    setOpenCommittee(
+                      openCommittee === "health2" ? null : "health2"
+                    )
+                  }
+                >
                   Комитет по охране здоровья, занятости населения и социальной
                   политике
                 </div>
-                <div className="orgv2__pill orgv2__pill--outline">
+                {openCommittee === "health2" ? renderCommittee("health") : null}
+                <div
+                  className={`orgv2__pill orgv2__pill--outline orgv2__pill--button ${
+                    openCommittee === "const2" ? "orgv2__pill--open" : ""
+                  }`}
+                  onClick={() =>
+                    setOpenCommittee(
+                      openCommittee === "const2" ? null : "const2"
+                    )
+                  }
+                >
                   Комитет по конституционно‑правовой политике и местному
                   самоуправлению
                 </div>
+                {openCommittee === "const2" ? renderCommittee("const") : null}
               </div>
             </div>
           </>

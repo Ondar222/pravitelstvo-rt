@@ -2012,3 +2012,14 @@ body.hc-yb {
   border-color: var(--gold);
   box-shadow: inset 0 0 0 1px rgba(255, 215, 0, 0.25);
 }
+.orgv2__pill--button {
+  cursor: pointer;
+  user-select: none;
+}
+.orgv2__pill--button:hover {
+  background: #f8fafc;
+}
+.orgv2__pill--open {
+  border-color: var(--gold);
+  box-shadow: inset 0 0 0 1px rgba(255, 215, 0, 0.25);
+}

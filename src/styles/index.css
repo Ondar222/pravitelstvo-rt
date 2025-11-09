@@ -2011,7 +2011,7 @@ body.hc-yb {
     object-fit: cover;
   }
   .person-card__photo--xl {
-    /* height: 220px; */
+    height: auto;
   }
   /* Center the compact CTA inside person cards on mobile */
   .person-card__body .btn--compact,

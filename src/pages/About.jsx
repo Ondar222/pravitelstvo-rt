@@ -1,81 +1,100 @@
 import React from "react";
 
-function InfoModal({ open, onClose, title, content }) {
-  if (!open) return null;
-  return (
-    <div
-      className="modal-overlay"
-      onClick={onClose}
-      role="dialog"
-      aria-modal="true"
-    >
-      <div className="modal" onClick={(e) => e.stopPropagation()}>
-        <button
-          className="modal__close icon-btn"
-          onClick={onClose}
-          aria-label="Закрыть"
-        >
-          ✕
-        </button>
-        <div className="modal__content">
-          <h3 style={{ marginTop: 0 }}>{title}</h3>
-          <p>{content}</p>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 export default function About() {
-  const [modal, setModal] = React.useState(null);
-  const items = [
-    {
-      key: "history",
-      title: "История",
-      text: "Ключевые этапы развития парламентаризма в Туве: становление институтов власти, принятие первой Конституции и эволюция современного парламента.",
-    },
-    {
-      key: "symbols",
-      title: "Символика",
-      text: "Официальные символы Верховного Хурала — герб, флаг, орденские знаки и иные регалии, используемые на торжественных заседаниях.",
-    },
-    {
-      key: "video",
-      title: "Видео",
-      text: "Записи сессий и важных мероприятий. Трансляции заседаний доступны в пресс-службе и на официальных страницах в соцсетях.",
-    },
-  ];
-
   return (
     <section className="section">
       <div className="container">
-        <h1>О Верховном Хурале (парламенте) Республики Тыва</h1>
-        <p>
-          Верховный Хурал — законодательный орган государственной власти
-          Республики Тыва. Здесь размещаются сведения об истории, структуре,
-          функциях и деятельности парламента.
-        </p>
-        <div className="grid cols-3">
-          {items.map((it) => (
-            <button
-              key={it.key}
-              className="tile"
-              onClick={() => setModal(it)}
-              style={{ textAlign: "left" }}
-            >
-              <h3>{it.title}</h3>
-              <p>{it.text}</p>
-              <span className="link">Подробнее →</span>
-            </button>
-          ))}
+        <h1>О Верховном Хурале Республики Тыва</h1>
+
+        <div className="tabs" style={{ marginTop: 8 }}>
+          <span className="pill pill--solid" aria-current="page">
+            Общие сведения
+          </span>
+          <a className="pill" href="#/government?type=org">
+            Структура органов управления
+          </a>
         </div>
 
-        <InfoModal
-          open={!!modal}
-          onClose={() => setModal(null)}
-          title={modal?.title}
-          content={modal?.text}
-        />
+        <h2>Общие сведения</h2>
+        <p>
+          8 сентября 2019 года состоялись очередные выборы в высший
+          законодательный (представительный) орган государственной власти
+          Республики Тыва.
+        </p>
+        <p>
+          Было избрано 32 депутата: 16 депутатов избраны по партийным спискам,
+          остальные 16 — по одномандатным округам. В Верховном Хурале
+          представлены два избирательных объединения: «Единая Россия» (30
+          мандатов), «ЛДПР» (2 мандата). Из 32 депутатов только 9 работают на
+          постоянной основе.
+        </p>
+        <p>
+          Депутатский корпус представлен опытными политиками, законодателями,
+          многие из которых избирались неоднократно, профессиональными юристами,
+          деятелями культуры, искусства, спортсменами, учителями, врачами,
+          предпринимателями.
+        </p>
+
+        <div
+          className="tile"
+          style={{
+            padding: 0,
+            overflow: "hidden",
+            margin: "20px 0",
+            borderRadius: 16,
+          }}
+        >
+          <img
+            src="/img/slider1.jpg"
+            alt=""
+            style={{ width: "100%", display: "block" }}
+            loading="lazy"
+          />
+        </div>
+
+        <p>
+          Законодотворческая деятельность Верховного Хурала (парламента)
+          Республики Тыва осуществляется в тесном и плодотворном взаимодействии
+          со всеми субъектами законодательной инициативы и, прежде всего, с
+          Правительством Республики Тыва.
+        </p>
+        <p>
+          Кроме основной деятельности по совершенствованию законодательства,
+          депутаты активно участвуют практически во всех социально значимых
+          мероприятиях, благотворительных акциях, марафонах. Работу с
+          избирателями, выезды в избирательные участки, рабочие командировки
+          депутаты всегда стараются совместить с оказанием практической помощи:
+          медицинской, консультативной.
+        </p>
+
+        <div
+          className="tile"
+          style={{
+            padding: 0,
+            height: 280,
+            display: "grid",
+            placeItems: "center",
+            background: "#f2f4f7",
+            borderRadius: 16,
+            marginTop: 20,
+          }}
+        >
+          <div
+            style={{
+              width: 120,
+              height: 120,
+              borderRadius: "50%",
+              background: "#e5e7eb",
+              display: "grid",
+              placeItems: "center",
+              color: "#6b7280",
+              fontSize: 40,
+              boxShadow: "0 2px 10px rgba(0,0,0,0.08)",
+            }}
+          >
+            ▶
+          </div>
+        </div>
       </div>
     </section>
   );

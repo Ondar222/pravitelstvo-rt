@@ -163,6 +163,7 @@ export default function Header() {
                 <a href="#/deputies">Депутаты</a>
                 <a href="#/government">Состав Правительства</a>
                 <a href="#/government">Исполнительные органы</a>
+                <a href="#/government?type=org">Структура</a>
                 <a href="#/government">Пресс‑служба</a>
               </div>
             </div>
@@ -391,6 +392,7 @@ export default function Header() {
             <a href="#/deputies">Депутаты</a>
             <a href="#/government">Состав Правительства</a>
             <a href="#/government">Исполнительные органы</a>
+            <a href="#/government?type=org">Структура</a>
             <a href="#/government">Пресс‑служба</a>
           </div>
           <div className="sheet-col">
@@ -720,6 +722,13 @@ export default function Header() {
               onClick={() => setMobileOpen(false)}
             >
               Исполнительные органы
+            </a>
+            <a
+              className="tile link"
+              href="#/government?type=org"
+              onClick={() => setMobileOpen(false)}
+            >
+              Структура
             </a>
             <a
               className="tile link"

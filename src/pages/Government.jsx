@@ -10,7 +10,9 @@ export default function Government() {
     const h = window.location.hash;
     const sp = new URLSearchParams(h.split("?")[1]);
     const t = sp.get("type");
-    return t === "dep" ? "Депутаты" : "Правительство";
+    if (t === "dep") return "Депутаты";
+    if (t === "org") return "Структура";
+    return "Правительство";
   });
 
   const [agency, setAgency] = React.useState("Все");
@@ -31,7 +33,9 @@ export default function Government() {
       const sp = new URLSearchParams(h.split("?")[1]);
       const id = sp.get("id");
       const t = sp.get("type");
-      setSection(t === "dep" ? "Депутаты" : "Правительство");
+      if (t === "dep") setSection("Депутаты");
+      else if (t === "org") setSection("Структура");
+      else setSection("Правительство");
       setSelected(id || null);
     };
     window.addEventListener("hashchange", onHash);
@@ -98,24 +102,136 @@ export default function Government() {
     <section className="section">
       <div className="container">
         <h1>Правительство</h1>
-        <Space
-          className="filters"
-          size="middle"
-          style={{ margin: "12px 0 20px" }}
-          wrap
-        >
-          <Select
-            value={section}
-            onChange={setSection}
-            options={[
-              { value: "Правительство", label: "Правительство" },
-              { value: "Депутаты", label: "Депутаты" },
-            ]}
-            style={{ minWidth: 220 }}
-          />
-        </Space>
+        {section !== "Структура" && (
+          <Space
+            className="filters"
+            size="middle"
+            style={{ margin: "12px 0 20px" }}
+            wrap
+          >
+            <Select
+              value={section}
+              onChange={setSection}
+              options={[
+                { value: "Правительство", label: "Правительство" },
+                { value: "Депутаты", label: "Депутаты" },
+              ]}
+              style={{ minWidth: 220 }}
+            />
+          </Space>
+        )}
 
-        {section === "Депутаты" ? (
+        {section === "Структура" ? (
+          <>
+            <div className="org org--khural">
+              <div className="org__row org__row--center">
+                <div className="org__item org__item--blue org__item--wide">
+                  СТРУКТУРА ВЕРХОВНОГО ХУРАЛА (ПАРЛАМЕНТА) РЕСПУБЛИКИ ТЫВА
+                </div>
+              </div>
+              <div className="org__row org__row--center">
+                <div className="org__item org__item--blue org__item--lg">
+                  Председатель Верховного Хурала (парламента) Республики Тыва
+                </div>
+              </div>
+              <div className="org__row org__row--factions">
+                <div className="org__item org__item--blue">
+                  Фракция Единая Россия
+                </div>
+                <div className="org__item org__item--blue">Фракция КПРФ</div>
+                <div className="org__item org__item--blue">Фракция ЛДПР</div>
+                <div className="org__item org__item--blue">
+                  Фракция Новые люди
+                </div>
+              </div>
+
+              <div className="org__row">
+                <div className="org__col">
+                  <div className="org__item org__item--blue">
+                    Комитеты Верховного Хурала (парламента) Республики Тыва
+                  </div>
+                  <div className="org__item org__item--green">
+                    Комитет по аграрной политике, земельным отношениям,
+                    природопользованию, экологии и делам коренных малочисленных
+                    народов
+                  </div>
+                  <div className="org__item org__item--green">
+                    Комитет по развитию инфраструктуры и промышленной политике
+                  </div>
+                  <div className="org__item org__item--green">
+                    Комитет по молодежной, информационной политике, физической
+                    культуре и спорту, развитию институтов гражданского общества
+                  </div>
+                  <div className="org__item org__item--green">
+                    Комитет по безопасности и правопорядку
+                  </div>
+                  <div className="org__item org__item--green">
+                    Комитет по охране здоровья, занятости населения и социальной
+                    политике
+                  </div>
+                  <div className="org__item org__item--green">
+                    Комитет по конституционно‑правовой политике и местному
+                    самоуправлению
+                  </div>
+                  <div className="org__item org__item--green">
+                    Комитет по экономической, финансово‑бюджетной, налоговой
+                    политике, предпринимательству, туризму и государственной
+                    собственности
+                  </div>
+                  <div className="org__item org__item--green">
+                    Комитет по образованию, культуре, науке и национальной
+                    политике
+                  </div>
+                </div>
+
+                <div className="org__col">
+                  <div className="org__item org__item--blue">
+                    Комитет Верховного Хурала (парламента) Республики Тыва по
+                    межрегиональным и международным связям
+                  </div>
+                  <div className="org__item org__item--blue">
+                    Комитет Верховного Хурала (парламента) Республики Тыва по
+                    взаимодействию со средствами массовой информации и
+                    общественными организациями
+                  </div>
+                  <div className="org__item org__item--blue">
+                    Наградная комиссия Верховного Хурала (парламента) Республики
+                    Тыва
+                  </div>
+                </div>
+
+                <div className="org__col">
+                  <div className="org__item org__item--blue">
+                    Комиссия Верховного Хурала (парламента) Республики Тыва по
+                    Регламенту Верховного Хурала (парламента) Республики Тыва и
+                    депутатской этике
+                  </div>
+                  <div className="org__item org__item--blue">
+                    Комиссия Верховного Хурала (парламента) Республики Тыва
+                    контроля за достоверностью сведений о доходах, об имуществе
+                    и обязательствах имущественного характера, представляемых
+                    депутатами Верховного Хурала (парламента) Республики Тыва
+                  </div>
+                  <div className="org__item org__item--blue">
+                    Комиссия Верховного Хурала (парламента) Республики Тыва по
+                    поддержке участников специальной военной операции и их
+                    семей.
+                  </div>
+                  <div className="org__item org__item--blue">
+                    Счетная комиссия Верховного Хурала (парламента) Республики
+                    Тыва
+                  </div>
+                </div>
+              </div>
+
+              <div className="org__row org__row--center">
+                <div className="org__item org__item--blue org__item--wide">
+                  Аппарат Верховного Хурала (парламента) Республики Тыва
+                </div>
+              </div>
+            </div>
+          </>
+        ) : section === "Депутаты" ? (
           <>
             <Space
               className="filters"

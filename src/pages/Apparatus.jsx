@@ -4,6 +4,11 @@ export default function Apparatus() {
   return (
     <section className="section">
       <div className="container">
+        <div className="tabs" style={{ marginTop: 8, marginBottom: 12 }}>
+          <a className="pill" href="#/government?type=org">
+            ← Назад к структуре
+          </a>
+        </div>
         <h1>Аппарат Верховного Хурала (парламента) Республики Тыва</h1>
 
         <div className="orgv2">

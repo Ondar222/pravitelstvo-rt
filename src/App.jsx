@@ -8,6 +8,7 @@ import NewsArchive from "./pages/NewsArchive.jsx";
 import Government from "./pages/Government.jsx";
 import Authorities from "./pages/Authorities.jsx";
 import Wifi from "./pages/Wifi.jsx";
+import Committee from "./pages/Committee.jsx";
 import {
   Feedback,
   Press,
@@ -63,6 +64,7 @@ export default function App() {
                     "/achievements": AchievementsPage,
                     "/calendar": CalendarPage,
                     "/documents": Documents,
+                    "/committee": Committee,
                     "/deputies": Deputies,
                     "/appeals": Appeals,
                     "/government": Government,

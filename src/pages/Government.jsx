@@ -198,7 +198,7 @@ export default function Government() {
                 <span className="pill pill--solid">Фракция КПРФ</span>
                 <span className="pill pill--solid">Фракция «Новые люди»</span>
                 <a
-                  href="#/government"
+                  href="#/committee?id=agro"
                   className="btn btn--primary orgv2__strip_btn"
                 >
                   Подробнее о комитете
@@ -248,7 +248,10 @@ export default function Government() {
                       </div>
                     </div>
                     <div className="orgv2__actions">
-                      <a href="#/government" className="btn btn--primary">
+                      <a
+                        href="#/committee?id=agro"
+                        className="btn btn--primary"
+                      >
                         Подробнее о комитете
                       </a>
                     </div>

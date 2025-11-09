@@ -9,6 +9,7 @@ const DataContext = React.createContext({
   authorities: [],
   documents: [],
   achievements: [],
+  committees: [],
 });
 export function useData() {
   return React.useContext(DataContext);
@@ -34,6 +35,7 @@ export default function DataProvider({ children }) {
   const [authorities, setAuthorities] = React.useState([]);
   const [documents, setDocuments] = React.useState([]);
   const [achievements, setAchievements] = React.useState([]);
+  const [committees, setCommittees] = React.useState([]);
 
   React.useEffect(() => {
     fetchJson("/data/slides.json").then(setSlides);
@@ -44,6 +46,7 @@ export default function DataProvider({ children }) {
     fetchJson("/data/authorities.json").then(setAuthorities);
     fetchJson("/data/documents.json").then(setDocuments);
     fetchJson("/data/achievements.json").then(setAchievements);
+    fetchJson("/data/committees.json").then(setCommittees);
   }, []);
 
   const value = React.useMemo(
@@ -56,6 +59,7 @@ export default function DataProvider({ children }) {
       authorities,
       documents,
       achievements,
+      committees,
     }),
     [
       slides,
@@ -66,6 +70,7 @@ export default function DataProvider({ children }) {
       authorities,
       documents,
       achievements,
+      committees,
     ]
   );
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;

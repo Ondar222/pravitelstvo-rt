@@ -123,110 +123,122 @@ export default function Government() {
 
         {section === "Структура" ? (
           <>
-            <div className="org org--khural">
-              <div className="org__row org__row--center">
-                <div className="org__item org__item--blue org__item--wide">
-                  СТРУКТУРА ВЕРХОВНОГО ХУРАЛА (ПАРЛАМЕНТА) РЕСПУБЛИКИ ТЫВА
-                </div>
-              </div>
-              <div className="org__row org__row--center">
-                <div className="org__item org__item--blue org__item--lg">
-                  Председатель Верховного Хурала (парламента) Республики Тыва
-                </div>
-              </div>
-              <div className="org__row org__row--factions">
-                <div className="org__item org__item--blue">
-                  Фракция Единая Россия
-                </div>
-                <div className="org__item org__item--blue">Фракция КПРФ</div>
-                <div className="org__item org__item--blue">Фракция ЛДПР</div>
-                <div className="org__item org__item--blue">
-                  Фракция Новые люди
-                </div>
+            <h1>О Верховном Хурале Республики Тыва</h1>
+            <div className="tabs" style={{ marginBottom: 10 }}>
+              <a className="pill" href="#/about">
+                Общие сведения
+              </a>
+              <span className="pill pill--solid" aria-current="page">
+                Структура органов управления
+              </span>
+            </div>
+            <h2 style={{ marginTop: 0 }}>Структура органов управления</h2>
+            <div className="orgv2">
+              <div className="orgv2__banner">
+                СТРУКТУРА ВЕРХОВНОГО ХУРАЛА (ПАРЛАМЕНТА) РЕСПУБЛИКИ ТЫВА
               </div>
 
-              <div className="org__row">
-                <div className="org__col">
-                  <div className="org__item org__item--blue">
-                    Комитеты Верховного Хурала (парламента) Республики Тыва
-                  </div>
-                  <div className="org__item org__item--green">
-                    Комитет по аграрной политике, земельным отношениям,
-                    природопользованию, экологии и делам коренных малочисленных
-                    народов
-                  </div>
-                  <div className="org__item org__item--green">
-                    Комитет по развитию инфраструктуры и промышленной политике
-                  </div>
-                  <div className="org__item org__item--green">
-                    Комитет по молодежной, информационной политике, физической
-                    культуре и спорту, развитию институтов гражданского общества
-                  </div>
-                  <div className="org__item org__item--green">
-                    Комитет по безопасности и правопорядку
-                  </div>
-                  <div className="org__item org__item--green">
-                    Комитет по охране здоровья, занятости населения и социальной
-                    политике
-                  </div>
-                  <div className="org__item org__item--green">
-                    Комитет по конституционно‑правовой политике и местному
-                    самоуправлению
-                  </div>
-                  <div className="org__item org__item--green">
-                    Комитет по экономической, финансово‑бюджетной, налоговой
-                    политике, предпринимательству, туризму и государственной
-                    собственности
-                  </div>
-                  <div className="org__item org__item--green">
-                    Комитет по образованию, культуре, науке и национальной
-                    политике
-                  </div>
+              <div className="orgv2__pillset">
+                <div className="orgv2__pill">Депутаты всех созывов</div>
+                <div className="orgv2__pill">
+                  Представительство в Совете Федерации
                 </div>
-
-                <div className="org__col">
-                  <div className="org__item org__item--blue">
-                    Комитет Верховного Хурала (парламента) Республики Тыва по
-                    межрегиональным и международным связям
-                  </div>
-                  <div className="org__item org__item--blue">
-                    Комитет Верховного Хурала (парламента) Республики Тыва по
-                    взаимодействию со средствами массовой информации и
-                    общественными организациями
-                  </div>
-                  <div className="org__item org__item--blue">
-                    Наградная комиссия Верховного Хурала (парламента) Республики
-                    Тыва
-                  </div>
+                <div className="orgv2__pill">
+                  Совет по взаимодействию с представительными органами
+                  муниципальных образований
                 </div>
-
-                <div className="org__col">
-                  <div className="org__item org__item--blue">
-                    Комиссия Верховного Хурала (парламента) Республики Тыва по
-                    Регламенту Верховного Хурала (парламента) Республики Тыва и
-                    депутатской этике
-                  </div>
-                  <div className="org__item org__item--blue">
-                    Комиссия Верховного Хурала (парламента) Республики Тыва
-                    контроля за достоверностью сведений о доходах, об имуществе
-                    и обязательствах имущественного характера, представляемых
-                    депутатами Верховного Хурала (парламента) Республики Тыва
-                  </div>
-                  <div className="org__item org__item--blue">
-                    Комиссия Верховного Хурала (парламента) Республики Тыва по
-                    поддержке участников специальной военной операции и их
-                    семей.
-                  </div>
-                  <div className="org__item org__item--blue">
-                    Счетная комиссия Верховного Хурала (парламента) Республики
-                    Тыва
-                  </div>
-                </div>
-              </div>
-
-              <div className="org__row org__row--center">
-                <div className="org__item org__item--blue org__item--wide">
+                <div className="orgv2__pill">Молодежный Хурал</div>
+                <div className="orgv2__pill">Комиссии</div>
+                <div className="orgv2__pill">Комитеты</div>
+                <div className="orgv2__pill">Депутатские фракции</div>
+                <a className="orgv2__pill orgv2__pill--wide" href="#/apparatus">
                   Аппарат Верховного Хурала (парламента) Республики Тыва
+                </a>
+              </div>
+
+              <h2 style={{ marginTop: 18 }}>Структура Верховного Хурала</h2>
+              <div className="orgv2__chain">
+                <div className="orgv2__line" />
+                {[government[0], government[1]]
+                  .filter(Boolean)
+                  .map((p, idx) => (
+                    <div key={p.id} className="person-card">
+                      <img
+                        className={`person-card__photo ${
+                          idx === 0 ? "person-card__photo--xl" : ""
+                        }`}
+                        src={p.photo || "/img/ok.png"}
+                        alt=""
+                        loading="lazy"
+                      />
+                      <div className="person-card__body">
+                        <div className="person-card__name">{p.name}</div>
+                        <div className="person-card__role">{p.role}</div>
+                        <ul className="person-card__meta">
+                          {p.phone && <li>+ {p.phone}</li>}
+                          {p.email && <li>{p.email}</li>}
+                          {p.address && <li>{p.address}</li>}
+                        </ul>
+                        <a
+                          className="btn btn--primary"
+                          href={`#/government?type=gov&id=${p.id}`}
+                        >
+                          Подробнее
+                        </a>
+                      </div>
+                    </div>
+                  ))}
+              </div>
+
+              <div className="orgv2__pillrow">
+                <span className="pill pill--solid">
+                  Фракция «Единая Россия»
+                </span>
+                <span className="pill pill--solid">Фракция ЛДПР</span>
+                <span className="pill pill--solid">Фракция КПРФ</span>
+                <span className="pill pill--solid">Фракция «Новые люди»</span>
+              </div>
+
+              <div className="orgv2__list">
+                <div className="orgv2__pill orgv2__pill--outline">
+                  Комитет по аграрной политике, земельным отношениям,
+                  природопользованию, экологии и делам коренных малочисленных
+                  народов
+                </div>
+                <div className="orgv2__pill orgv2__pill--outline">
+                  Комитет по развитию инфраструктуры и промышленной политике
+                </div>
+                <div className="orgv2__pill orgv2__pill--outline">
+                  Комитет по молодежной, информационной политике, физической
+                  культуре и спорту, развитию институтов гражданского общества
+                </div>
+                <div className="orgv2__pill orgv2__pill--outline">
+                  Комитет по безопасности и правопорядку
+                </div>
+                <div className="orgv2__pill orgv2__pill--outline">
+                  Комитет по охране здоровья, занятости населения и социальной
+                  политике
+                </div>
+                <div className="orgv2__pill orgv2__pill--outline">
+                  Комитет по конституционно‑правовой политике и местному
+                  самоуправлению
+                </div>
+                <div className="orgv2__pill orgv2__pill--outline">
+                  Комитет по экономической, финансово‑бюджетной и налоговой
+                  политике, предпринимательству, туризму и государственной
+                  собственности
+                </div>
+                <div className="orgv2__pill orgv2__pill--outline">
+                  Комитет по образованию, культуре, науке и национальной
+                  политике
+                </div>
+                <div className="orgv2__pill orgv2__pill--outline">
+                  Комитет по охране здоровья, занятости населения и социальной
+                  политике
+                </div>
+                <div className="orgv2__pill orgv2__pill--outline">
+                  Комитет по конституционно‑правовой политике и местному
+                  самоуправлению
                 </div>
               </div>
             </div>

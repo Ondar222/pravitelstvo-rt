@@ -1820,3 +1820,157 @@ body.hc-yb {
     width: 100%;
   }
 }
+
+/* Org v2 (white pills with blue outline, person chain) */
+.orgv2 {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.orgv2__banner {
+  background: #0d4b8f;
+  color: #ffffff;
+  font-weight: 900;
+  text-align: center;
+  padding: 14px 16px;
+  border-radius: 16px;
+}
+.orgv2__pillset {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.orgv2__pill {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 14px 16px;
+  border: 2px solid #0d4b8f;
+  color: #0d4b8f;
+  background: #ffffff;
+  border-radius: 16px;
+  font-weight: 800;
+  text-decoration: none;
+}
+.orgv2__pill--wide {
+  grid-column: 1 / -1;
+}
+.orgv2__pillrow {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.orgv2__list {
+  display: grid;
+  gap: 16px;
+}
+.orgv2__pill--outline {
+  justify-content: flex-start;
+}
+
+/* Person chain */
+.orgv2__chain {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding-left: 72px; /* room for vertical line */
+}
+.orgv2__line {
+  position: absolute;
+  left: 36px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #cbd5e1;
+}
+.person-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 18px;
+  align-items: center;
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+  border: 1px solid #eef2f7;
+  padding: 18px;
+}
+.person-card::before {
+  content: "";
+  position: absolute;
+  left: -36px;
+  width: 36px;
+  height: 2px;
+  background: #cbd5e1;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.person-card__photo {
+  width: 180px;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 14px;
+  background: #eef2f7;
+}
+.person-card__photo--xl {
+  height: 280px;
+}
+.person-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.person-card__name {
+  font-size: 26px;
+  font-weight: 900;
+  color: #0d4b8f;
+}
+.person-card__role {
+  color: #334155;
+}
+.person-card__meta {
+  margin: 0;
+  padding-left: 18px;
+  color: #334155;
+}
+.person-card__meta li {
+  margin: 4px 0;
+}
+@media (max-width: 959px) {
+  .orgv2__pillset {
+    grid-template-columns: 1fr;
+  }
+  .orgv2__chain {
+    padding-left: 20px;
+  }
+  .orgv2__line {
+    left: 10px;
+  }
+  .person-card {
+    grid-template-columns: 120px 1fr;
+  }
+  .person-card__photo {
+    width: 120px;
+    height: 160px;
+  }
+  .person-card__photo--xl {
+    height: 220px;
+  }
+}
+
+/* Solid variant for small pills (factions) */
+.pill--solid {
+  background: #0d4b8f;
+  color: #ffffff;
+  border-color: #0d4b8f;
+}
+
+/* Generic tabs line of pills */
+.tabs {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 12px 0 18px;
+}

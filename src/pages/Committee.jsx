@@ -79,7 +79,7 @@ export default function Committee() {
                   {p.address && <li>{p.address}</li>}
                 </ul>
                 <a
-                  className="btn btn--primary"
+                  className="btn btn--primary btn--compact"
                   href={p.id ? `#/government?type=dep&id=${p.id}` : "#"}
                 >
                   Подробнее

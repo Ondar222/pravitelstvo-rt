@@ -110,7 +110,10 @@ export default function Government() {
               {leader.email && <li>{leader.email}</li>}
               {leader.address && <li>{leader.address}</li>}
             </ul>
-            <a className="btn btn--primary" href={`#/committee?id=${id}`}>
+            <a
+              className="btn btn--primary btn--compact"
+              href={`#/committee?id=${id}`}
+            >
               Подробнее
             </a>
           </div>
@@ -260,7 +263,7 @@ export default function Government() {
                           {p.address && <li>{p.address}</li>}
                         </ul>
                         <a
-                          className="btn btn--primary"
+                          className="btn btn--primary btn--compact"
                           href={`#/government?type=gov&id=${p.id}`}
                         >
                           Подробнее
@@ -468,7 +471,10 @@ export default function Government() {
                   </div>
                   <p>Приём граждан: {d.reception}</p>
                   <Space wrap style={{ width: "100%" }}>
-                    <Button href={`#/government?type=dep&id=${d.id}`}>
+                    <Button
+                      className="btn--compact"
+                      href={`#/government?type=dep&id=${d.id}`}
+                    >
                       Подробнее
                     </Button>
                     <Button href={`tel:${d.contacts.phone}`}>Позвонить</Button>
@@ -527,7 +533,10 @@ export default function Government() {
                   </div>
                   <p>Приём граждан: {p.reception}</p>
                   <Space wrap style={{ width: "100%" }}>
-                    <Button href={`#/government?type=gov&id=${p.id}`}>
+                    <Button
+                      className="btn--compact"
+                      href={`#/government?type=gov&id=${p.id}`}
+                    >
                       Подробнее
                     </Button>
                     <Button href={`tel:${p.phone}`}>Позвонить</Button>

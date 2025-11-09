@@ -877,6 +877,21 @@ a {
 .btn.btn--primary:hover {
   filter: brightness(0.96);
 }
+.btn--compact {
+  width: clamp(120px, 20%, 180px);
+  justify-content: center;
+  padding: 8px 12px;
+}
+/* antd button variant */
+.ant-btn.btn--compact {
+  width: clamp(120px, 20%, 180px);
+  justify-content: center;
+}
+@media (max-width: 560px) {
+  .btn--compact {
+    width: 140px; /* keep compact, but readable on small screens */
+  }
+}
 .btn.btn--gold {
   background: var(--gold);
   border: 1px solid var(--gold);
@@ -1856,6 +1871,9 @@ body.hc-yb {
 .orgv2__pill--wide {
   grid-column: 1 / -1;
 }
+.orgv2__pill:hover {
+  background: #f8fafc;
+}
 .orgv2__pillrow {
   display: flex;
   gap: 12px;
@@ -1896,6 +1914,7 @@ body.hc-yb {
   box-shadow: var(--shadow);
   border: 1px solid #eef2f7;
   padding: 18px;
+  overflow: hidden;
 }
 .person-card::before {
   content: "";

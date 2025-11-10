@@ -82,7 +82,7 @@ export default function Deputies() {
                 {d.district} · {d.faction}
               </div>
               <p>Приём граждан: {d.reception}</p>
-              <Space wrap style={{ width: "100%" }}>
+              <Space wrap size="middle" style={{ width: "100%" }}>
                 <Button
                   className="btn--compact"
                   size="small"

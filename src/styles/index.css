@@ -1133,6 +1133,18 @@ a {
 }
 
 /* Ant Design Card: ensure no horizontal overflow and better stacking on mobile */
+/* Default gap between action buttons inside cards */
+.ant-card .ant-space {
+  gap: 12px; /* modern flex gap */
+  column-gap: 12px; /* fallback for older flex implementations */
+  row-gap: 12px;
+}
+.ant-card .ant-space .ant-space-item {
+  margin-right: 12px; /* ensure visible spacing on desktop */
+}
+.ant-card .ant-space .ant-space-item:last-child {
+  margin-right: 0;
+}
 @media (max-width: 720px) {
   .ant-card {
     width: 100%;

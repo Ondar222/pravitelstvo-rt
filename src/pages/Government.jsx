@@ -470,7 +470,7 @@ export default function Government() {
                     {d.district} · {d.faction}
                   </div>
                   <p>Приём граждан: {d.reception}</p>
-                  <Space wrap style={{ width: "100%" }}>
+                  <Space wrap size="middle" style={{ width: "100%" }}>
                     <Button
                       className="btn--compact"
                       size="small"
@@ -544,7 +544,7 @@ export default function Government() {
                     {p.agency}
                   </div>
                   <p>Приём граждан: {p.reception}</p>
-                  <Space wrap style={{ width: "100%" }}>
+                  <Space wrap size="middle" style={{ width: "100%" }}>
                     <Button
                       className="btn--compact"
                       size="small"

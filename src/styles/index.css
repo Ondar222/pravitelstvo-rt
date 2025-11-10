@@ -1791,6 +1791,12 @@ body.hc-yb {
   gap: 16px;
   align-items: start;
 }
+.org__row--cols4 {
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+.org__col--span2 {
+  grid-column: 3 / 5;
+}
 .org__row--center {
   display: flex;
   justify-content: center;

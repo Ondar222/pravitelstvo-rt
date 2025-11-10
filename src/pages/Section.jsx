@@ -50,8 +50,8 @@ export default function SectionPage() {
             </div>
           </div>
           {/* Factions row */}
-          <div className="org__row org__row--center">
-            {(factions || []).map((f) => (
+          <div className="org__row org__row--factions">
+            {["Единая Россия", "КПРФ", "ЛДПР", "Новые люди"].map((f) => (
               <a
                 key={f}
                 className="org__item org__item--blue"
@@ -64,8 +64,14 @@ export default function SectionPage() {
             ))}
           </div>
           {/* Three column zone: committees on the left, commissions/councils on right */}
-          <div className="org__row">
+          <div className="org__row org__row--cols4">
             <div className="org__col">
+              <a
+                className="org__item org__item--blue"
+                href={"#/section?title=" + encodeURIComponent("Комитеты")}
+              >
+                Комитеты Верховного Хурала (парламента) Республики Тыва
+              </a>
               {(committees || []).map((c) => (
                 <a
                   key={c.id}
@@ -77,31 +83,53 @@ export default function SectionPage() {
               ))}
             </div>
             <div className="org__col">
-              {(commissions || []).map((t, idx) => (
-                <a
-                  key={idx}
-                  className="org__item org__item--blue"
-                  href={`#/section?title=${encodeURIComponent(t)}`}
-                >
-                  {t}
-                </a>
-              ))}
+              <a
+                className="org__item org__item--blue"
+                href={
+                  "#/section?title=" +
+                  encodeURIComponent(
+                    "Комитет Верховного Хурала (парламента) Республики Тыва по межрегиональным связям"
+                  )
+                }
+              >
+                Комитет Верховного Хурала (парламента) Республики Тыва по
+                межрегиональным связям
+              </a>
+              <a
+                className="org__item org__item--blue"
+                href={
+                  "#/section?title=" +
+                  encodeURIComponent(
+                    "Комитет Верховного Хурала (парламента) Республики Тыва по взаимодействию со средствами массовой информации и общественными организациями"
+                  )
+                }
+              >
+                Комитет Верховного Хурала (парламента) Республики Тыва по
+                взаимодействию со средствами массовой информации и общественными
+                организациями
+              </a>
             </div>
-            <div className="org__col">
-              {(councils || []).map((t, idx) => (
+            <div className="org__col org__col--span2">
+              {[
+                "Комиссия Верховного Хурала (парламента) Республики Тыва по Регламенту Верховного Хурала (парламента) Республики Тыва и депутатской этике",
+                "Комиссия Верховного Хурала (парламента) Республики Тыва контрольно за достоверностью сведений о доходах, об имуществе и обязательствах имущественного характера, представляемых депутатами Верховного Хурала (парламента) Республики Тыва",
+                "Наградная комиссия Верховного Хурала (парламента) Республики Тыва",
+                "Комиссия Верховного Хурала (парламента) Республики Тыва по поддержке участников специальной военной операции и их семей",
+                "Счетная комиссия Верховного Хурала (парламента) Республики Тыва",
+              ].map((title, i) => (
                 <a
-                  key={idx}
+                  key={`wide-${i}`}
                   className="org__item org__item--blue"
-                  href={`#/section?title=${encodeURIComponent(t)}`}
+                  href={`#/section?title=${encodeURIComponent(title)}`}
                 >
-                  {t}
+                  {title}
                 </a>
               ))}
             </div>
           </div>
           <div className="org__row org__row--center">
             <a
-              className="org__item org__item--xl org__item--green"
+              className="org__item org__item--xl org__item--blue"
               href="#/apparatus"
             >
               Аппарат Верховного Хурала (парламента) Республики Тыва

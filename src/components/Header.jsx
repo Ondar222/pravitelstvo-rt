@@ -182,7 +182,26 @@ export default function Header() {
                 <a href="#/authorities">Территориальные отделения</a>
               </div>
             </div>
-            <Link to="/wifi">Карта WiFi</Link>
+            <div
+              className={`dropdown ${openMenu === "docs" ? "open" : ""}`}
+              onMouseEnter={() => setOpenMenu("docs")}
+              onMouseLeave={() => setOpenMenu(null)}
+            >
+              <Link to="/docs/laws">Документы ▾</Link>
+              <div
+                className="dropdown__menu"
+                onMouseEnter={() => setOpenMenu("docs")}
+              >
+                <a href="#/docs/laws">Законы Республики Тыва</a>
+                <a href="#/docs/resolutions">Постановления ВХ РТ</a>
+                <a href="#/docs/initiatives">Законодательные инициативы</a>
+                <a href="#/docs/civic">Законодательная инициатива гражданами</a>
+                <a href="#/docs/constitution">
+                  Реализация принятых поправок в Конституцию РФ
+                </a>
+                <a href="#/docs/bills">Законопроекты</a>
+              </div>
+            </div>
           </nav>
 
           <div className="header-actions">
@@ -502,13 +521,12 @@ export default function Header() {
             >
               Обратная связь
             </Link>
-            <Link
-              to="/wifi"
-              onClick={() => setMobileOpen(false)}
+            <button
               className="tile link"
+              onClick={() => setMobileSection("docs")}
             >
-              Карта WiFi
-            </Link>
+              Документы →
+            </button>
             <div className="sheet-card social-card" style={{ marginTop: 12 }}>
               <div className="social-card__header">
                 <img
@@ -736,6 +754,56 @@ export default function Header() {
               onClick={() => setMobileOpen(false)}
             >
               Пресс‑служба
+            </a>
+          </>
+        )}
+        {mobileSection === "docs" && (
+          <>
+            <button className="btn" onClick={() => setMobileSection(null)}>
+              ← Назад
+            </button>
+            <div style={{ color: "#6b7280", margin: "8px 0" }}>Документы</div>
+            <a
+              className="tile link"
+              href="#/docs/laws"
+              onClick={() => setMobileOpen(false)}
+            >
+              Законы Республики Тыва
+            </a>
+            <a
+              className="tile link"
+              href="#/docs/resolutions"
+              onClick={() => setMobileOpen(false)}
+            >
+              Постановления ВХ РТ
+            </a>
+            <a
+              className="tile link"
+              href="#/docs/initiatives"
+              onClick={() => setMobileOpen(false)}
+            >
+              Законодательные инициативы
+            </a>
+            <a
+              className="tile link"
+              href="#/docs/civic"
+              onClick={() => setMobileOpen(false)}
+            >
+              Законодательная инициатива гражданами
+            </a>
+            <a
+              className="tile link"
+              href="#/docs/constitution"
+              onClick={() => setMobileOpen(false)}
+            >
+              Реализация поправок в Конституцию РФ
+            </a>
+            <a
+              className="tile link"
+              href="#/docs/bills"
+              onClick={() => setMobileOpen(false)}
+            >
+              Законопроекты
             </a>
           </>
         )}

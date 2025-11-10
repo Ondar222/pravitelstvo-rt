@@ -36,6 +36,7 @@ import CookieBanner from "./components/CookieBanner.jsx";
 import Apparatus from "./pages/Apparatus.jsx";
 import SectionPage from "./pages/Section.jsx";
 import Breadcrumbs from "./components/Breadcrumbs.jsx";
+import DocsPage from "./pages/docs/DocsPage.jsx";
 
 export default function App() {
   return (
@@ -68,6 +69,12 @@ export default function App() {
                     "/achievements": AchievementsPage,
                     "/calendar": CalendarPage,
                     "/documents": Documents,
+                    "/docs/laws": DocsPage,
+                    "/docs/resolutions": DocsPage,
+                    "/docs/initiatives": DocsPage,
+                    "/docs/civic": DocsPage,
+                    "/docs/constitution": DocsPage,
+                    "/docs/bills": DocsPage,
                     "/committee": Committee,
                     "/apparatus": Apparatus,
                     "/section": SectionPage,

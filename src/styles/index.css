@@ -1797,6 +1797,14 @@ body.hc-yb {
 .org__col--span2 {
   grid-column: 3 / 5;
 }
+@media (max-width: 959px) {
+  .org__row--cols4 {
+    grid-template-columns: 1fr;
+  }
+  .org__col--span2 {
+    grid-column: auto;
+  }
+}
 .org__row--center {
   display: flex;
   justify-content: center;

@@ -4,7 +4,14 @@ import { Select, Card, Tag, Space, Button } from "antd";
 import PersonDetail from "../components/PersonDetail.jsx";
 
 export default function Government() {
-  const { government, deputies, committees } = useData();
+  const {
+    government,
+    deputies,
+    committees,
+    factions: structureFactions,
+    commissions: structureCommissions,
+    councils: structureCouncils,
+  } = useData();
 
   const [section, setSection] = React.useState(() => {
     const h = window.location.hash;
@@ -174,72 +181,74 @@ export default function Government() {
                 Структура органов управления
               </span>
             </div>
-            <h2 style={{ marginTop: 0 }}>Структура органов управления</h2>
-            <div className="orgv2">
-              <div className="orgv2__banner">
-                СТРУКТУРА ВЕРХОВНОГО ХУРАЛА (ПАРЛАМЕНТА) РЕСПУБЛИКИ ТЫВА
+            {/* Blue diagram per provided reference (Image 2) */}
+            <div className="org org--khural">
+              <div className="org__row org__row--center">
+                <div className="org__item org__item--blue org__item--xl">
+                  Председатель Верховного Хурала (парламента) Республики Тыва
+                </div>
               </div>
-
-              <div className="orgv2__pillset">
-                <a className="orgv2__pill" href="#/deputies">
-                  Депутаты всех созывов
-                </a>
+              <div className="org__row org__row--center">
+                {(structureFactions || []).map((f) => (
+                  <a
+                    key={f}
+                    className="org__item org__item--blue"
+                    href={`#/deputies?faction=${encodeURIComponent(f)}`}
+                  >
+                    Фракция
+                    <br />
+                    {f}
+                  </a>
+                ))}
+              </div>
+              <div className="org__row">
+                <div className="org__col">
+                  {(committees || []).map((c) => (
+                    <a
+                      key={c.id}
+                      className="org__item org__item--green"
+                      href={`#/committee?id=${encodeURIComponent(c.id)}`}
+                    >
+                      {c.title}
+                    </a>
+                  ))}
+                </div>
+                <div className="org__col">
+                  {(structureCommissions || []).map((t, idx) => (
+                    <a
+                      key={idx}
+                      className="org__item org__item--blue"
+                      href={`#/section?title=${encodeURIComponent(t)}`}
+                    >
+                      {t}
+                    </a>
+                  ))}
+                </div>
+                <div className="org__col">
+                  {(structureCouncils || []).map((t, idx) => (
+                    <a
+                      key={idx}
+                      className="org__item org__item--blue"
+                      href={`#/section?title=${encodeURIComponent(t)}`}
+                    >
+                      {t}
+                    </a>
+                  ))}
+                </div>
+              </div>
+              <div className="org__row org__row--center">
                 <a
-                  className="orgv2__pill"
-                  href={
-                    "#/section?title=" +
-                    encodeURIComponent("Представительство в Совете Федерации")
-                  }
+                  className="org__item org__item--xl org__item--green"
+                  href="#/apparatus"
                 >
-                  Представительство в Совете Федерации
-                </a>
-                <a
-                  className="orgv2__pill"
-                  href={
-                    "#/section?title=" +
-                    encodeURIComponent(
-                      "Совет по взаимодействию с представительными органами муниципальных образований"
-                    )
-                  }
-                >
-                  Совет по взаимодействию с представительными органами
-                  муниципальных образований
-                </a>
-                <a
-                  className="orgv2__pill"
-                  href={
-                    "#/section?title=" + encodeURIComponent("Молодежный Хурал")
-                  }
-                >
-                  Молодежный Хурал
-                </a>
-                <a
-                  className="orgv2__pill"
-                  href={"#/section?title=" + encodeURIComponent("Комиссии")}
-                >
-                  Комиссии
-                </a>
-                <a
-                  className="orgv2__pill"
-                  href={"#/section?title=" + encodeURIComponent("Комитеты")}
-                >
-                  Комитеты
-                </a>
-                <a
-                  className="orgv2__pill"
-                  href={
-                    "#/section?title=" +
-                    encodeURIComponent("Депутатские фракции")
-                  }
-                >
-                  Депутатские фракции
-                </a>
-                <a className="orgv2__pill orgv2__pill--wide" href="#/apparatus">
                   Аппарат Верховного Хурала (парламента) Республики Тыва
                 </a>
               </div>
-
-              <h2 style={{ marginTop: 18 }}>Структура Верховного Хурала</h2>
+            </div>
+            <h2 style={{ marginTop: 0 }}>
+              Структура Верховного Хурала (парламента) Республики Тыва
+            </h2>
+            <div className="orgv2">
               <div className="orgv2__chain">
                 <div className="orgv2__line" />
                 {[government[0], government[1]]
@@ -272,7 +281,6 @@ export default function Government() {
                     </div>
                   ))}
               </div>
-
               <div className="orgv2__strip">
                 <span className="pill pill--solid">
                   Фракция «Единая Россия»
@@ -287,7 +295,6 @@ export default function Government() {
                   Подробнее о комитете
                 </a>
               </div>
-
               <div className="orgv2__list">
                 <div
                   className={`orgv2__pill orgv2__pill--outline orgv2__pill--button ${
@@ -391,34 +398,6 @@ export default function Government() {
                   политике
                 </div>
                 {openCommittee === "edu" ? renderCommittee("edu") : null}
-                <div
-                  className={`orgv2__pill orgv2__pill--outline orgv2__pill--button ${
-                    openCommittee === "health2" ? "orgv2__pill--open" : ""
-                  }`}
-                  onClick={() =>
-                    setOpenCommittee(
-                      openCommittee === "health2" ? null : "health2"
-                    )
-                  }
-                >
-                  Комитет по охране здоровья, занятости населения и социальной
-                  политике
-                </div>
-                {openCommittee === "health2" ? renderCommittee("health") : null}
-                <div
-                  className={`orgv2__pill orgv2__pill--outline orgv2__pill--button ${
-                    openCommittee === "const2" ? "orgv2__pill--open" : ""
-                  }`}
-                  onClick={() =>
-                    setOpenCommittee(
-                      openCommittee === "const2" ? null : "const2"
-                    )
-                  }
-                >
-                  Комитет по конституционно‑правовой политике и местному
-                  самоуправлению
-                </div>
-                {openCommittee === "const2" ? renderCommittee("const") : null}
               </div>
             </div>
           </>

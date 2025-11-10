@@ -8,6 +8,8 @@ const DataContext = React.createContext({
   factions: [],
   districts: [],
   convocations: [],
+  commissions: [],
+  councils: [],
   government: [],
   authorities: [],
   documents: [],
@@ -37,6 +39,8 @@ export default function DataProvider({ children }) {
   const [factions, setFactions] = React.useState([]);
   const [districts, setDistricts] = React.useState([]);
   const [convocations, setConvocations] = React.useState([]);
+  const [commissions, setCommissions] = React.useState([]);
+  const [councils, setCouncils] = React.useState([]);
   const [government, setGovernment] = React.useState([]);
   const [authorities, setAuthorities] = React.useState([]);
   const [documents, setDocuments] = React.useState([]);
@@ -53,6 +57,8 @@ export default function DataProvider({ children }) {
       setFactions(s.factions || []);
       setDistricts(s.districts || []);
       setConvocations(s.convocations || []);
+      setCommissions(s.commissions || []);
+      setCouncils(s.councils || []);
     });
     fetchJson("/data/government.json").then(setGovernment);
     fetchJson("/data/authorities.json").then(setAuthorities);

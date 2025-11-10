@@ -75,6 +75,25 @@ export default function Deputies() {
     });
   }, [deputies, convocation, faction, district, committeeMatcher]);
 
+  // Accept initial filters from URL, keep in sync on hash changes
+  React.useEffect(() => {
+    const applyFromHash = () => {
+      const h = window.location.hash;
+      const sp = new URLSearchParams(h.split("?")[1]);
+      const f = sp.get("faction");
+      const d = sp.get("district");
+      const cv = sp.get("convocation");
+      const cm = sp.get("committee");
+      if (f) setFaction(decodeURIComponent(f));
+      if (d) setDistrict(decodeURIComponent(d));
+      if (cv) setConvocation(decodeURIComponent(cv));
+      if (cm) setCommitteeId(decodeURIComponent(cm));
+    };
+    applyFromHash();
+    window.addEventListener("hashchange", applyFromHash);
+    return () => window.removeEventListener("hashchange", applyFromHash);
+  }, []);
+
   return (
     <section className="section">
       <div className="container">

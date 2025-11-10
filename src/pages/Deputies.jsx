@@ -1,66 +1,141 @@
 import React from "react";
 import { useData } from "../context/DataContext.jsx";
-import { Select, Card, Tag, Space, Button } from "antd";
+import { Select, Card, Tag, Space, Button, Dropdown } from "antd";
 
 export default function Deputies() {
-  const { deputies } = useData();
-  const [district, setDistrict] = React.useState("Все");
+  const {
+    deputies,
+    committees,
+    factions: structureFactions,
+    districts: structureDistricts,
+    convocations: structureConvocations,
+  } = useData();
+  // Filters per structure
   const [convocation, setConvocation] = React.useState("Все");
+  const [committeeId, setCommitteeId] = React.useState("Все");
   const [faction, setFaction] = React.useState("Все");
+  const [district, setDistrict] = React.useState("Все");
+  const [openConv, setOpenConv] = React.useState(false);
 
   const districts = React.useMemo(
-    () => ["Все", ...Array.from(new Set(deputies.map((d) => d.district)))],
-    [deputies]
+    () => ["Все", ...(structureDistricts || [])],
+    [structureDistricts]
   );
   const convocations = React.useMemo(
-    () => ["Все", ...Array.from(new Set(deputies.map((d) => d.convocation)))],
-    [deputies]
+    () => ["Все", ...(structureConvocations || [])],
+    [structureConvocations]
   );
   const factions = React.useMemo(
-    () => ["Все", ...Array.from(new Set(deputies.map((d) => d.faction)))],
-    [deputies]
+    () => ["Все", ...(structureFactions || [])],
+    [structureFactions]
   );
+  const convOrder = ["VIII", "VII", "VI", "V", "IV", "III", "II", "I", "Все"];
+  const convMenuItems = React.useMemo(() => {
+    const av = Array.from(new Set(convocations));
+    const ordered = convOrder.filter((x) => av.includes(x));
+    return ordered.map((c) => ({
+      key: c,
+      label: c === "Все" ? "Все созывы" : `${c} созыв`,
+      onClick: () => {
+        setConvocation(c);
+        setOpenConv(false);
+      },
+    }));
+  }, [convocations]);
 
-  const filtered = React.useMemo(
-    () =>
-      deputies.filter(
-        (d) =>
-          (district === "Все" || d.district === district) &&
-          (convocation === "Все" || d.convocation === convocation) &&
-          (faction === "Все" || d.faction === faction)
-      ),
-    [deputies, district, convocation, faction]
-  );
+  const committeeOptions = React.useMemo(() => {
+    return ["Все", ...(committees || []).map((c) => c.id)];
+  }, [committees]);
+
+  const committeeMatcher = React.useMemo(() => {
+    if (committeeId === "Все") return null;
+    const c = (committees || []).find((x) => x.id === committeeId);
+    if (!c) return null;
+    const ids = new Set();
+    const names = new Set();
+    (c.members || []).forEach((m) => {
+      if (!m) return;
+      if (m.id) ids.add(m.id);
+      if (m.name) names.add(m.name);
+    });
+    return { ids, names };
+  }, [committeeId, committees]);
+
+  const filtered = React.useMemo(() => {
+    return deputies.filter((d) => {
+      if (convocation !== "Все" && d.convocation !== convocation) return false;
+      if (faction !== "Все" && d.faction !== faction) return false;
+      if (district !== "Все" && d.district !== district) return false;
+      if (committeeMatcher) {
+        if (committeeMatcher.ids.has(d.id)) return true;
+        if (committeeMatcher.names.has(d.name)) return true;
+        return false;
+      }
+      return true;
+    });
+  }, [deputies, convocation, faction, district, committeeMatcher]);
 
   return (
     <section className="section">
       <div className="container">
         <h1>Депутаты</h1>
-        <Space
-          className="filters"
-          size="middle"
-          style={{ margin: "12px 0 20px" }}
-          wrap
+        {/* Single-row filters from Structure */}
+        <div
+          style={{
+            display: "flex",
+            gap: 12,
+            alignItems: "center",
+            flexWrap: "wrap",
+            margin: "12px 0 18px",
+          }}
         >
+          <Dropdown
+            open={openConv}
+            onOpenChange={setOpenConv}
+            menu={{ items: convMenuItems }}
+          >
+            <Button size="large">
+              {convocation === "Все" ? "Все созывы" : `${convocation} созыв`}{" "}
+              <span style={{ marginLeft: 8 }}>▾</span>
+            </Button>
+          </Dropdown>
           <Select
-            value={district}
-            onChange={setDistrict}
-            options={districts.map((x) => ({ value: x, label: x }))}
-            style={{ minWidth: 200 }}
-          />
-          <Select
-            value={convocation}
-            onChange={setConvocation}
-            options={convocations.map((x) => ({ value: x, label: x }))}
-            style={{ minWidth: 200 }}
+            value={committeeId}
+            onChange={setCommitteeId}
+            options={committeeOptions.map((id) =>
+              id === "Все"
+                ? { value: "Все", label: "По комитетам: Все" }
+                : {
+                    value: id,
+                    label:
+                      `По комитетам: ` +
+                      ((committees || []).find((c) => c.id === id)?.title ||
+                        id),
+                  }
+            )}
+            style={{ minWidth: 280 }}
           />
           <Select
             value={faction}
             onChange={setFaction}
-            options={factions.map((x) => ({ value: x, label: x }))}
-            style={{ minWidth: 200 }}
+            options={factions.map((x) => ({
+              value: x,
+              label: x === "Все" ? "По фракциям: Все" : `По фракциям: ${x}`,
+            }))}
+            style={{ minWidth: 220 }}
+            placeholder="Фракция"
           />
-        </Space>
+          <Select
+            value={district}
+            onChange={setDistrict}
+            options={districts.map((x) => ({
+              value: x,
+              label: x === "Все" ? "По округам: Все" : `По округам: ${x}`,
+            }))}
+            style={{ minWidth: 220 }}
+            placeholder="Округ"
+          />
+        </div>
         <div className="grid cols-3">
           {filtered.map((d) => (
             <Card

@@ -35,6 +35,7 @@ import { ConfigProvider, theme } from "antd";
 import CookieBanner from "./components/CookieBanner.jsx";
 import Apparatus from "./pages/Apparatus.jsx";
 import SectionPage from "./pages/Section.jsx";
+import Breadcrumbs from "./components/Breadcrumbs.jsx";
 
 export default function App() {
   return (
@@ -57,6 +58,7 @@ export default function App() {
             <div className="layout">
               <Header />
               <main className="main-content">
+                <Breadcrumbs />
                 <Router
                   routes={{
                     "/": Home,

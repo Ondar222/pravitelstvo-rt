@@ -5,6 +5,9 @@ const DataContext = React.createContext({
   news: [],
   events: [],
   deputies: [],
+  factions: [],
+  districts: [],
+  convocations: [],
   government: [],
   authorities: [],
   documents: [],
@@ -31,6 +34,9 @@ export default function DataProvider({ children }) {
   const [news, setNews] = React.useState([]);
   const [events, setEvents] = React.useState([]);
   const [deputies, setDeputies] = React.useState([]);
+  const [factions, setFactions] = React.useState([]);
+  const [districts, setDistricts] = React.useState([]);
+  const [convocations, setConvocations] = React.useState([]);
   const [government, setGovernment] = React.useState([]);
   const [authorities, setAuthorities] = React.useState([]);
   const [documents, setDocuments] = React.useState([]);
@@ -42,6 +48,12 @@ export default function DataProvider({ children }) {
     fetchJson("/data/news.json").then(setNews);
     fetchJson("/data/events.json").then(setEvents);
     fetchJson("/data/deputies.json").then(setDeputies);
+    // Structure-derived lists
+    fetchJson("/data/structure.json").then((s) => {
+      setFactions(s.factions || []);
+      setDistricts(s.districts || []);
+      setConvocations(s.convocations || []);
+    });
     fetchJson("/data/government.json").then(setGovernment);
     fetchJson("/data/authorities.json").then(setAuthorities);
     fetchJson("/data/documents.json").then(setDocuments);

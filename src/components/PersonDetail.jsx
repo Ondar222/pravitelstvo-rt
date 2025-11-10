@@ -24,6 +24,45 @@ export default function PersonDetail({ item, type, backHref }) {
           ["Суббота-Воскресенье", "Выходной"],
         ];
 
+  const [active, setActive] = React.useState("bio");
+
+  // Smooth-scroll to section without breaking hash-based routing
+  const scrollToSection = React.useCallback((id) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+      setActive(id);
+    }
+  }, []);
+
+  // Observe sections to highlight the current pill while scrolling
+  React.useEffect(() => {
+    const ids = ["bio", "contacts", "laws", "income", "schedule"];
+    const elements = ids
+      .map((id) => document.getElementById(id))
+      .filter(Boolean);
+    if (!elements.length) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+        if (visible[0]) {
+          const id = visible[0].target.id;
+          setActive(id);
+        }
+      },
+      {
+        root: null,
+        // Trigger when section top crosses ~90px from top (header height)
+        rootMargin: "-90px 0px -60% 0px",
+        threshold: 0.01,
+      }
+    );
+    elements.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section className="section">
       <div className="container">
@@ -71,19 +110,59 @@ export default function PersonDetail({ item, type, backHref }) {
         </div>
 
         <div className="person-tabs">
-          <a className="pill" href="#bio">
+          <a
+            className={`pill ${active === "bio" ? "pill--solid" : ""}`}
+            href="#"
+            role="button"
+            onClick={(e) => {
+              e.preventDefault();
+              scrollToSection("bio");
+            }}
+          >
             Биография
           </a>
-          <a className="pill" href="#contacts">
+          <a
+            className={`pill ${active === "contacts" ? "pill--solid" : ""}`}
+            href="#"
+            role="button"
+            onClick={(e) => {
+              e.preventDefault();
+              scrollToSection("contacts");
+            }}
+          >
             Контакты
           </a>
-          <a className="pill" href="#laws">
+          <a
+            className={`pill ${active === "laws" ? "pill--solid" : ""}`}
+            href="#"
+            role="button"
+            onClick={(e) => {
+              e.preventDefault();
+              scrollToSection("laws");
+            }}
+          >
             Законодательная деятельность
           </a>
-          <a className="pill" href="#income">
+          <a
+            className={`pill ${active === "income" ? "pill--solid" : ""}`}
+            href="#"
+            role="button"
+            onClick={(e) => {
+              e.preventDefault();
+              scrollToSection("income");
+            }}
+          >
             Сведения о доходах
           </a>
-          <a className="pill" href="#schedule">
+          <a
+            className={`pill ${active === "schedule" ? "pill--solid" : ""}`}
+            href="#"
+            role="button"
+            onClick={(e) => {
+              e.preventDefault();
+              scrollToSection("schedule");
+            }}
+          >
             График приема граждан
           </a>
         </div>

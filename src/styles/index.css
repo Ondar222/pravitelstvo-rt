@@ -22,6 +22,9 @@ body,
 #root {
   height: 100%;
 }
+html {
+  scroll-behavior: smooth; /* smooth scroll to anchors */
+}
 body {
   margin: 0;
   font-family: "Manrope", ui-sans-serif, system-ui, -apple-system, Segoe UI,
@@ -868,6 +871,7 @@ a {
 }
 .person-block {
   margin-top: 12px;
+  scroll-margin-top: 84px; /* offset for sticky header when navigating via anchors */
 }
 .btn.btn--primary {
   background: #0a3b72;

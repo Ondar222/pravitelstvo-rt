@@ -85,12 +85,24 @@ export default function Deputies() {
               <Space wrap style={{ width: "100%" }}>
                 <Button
                   className="btn--compact"
+                  size="small"
                   href={`#/government?type=dep&id=${d.id}`}
                 >
                   Подробнее
                 </Button>
-                <Button href={`tel:${d.contacts.phone}`}>Позвонить</Button>
-                <Button href={`mailto:${d.contacts.email}`} type="primary">
+                <Button
+                  className="btn--compact"
+                  size="small"
+                  href={`tel:${d.contacts.phone}`}
+                >
+                  Позвонить
+                </Button>
+                <Button
+                  className="btn--compact"
+                  size="small"
+                  href={`mailto:${d.contacts.email}`}
+                  type="primary"
+                >
                   Написать
                 </Button>
               </Space>

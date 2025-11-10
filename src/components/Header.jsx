@@ -97,10 +97,10 @@ export default function Header() {
                   <div
                     style={{ fontSize: 18, lineHeight: 1, color: "#6b7280" }}
                   >
-                    ВЕРХОВНЫЙ ХУРАЛ
+                    ВЕРХОВНЫЙ ХУРАЛ <br /> (парламент)
                   </div>
                   <div
-                    style={{ fontSize: 22, lineHeight: 1.1, fontWeight: 800 }}
+                    style={{ fontSize: 18, lineHeight: 1.1, fontWeight: 800 }}
                   >
                     РЕСПУБЛИКИ ТЫВА
                   </div>

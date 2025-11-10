@@ -1903,6 +1903,31 @@ body.hc-yb {
   justify-content: flex-start;
 }
 
+/* Apparatus unit tile (outlined box with title + button inside) */
+.orgv2__unit {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px;
+  border: 2px solid #0d4b8f;
+  border-radius: 16px;
+  background: #ffffff;
+  min-width: min(520px, 92vw);
+  text-align: center;
+  cursor: pointer;
+}
+.orgv2__unit_title {
+  font-weight: 800;
+  color: #0d4b8f;
+}
+@media (max-width: 959px) {
+  .orgv2__unit {
+    min-width: auto;
+    width: 100%;
+  }
+}
+
 /* Person chain */
 .orgv2__chain {
   position: relative;

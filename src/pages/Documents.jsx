@@ -1,6 +1,6 @@
 import React from "react";
 import { useData } from "../context/DataContext.jsx";
-import { Table, Input, Select, Tag } from "antd";
+import { Input, Select } from "antd";
 
 export default function Documents() {
   const { documents } = useData();
@@ -48,22 +48,18 @@ export default function Documents() {
             style={{ minWidth: 200 }}
           />
         </div>
-        <Table
-          rowKey="id"
-          dataSource={filtered}
-          columns={[
-            { title: "Название", dataIndex: "title", key: "title" },
-            { title: "№", dataIndex: "number", key: "number", width: 120 },
-            {
-              title: "Категория",
-              dataIndex: "category",
-              key: "category",
-              render: (v) => <Tag color="blue">{v}</Tag>,
-            },
-            { title: "Дата", dataIndex: "date", key: "date", width: 140 },
-          ]}
-          pagination={{ pageSize: 10 }}
-        />
+        <div className="law-list">
+          {filtered.map((d) => (
+            <div key={d.id} className="law-item card">
+              <div className="law-left">
+                <div className="law-ico">📄</div>
+                <div>
+                  <div className="law-title">{d.title}</div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );

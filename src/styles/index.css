@@ -1176,6 +1176,23 @@ a {
   }
 }
 
+/* Documents table responsive: keep desktop layout with horizontal scroll on mobile */
+.table-responsive {
+  overflow-x: auto;
+}
+.table-responsive .ant-table {
+  min-width: 860px;
+}
+@media (max-width: 959px) {
+  .table-responsive .ant-table {
+    min-width: 720px;
+  }
+}
+.ant-table-thead > tr > th,
+.ant-table-tbody > tr > td {
+  white-space: nowrap;
+}
+
 /* Priorities (stacked banners) */
 .priorities-list {
   display: grid;

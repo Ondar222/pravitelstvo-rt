@@ -11,6 +11,16 @@ const dict = {
     search: "Поиск",
     category: "Категория",
     month: "Месяц",
+    region: "О регионе",
+    government: "Правительство",
+    authorities: "Органы власти",
+    docs: "Документы",
+    feedback: "Прием обращений",
+    press: "Пресс‑служба",
+    activity: "Деятельность",
+    contacts: "Контакты",
+    login: "Вход",
+    register: "Регистрация",
   },
   ty: {
     more: "Ынчээр",
@@ -22,6 +32,16 @@ const dict = {
     search: "Изедир",
     category: "Категориа",
     month: "Ай",
+    region: "Аймак тухай",
+    government: "Чөргүл",
+    authorities: "Билеелел органдар",
+    docs: "Документтер",
+    feedback: "Кежиглелдерни алуу",
+    press: "Пресс-служба",
+    activity: "Иштээли",
+    contacts: "Байланыш",
+    login: "Кирүү",
+    register: "Катталга",
   },
 };
 
@@ -35,7 +55,27 @@ export function useI18n() {
 }
 
 export default function I18nProvider({ children }) {
-  const [lang, setLang] = React.useState("ru");
+  const [lang, setLang] = React.useState(() => {
+    try {
+      const saved = localStorage.getItem("site_lang");
+      if (saved === "ru" || saved === "ty") return saved;
+    } catch {}
+    const docLang =
+      typeof document !== "undefined" ? document.documentElement.lang : "";
+    if (docLang === "ty" || docLang === "ru") return docLang;
+    const nav =
+      (typeof navigator !== "undefined" && navigator.language) || "ru";
+    return nav.startsWith("ty") ? "ty" : "ru";
+  });
+  React.useEffect(() => {
+    try {
+      localStorage.setItem("site_lang", lang);
+    } catch {}
+    if (typeof document !== "undefined") {
+      document.documentElement.lang = lang;
+      document.documentElement.setAttribute("data-lang", lang);
+    }
+  }, [lang]);
   const t = React.useCallback(
     (key) => (dict[lang] && dict[lang][key]) || key,
     [lang]

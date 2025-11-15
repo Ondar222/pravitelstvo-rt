@@ -1,4 +1,5 @@
 import React from "react";
+import { tryApiFetch } from "../api/client.js";
 
 const DataContext = React.createContext({
   slides: [],
@@ -49,9 +50,62 @@ export default function DataProvider({ children }) {
 
   React.useEffect(() => {
     fetchJson("/data/slides.json").then(setSlides);
-    fetchJson("/data/news.json").then(setNews);
+    // Try API for news first, fallback to local JSON
+    (async () => {
+      const apiBase = import.meta?.env?.VITE_API_BASE_URL || "";
+      if (apiBase) {
+        const apiNews = await tryApiFetch("/news", { auth: false });
+        if (Array.isArray(apiNews) && apiNews.length) {
+          const mapped = apiNews.map((n) => ({
+            id: String(n.id ?? n.slug ?? Math.random().toString(36).slice(2)),
+            title: n.title || "",
+            category:
+              (n.category && (n.category.name || n.category.title)) ||
+              "Новости",
+            date: n.publishedAt || n.createdAt || new Date().toISOString(),
+            excerpt: n.shortDescription || "",
+            content: Array.isArray(n.content)
+              ? n.content
+              : n.content
+              ? [n.content]
+              : [],
+          }));
+          setNews(mapped);
+        } else {
+          fetchJson("/data/news.json").then(setNews);
+        }
+      } else {
+        fetchJson("/data/news.json").then(setNews);
+      }
+    })();
     fetchJson("/data/events.json").then(setEvents);
-    fetchJson("/data/deputies.json").then(setDeputies);
+    // Try API for persons first, fallback to local JSON
+    (async () => {
+      const apiBase = import.meta?.env?.VITE_API_BASE_URL || "";
+      if (apiBase) {
+        const apiPersons = await tryApiFetch("/persons", { auth: false });
+        if (Array.isArray(apiPersons) && apiPersons.length) {
+          const mapped = apiPersons.map((p) => ({
+            id: p.id ?? p.personId ?? Math.random().toString(36).slice(2),
+            name: p.fullName || p.name || "",
+            district: p.electoralDistrict || p.city || "",
+            faction: p.faction || p.committee || "",
+            convocation: p.convocation || "",
+            reception: p.receptionSchedule || "",
+            photo: (p.image && (p.image.link || p.image.url)) || p.photo || "",
+            contacts: {
+              phone: p.phoneNumber || p.phone || "",
+              email: p.email || "",
+            },
+          }));
+          setDeputies(mapped);
+        } else {
+          fetchJson("/data/deputies.json").then(setDeputies);
+        }
+      } else {
+        fetchJson("/data/deputies.json").then(setDeputies);
+      }
+    })();
     // Structure-derived lists
     fetchJson("/data/structure.json").then((s) => {
       setFactions(s.factions || []);

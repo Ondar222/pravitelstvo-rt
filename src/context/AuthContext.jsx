@@ -1,0 +1,55 @@
+import React from "react";
+import { AuthApi, setAuthToken, getAuthToken } from "../api/client.js";
+
+const AuthContext = React.createContext({
+  user: null,
+  token: "",
+  isAuthenticated: false,
+  register: async () => {},
+  login: async () => {},
+  logout: () => {},
+});
+
+export function useAuth() {
+  return React.useContext(AuthContext);
+}
+
+export default function AuthProvider({ children }) {
+  const [token, setToken] = React.useState(() => getAuthToken());
+  const [user, setUser] = React.useState(null);
+  const isAuthenticated = Boolean(token);
+
+  const saveAuth = React.useCallback((payload) => {
+    const newToken =
+      payload?.token || payload?.accessToken || payload?.access_token || "";
+    setToken(newToken);
+    setAuthToken(newToken);
+    if (payload?.user) setUser(payload.user);
+  }, []);
+
+  const register = React.useCallback(async (form) => {
+    const res = await AuthApi.register(form);
+    return res;
+  }, []);
+
+  const login = React.useCallback(
+    async ({ email, password }) => {
+      const res = await AuthApi.loginWithPassword({ email, password });
+      saveAuth(res || {});
+      return res;
+    },
+    [saveAuth]
+  );
+
+  const logout = React.useCallback(() => {
+    saveAuth({});
+    setUser(null);
+  }, [saveAuth]);
+
+  const value = React.useMemo(
+    () => ({ user, token, isAuthenticated, register, login, logout }),
+    [user, token, isAuthenticated, register, login, logout]
+  );
+
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+}

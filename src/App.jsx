@@ -23,6 +23,7 @@ import Priority04 from "./pages/priorities/Priority04.jsx";
 import Priority05 from "./pages/priorities/Priority05.jsx";
 import Footer from "./components/Footer.jsx";
 import DataProvider from "./context/DataContext.jsx";
+import AuthProvider from "./context/AuthContext.jsx";
 import I18nProvider from "./context/I18nContext.jsx";
 import A11yProvider from "./context/A11yContext.jsx";
 import CalendarPage from "./pages/Calendar.jsx";
@@ -37,6 +38,8 @@ import Apparatus from "./pages/Apparatus.jsx";
 import SectionPage from "./pages/Section.jsx";
 import Breadcrumbs from "./components/Breadcrumbs.jsx";
 import DocsPage from "./pages/docs/DocsPage.jsx";
+import Login from "./pages/Login.jsx";
+import Register from "./pages/Register.jsx";
 
 export default function App() {
   return (
@@ -55,51 +58,55 @@ export default function App() {
             },
           }}
         >
-          <DataProvider>
-            <div className="layout">
-              <Header />
-              <main className="main-content">
-                <Breadcrumbs />
-                <Router
-                  routes={{
-                    "/": Home,
-                    "/region": Region,
-                    "/about": About,
-                    "/news": NewsArchive,
-                    "/achievements": AchievementsPage,
-                    "/calendar": CalendarPage,
-                    "/documents": Documents,
-                    "/docs/laws": DocsPage,
-                    "/docs/resolutions": DocsPage,
-                    "/docs/initiatives": DocsPage,
-                    "/docs/civic": DocsPage,
-                    "/docs/constitution": DocsPage,
-                    "/docs/bills": DocsPage,
-                    "/committee": Committee,
-                    "/apparatus": Apparatus,
-                    "/section": SectionPage,
-                    "/deputies": Deputies,
-                    "/appeals": Appeals,
-                    "/government": Government,
-                    "/authorities": Authorities,
-                    "/wifi": Wifi,
-                    "/feedback": Feedback,
-                    "/press": Press,
-                    "/activity": Activity,
-                    "/docs": Docs,
-                    "/contacts": Contacts,
-                    "/priority/01": Priority01,
-                    "/priority/02": Priority02,
-                    "/priority/03": Priority03,
-                    "/priority/04": Priority04,
-                    "/priority/05": Priority05,
-                  }}
-                />
-              </main>
-              <Footer />
-              <CookieBanner />
-            </div>
-          </DataProvider>
+          <AuthProvider>
+            <DataProvider>
+              <div className="layout">
+                <Header />
+                <main className="main-content">
+                  <Breadcrumbs />
+                  <Router
+                    routes={{
+                      "/": Home,
+                      "/region": Region,
+                      "/about": About,
+                      "/news": NewsArchive,
+                      "/achievements": AchievementsPage,
+                      "/calendar": CalendarPage,
+                      "/documents": Documents,
+                      "/docs/laws": DocsPage,
+                      "/docs/resolutions": DocsPage,
+                      "/docs/initiatives": DocsPage,
+                      "/docs/civic": DocsPage,
+                      "/docs/constitution": DocsPage,
+                      "/docs/bills": DocsPage,
+                      "/committee": Committee,
+                      "/apparatus": Apparatus,
+                      "/section": SectionPage,
+                      "/deputies": Deputies,
+                      "/appeals": Appeals,
+                      "/government": Government,
+                      "/authorities": Authorities,
+                      "/wifi": Wifi,
+                      "/feedback": Feedback,
+                      "/press": Press,
+                      "/activity": Activity,
+                      "/docs": Docs,
+                      "/contacts": Contacts,
+                      "/priority/01": Priority01,
+                      "/priority/02": Priority02,
+                      "/priority/03": Priority03,
+                      "/priority/04": Priority04,
+                      "/priority/05": Priority05,
+                      "/login": Login,
+                      "/register": Register,
+                    }}
+                  />
+                </main>
+                <Footer />
+                <CookieBanner />
+              </div>
+            </DataProvider>
+          </AuthProvider>
         </ConfigProvider>
       </A11yProvider>
     </I18nProvider>

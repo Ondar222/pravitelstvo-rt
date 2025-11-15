@@ -163,7 +163,7 @@ export default function Deputies() {
                 <div className="card-title">
                   <img
                     className="avatar"
-                    src={d.photo || "/img/max.png"}
+                    src={d.photo || (d.image && d.image.link) || "/img/max.png"}
                     alt=""
                     loading="lazy"
                   />
@@ -175,7 +175,7 @@ export default function Deputies() {
               <div style={{ color: "#6b7280", marginBottom: 6 }}>
                 {d.district} · {d.faction}
               </div>
-              <p>Приём граждан: {d.reception}</p>
+              <p>Приём граждан: {d.reception || "—"}</p>
               <Space wrap size="middle" style={{ width: "100%" }}>
                 <Button
                   className="btn--compact"
@@ -187,14 +187,18 @@ export default function Deputies() {
                 <Button
                   className="btn--compact"
                   size="small"
-                  href={`tel:${d.contacts.phone}`}
+                  href={
+                    d.contacts?.phone ? `tel:${d.contacts.phone}` : undefined
+                  }
                 >
                   Позвонить
                 </Button>
                 <Button
                   className="btn--compact"
                   size="small"
-                  href={`mailto:${d.contacts.email}`}
+                  href={
+                    d.contacts?.email ? `mailto:${d.contacts.email}` : undefined
+                  }
                   type="primary"
                 >
                   Написать

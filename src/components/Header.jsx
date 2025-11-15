@@ -37,7 +37,7 @@ export default function Header() {
     setSheetOpen(true);
   }, []);
   const { cycleMode } = useA11y();
-  const { lang, setLang } = useI18n();
+  const { lang, setLang, t } = useI18n();
 
   React.useEffect(() => {
     const onHash = () => setSheetOpen(false);
@@ -70,11 +70,15 @@ export default function Header() {
     <>
       <header className="site-header">
         <div className="container topbar">
-          <a href="#/feedback">Прием обращений</a>
-          <a href="#/press">Пресс-служба</a>
-          <a href="#/activity">Деятельность</a>
-          <a href="#/docs">Документы</a>
-          <a href="#/contacts">Контакты</a>
+          <a href="#/feedback">{t("feedback")}</a>
+          <a href="#/press">{t("press")}</a>
+          <a href="#/activity">{t("activity")}</a>
+          <a href="#/docs">{t("docs")}</a>
+          <a href="#/deputies">{t("deputies")}</a>
+          <span style={{ marginLeft: "auto", display: "flex", gap: 12 }}>
+            <a href="#/login">{t("login")}</a>
+            <a href="#/register">{t("register")}</a>
+          </span>
         </div>
         <div className="container row">
           <div className="row">
@@ -115,7 +119,7 @@ export default function Header() {
               onMouseEnter={() => setOpenMenu("region")}
               onMouseLeave={() => setOpenMenu(null)}
             >
-              <Link to="/about">О регионе ▾</Link>
+              <Link to="/about">{t("region")} ▾</Link>
               <div
                 className="dropdown__menu"
                 onMouseEnter={() => setOpenMenu("region")}
@@ -133,7 +137,7 @@ export default function Header() {
               onMouseEnter={() => setOpenMenu("news")}
               onMouseLeave={() => setOpenMenu(null)}
             >
-              <Link to="/news">Новости ▾</Link>
+              <Link to="/news">{t("news")} ▾</Link>
               <div
                 className="dropdown__menu"
                 onMouseEnter={() => setOpenMenu("news")}
@@ -154,7 +158,7 @@ export default function Header() {
               onMouseEnter={() => setOpenMenu("gov")}
               onMouseLeave={() => setOpenMenu(null)}
             >
-              <Link to="/government">Правительство ▾</Link>
+              <Link to="/government">{t("government")} ▾</Link>
               <div
                 className="dropdown__menu"
                 onMouseEnter={() => setOpenMenu("gov")}
@@ -172,7 +176,7 @@ export default function Header() {
               onMouseEnter={() => setOpenMenu("auth")}
               onMouseLeave={() => setOpenMenu(null)}
             >
-              <Link to="/authorities">Органы власти ▾</Link>
+              <Link to="/authorities">{t("authorities")} ▾</Link>
               <div
                 className="dropdown__menu"
                 onMouseEnter={() => setOpenMenu("auth")}
@@ -187,7 +191,7 @@ export default function Header() {
               onMouseEnter={() => setOpenMenu("docs")}
               onMouseLeave={() => setOpenMenu(null)}
             >
-              <Link to="/docs/laws">Документы ▾</Link>
+              <Link to="/docs/laws">{t("docs")} ▾</Link>
               <div
                 className="dropdown__menu"
                 onMouseEnter={() => setOpenMenu("docs")}

@@ -23,25 +23,25 @@ const dict = {
     register: "Регистрация",
   },
   ty: {
-    more: "Ынчээр",
+    more: "Оон ыңай",
     news: "Чугаалар",
     calendar: "Календарь",
-    documents: "Документтер",
+    documents: "Документилер",
     deputies: "Депутаттар",
     appeals: "Кежиглелдер",
-    search: "Изедир",
-    category: "Категориа",
+    search: "Диледир",
+    category: "Категория",
     month: "Ай",
-    region: "Аймак тухай",
-    government: "Чөргүл",
+    region: "Кожуун дугайында",
+    government: "Күрүне",
     authorities: "Билеелел органдар",
     docs: "Документтер",
-    feedback: "Кежиглелдерни алуу",
-    press: "Пресс-служба",
-    activity: "Иштээли",
-    contacts: "Байланыш",
-    login: "Кирүү",
-    register: "Катталга",
+    feedback: "Дилеглерни хүлээп алыры",
+    press: "Парлалга албаны",
+    activity: "Ажыл-чорудулга",
+    contacts: "Харылзажыр улус",
+    login: "Кирер чер",
+    register: "Регистрация",
   },
 };
 
@@ -58,22 +58,25 @@ export default function I18nProvider({ children }) {
   const [lang, setLang] = React.useState(() => {
     try {
       const saved = localStorage.getItem("site_lang");
-      if (saved === "ru" || saved === "ty") return saved;
+      if (saved === "ru" || saved === "ty" || saved === "tyv")
+        return saved === "tyv" ? "ty" : saved;
     } catch {}
     const docLang =
       typeof document !== "undefined" ? document.documentElement.lang : "";
-    if (docLang === "ty" || docLang === "ru") return docLang;
+    if (docLang === "ty" || docLang === "ru" || docLang === "tyv")
+      return docLang === "tyv" ? "ty" : docLang;
     const nav =
       (typeof navigator !== "undefined" && navigator.language) || "ru";
     return nav.startsWith("ty") ? "ty" : "ru";
   });
   React.useEffect(() => {
     try {
-      localStorage.setItem("site_lang", lang);
+      localStorage.setItem("site_lang", lang === "ty" ? "tyv" : lang);
     } catch {}
     if (typeof document !== "undefined") {
-      document.documentElement.lang = lang;
-      document.documentElement.setAttribute("data-lang", lang);
+      const htmlLang = lang === "ty" ? "tyv" : lang;
+      document.documentElement.lang = htmlLang;
+      document.documentElement.setAttribute("data-lang", htmlLang);
     }
   }, [lang]);
   const t = React.useCallback(

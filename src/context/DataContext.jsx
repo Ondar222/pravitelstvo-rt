@@ -102,15 +102,38 @@ export default function DataProvider({ children }) {
         } else {
           fetchJson("/data/deputies.json").then(setDeputies);
         }
+        // Fetch filters from API if available
+        const [apiFactions, apiDistricts, apiConvocations, apiCategories] =
+          await Promise.all([
+            tryApiFetch("/persons/factions/all", { auth: false }),
+            tryApiFetch("/persons/districts/all", { auth: false }),
+            tryApiFetch("/persons/convocations/all", { auth: false }),
+            tryApiFetch("/persons/categories/all", { auth: false }),
+          ]);
+        if (Array.isArray(apiFactions) && apiFactions.length)
+          setFactions(apiFactions);
+        if (Array.isArray(apiDistricts) && apiDistricts.length)
+          setDistricts(apiDistricts);
+        if (Array.isArray(apiConvocations) && apiConvocations.length)
+          setConvocations(apiConvocations);
+        if (Array.isArray(apiCategories) && apiCategories.length) {
+          setCommittees(
+            apiCategories.map((c) => ({
+              id: c.id ?? c.value ?? c.name ?? String(c),
+              title: c.title || c.name || String(c),
+              members: [],
+            }))
+          );
+        }
       } else {
         fetchJson("/data/deputies.json").then(setDeputies);
       }
     })();
     // Structure-derived lists
     fetchJson("/data/structure.json").then((s) => {
-      setFactions(s.factions || []);
-      setDistricts(s.districts || []);
-      setConvocations(s.convocations || []);
+      if (!factions.length) setFactions(s.factions || []);
+      if (!districts.length) setDistricts(s.districts || []);
+      if (!convocations.length) setConvocations(s.convocations || []);
       setCommissions(s.commissions || []);
       setCouncils(s.councils || []);
     });
@@ -118,8 +141,9 @@ export default function DataProvider({ children }) {
     fetchJson("/data/authorities.json").then(setAuthorities);
     fetchJson("/data/documents.json").then(setDocuments);
     fetchJson("/data/achievements.json").then(setAchievements);
-    fetchJson("/data/committees.json").then(setCommittees);
-  }, []);
+    if (!committees.length)
+      fetchJson("/data/committees.json").then(setCommittees);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const value = React.useMemo(
     () => ({
@@ -127,6 +151,9 @@ export default function DataProvider({ children }) {
       news,
       events,
       deputies,
+      factions,
+      districts,
+      convocations,
       government,
       authorities,
       documents,
@@ -138,6 +165,9 @@ export default function DataProvider({ children }) {
       news,
       events,
       deputies,
+      factions,
+      districts,
+      convocations,
       government,
       authorities,
       documents,

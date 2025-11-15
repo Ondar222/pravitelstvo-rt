@@ -487,6 +487,24 @@ export default function Header() {
         </div>
         {!mobileSection && (
           <>
+            <div style={{ display: "flex", gap: 8, marginBottom: 8 }}>
+              <a
+                className="btn"
+                href="#/login"
+                onClick={() => setMobileOpen(false)}
+                style={{ flex: 1, textAlign: "center" }}
+              >
+                {t("login")}
+              </a>
+              <a
+                className="btn"
+                href="#/register"
+                onClick={() => setMobileOpen(false)}
+                style={{ flex: 1, textAlign: "center" }}
+              >
+                {t("register")}
+              </a>
+            </div>
             <button
               className="tile link"
               onClick={() => setMobileSection("auth")}

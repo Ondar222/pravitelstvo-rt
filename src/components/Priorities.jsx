@@ -1,5 +1,6 @@
 import React from "react";
 import PriorityModal from "./PriorityModal.jsx";
+import { useI18n } from "../context/I18nContext.jsx";
 
 const PRIORITIES = [
   {
@@ -47,6 +48,7 @@ const PRIORITIES = [
 ];
 
 export default function Priorities() {
+  const { t } = useI18n();
   const [selected, setSelected] = React.useState(null);
   const onOpen = (item) => setSelected(item);
   const onKey = (e, item) => {
@@ -59,9 +61,9 @@ export default function Priorities() {
     <section className="section">
       <div className="container">
         <div className="section-head">
-          <h2>Приоритеты</h2>
+          <h2>{t("priorities")}</h2>
           <a className="link" href="#">
-            Открыть все приоритеты →
+            {t("openAllPriorities")} →
           </a>
         </div>
         <div className="priorities-list">

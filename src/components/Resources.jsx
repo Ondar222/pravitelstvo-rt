@@ -1,5 +1,6 @@
 import React from "react";
 import GosWidget from "./GosWidget.jsx";
+import { useI18n } from "../context/I18nContext.jsx";
 
 const LINKS = [
   "Портал государственных услуг Республики Тыва",
@@ -12,10 +13,11 @@ const LINKS = [
 ];
 
 export default function Resources() {
+  const { t } = useI18n();
   return (
     <section className="section">
       <div className="container">
-        <h2>Полезные ресурсы</h2>
+        <h2>{t("resources")}</h2>
         <div className="grid resources-grid" style={{ gap: 24 }}>
           <div className="grid cols-3">
             {LINKS.map((t, i) => (

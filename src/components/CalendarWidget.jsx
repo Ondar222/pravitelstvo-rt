@@ -2,10 +2,11 @@ import React, { useMemo, useState } from "react";
 import { useData } from "../context/DataContext.jsx";
 // import { useI18n } from "../i18n.js";
 import EventModal from "./EventModal.jsx";
+import { useI18n } from "../context/I18nContext.jsx";
 
 export default function CalendarWidget() {
   const { events } = useData();
-  // const { t } = useI18n();
+  const { t } = useI18n();
   const [viewDate, setViewDate] = useState(() => new Date());
   const [openedDayEvents, setOpenedDayEvents] = useState(null);
 
@@ -43,9 +44,9 @@ export default function CalendarWidget() {
     <section className="section">
       <div className="container">
         <div className="section-head">
-          <h2>Календарь</h2>
+          <h2>{t("calendar")}</h2>
           <a className="link" href="#/calendar">
-            Открыть в разделе →
+            {t("calendarOpen")} →
           </a>
         </div>
 
@@ -54,7 +55,7 @@ export default function CalendarWidget() {
             <button
               type="button"
               className="icon-btn"
-              aria-label="Предыдущий месяц"
+              aria-label={t("prevMonth")}
               onClick={() => setViewDate(new Date(year, month - 1, 1))}
             >
               ‹
@@ -63,7 +64,7 @@ export default function CalendarWidget() {
             <button
               type="button"
               className="icon-btn"
-              aria-label="Следующий месяц"
+              aria-label={t("nextMonth")}
               onClick={() => setViewDate(new Date(year, month + 1, 1))}
             >
               ›

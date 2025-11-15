@@ -472,6 +472,26 @@ export default function Header() {
           </button>
           <button
             className="icon-btn"
+            aria-label={t("login")}
+            onClick={() => {
+              setMobileOpen(false);
+              window.location.hash = "/login";
+            }}
+          >
+            🔐
+          </button>
+          <button
+            className="icon-btn"
+            aria-label={t("register")}
+            onClick={() => {
+              setMobileOpen(false);
+              window.location.hash = "/register";
+            }}
+          >
+            ➕
+          </button>
+          <button
+            className="icon-btn"
             aria-label="Сменить язык"
             onClick={() => setLang(lang === "ru" ? "ty" : "ru")}
           >
@@ -492,7 +512,14 @@ export default function Header() {
                 className="btn"
                 href="#/login"
                 onClick={() => setMobileOpen(false)}
-                style={{ flex: 1, textAlign: "center" }}
+                style={{
+                  flex: 1,
+                  textAlign: "center",
+                  background: "#ffffff",
+                  border: "1px solid #003366",
+                  color: "#003366",
+                  fontWeight: 700,
+                }}
               >
                 {t("login")}
               </a>
@@ -500,7 +527,13 @@ export default function Header() {
                 className="btn"
                 href="#/register"
                 onClick={() => setMobileOpen(false)}
-                style={{ flex: 1, textAlign: "center" }}
+                style={{
+                  flex: 1,
+                  textAlign: "center",
+                  background: "#003366",
+                  color: "#ffffff",
+                  fontWeight: 700,
+                }}
               >
                 {t("register")}
               </a>
@@ -509,32 +542,32 @@ export default function Header() {
               className="tile link"
               onClick={() => setMobileSection("auth")}
             >
-              Органы власти →
+              {t("authorities")} →
             </button>
             <button
               className="tile link"
               onClick={() => setMobileSection("activity")}
             >
-              Деятельность →
+              {t("activity")} →
             </button>
             <button
               className="tile link"
               onClick={() => setMobileSection("news")}
             >
-              Новости →
+              {t("news")} →
             </button>
             <button
               className="tile link"
               onClick={() => setMobileSection("gov")}
             >
-              Правительство →
+              {t("government")} →
             </button>
             <Link
               to="/documents"
               onClick={() => setMobileOpen(false)}
               className="tile link"
             >
-              Документы
+              {t("docs")}
             </Link>
             <Link
               to="/feedback"
@@ -547,7 +580,7 @@ export default function Header() {
               className="tile link"
               onClick={() => setMobileSection("docs")}
             >
-              Документы →
+              {t("docs")} →
             </button>
             <div className="sheet-card social-card" style={{ marginTop: 12 }}>
               <div className="social-card__header">

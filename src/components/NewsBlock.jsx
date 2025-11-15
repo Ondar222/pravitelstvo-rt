@@ -1,8 +1,10 @@
 import React from "react";
 import { useData } from "../context/DataContext.jsx";
+import { useI18n } from "../context/I18nContext.jsx";
 
 export default function NewsBlock() {
   const { news } = useData();
+  const { t } = useI18n();
   const [category, setCategory] = React.useState("Все");
   const categories = React.useMemo(
     () => ["Все", ...Array.from(new Set(news.map((n) => n.category)))],
@@ -38,11 +40,11 @@ export default function NewsBlock() {
               href="#/news"
               style={{ textDecoration: "none" }}
             >
-              Новости
+              {t("news")}
             </a>
           </h2>
           <a className="link" href="#/news">
-            Архив новостей →
+            {t("news")} →
           </a>
         </div>
         <div

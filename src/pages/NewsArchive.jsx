@@ -1,9 +1,11 @@
 import React from "react";
 import { useData } from "../context/DataContext.jsx";
+import { useI18n } from "../context/I18nContext.jsx";
 import { Select, Space } from "antd";
 
 export default function NewsArchive() {
   const { news } = useData();
+  const { t } = useI18n();
   const [category, setCategory] = React.useState("Все");
   const [month, setMonth] = React.useState("Все");
   const [selected, setSelected] = React.useState(() => {
@@ -59,7 +61,7 @@ export default function NewsArchive() {
       <section className="section">
         <div className="container">
           <a className="btn" href="#/news" style={{ marginBottom: 12 }}>
-            ← К списку
+            {t("back")}
           </a>
           <h1 style={{ marginBottom: 8 }}>{item.title}</h1>
           <div style={{ color: "#6b7280", marginBottom: 16 }}>
@@ -99,7 +101,7 @@ export default function NewsArchive() {
               </div>
             </article>
             <aside>
-              <h3 style={{ marginBottom: 8 }}>Другие новости</h3>
+              <h3 style={{ marginBottom: 8 }}>{t("otherNews")}</h3>
               <div className="grid">
                 {news
                   .filter((n) => n.id !== item.id)
@@ -128,7 +130,7 @@ export default function NewsArchive() {
   return (
     <section className="section">
       <div className="container">
-        <h1>Архив новостей</h1>
+        <h1>{t("news")}</h1>
         <Space size="middle" style={{ margin: "12px 0 20px" }} wrap>
           <Select
             value={category}

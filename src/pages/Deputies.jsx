@@ -1,5 +1,6 @@
 import React from "react";
 import { useData } from "../context/DataContext.jsx";
+import { useI18n } from "../context/I18nContext.jsx";
 import { Select, Card, Tag, Space, Button, Dropdown } from "antd";
 
 export default function Deputies() {
@@ -10,6 +11,7 @@ export default function Deputies() {
     districts: structureDistricts,
     convocations: structureConvocations,
   } = useData();
+  const { t } = useI18n();
   // Filters per structure
   const [convocation, setConvocation] = React.useState("Все");
   const [committeeId, setCommitteeId] = React.useState("Все");
@@ -97,7 +99,7 @@ export default function Deputies() {
   return (
     <section className="section">
       <div className="container">
-        <h1>Депутаты</h1>
+        <h1>{t("deputies")}</h1>
         {/* Single-row filters from Structure */}
         <div
           style={{

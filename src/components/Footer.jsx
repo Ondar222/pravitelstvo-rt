@@ -1,6 +1,8 @@
 import React from "react";
+import { useI18n } from "../context/I18nContext.jsx";
 
 export default function Footer() {
+  const { t } = useI18n();
   return (
     <footer className="site-footer">
       <div className="container">
@@ -33,18 +35,18 @@ export default function Footer() {
           </div>
 
           <div>
-            <strong>О регионе</strong>
-            <a href="#">Правительство</a>
-            <a href="#">Обратная связь</a>
-            <a href="#">Карта сайта</a>
+            <strong>{t("region")}</strong>
+            <a href="#/government">{t("government")}</a>
+            <a href="#/feedback">{t("feedback")}</a>
+            <a href="#">Sitemap</a>
           </div>
           <div>
-            <strong>Новости</strong>
-            <a href="#">Актуальные</a>
-            <a href="#">Все новости</a>
+            <strong>{t("news")}</strong>
+            <a href="#/news">{t("news")}</a>
+            <a href="#/news">{t("news")}</a>
           </div>
           <div>
-            <strong>Документы</strong>
+            <strong>{t("docs")}</strong>
             <a href="#">Политика обработки ПДн</a>
             <a href="#">Лицензия</a>
           </div>

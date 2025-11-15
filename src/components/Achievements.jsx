@@ -1,5 +1,6 @@
 import React from "react";
 import { useData } from "../context/DataContext.jsx";
+import { useI18n } from "../context/I18nContext.jsx";
 
 const ACH = [
   {
@@ -28,6 +29,7 @@ const ACH = [
 
 export default function Achievements() {
   const { achievements } = useData();
+  const { t } = useI18n();
   const list = achievements.length
     ? achievements
     : ACH.map((a, i) => ({
@@ -40,9 +42,9 @@ export default function Achievements() {
     <section className="section">
       <div className="container">
         <div className="section-head">
-          <h2>Достижения региона</h2>
+          <h2>{t("achievementsTitle")}</h2>
           <a className="link" href="#/achievements">
-            Больше достопримечательностей →
+            {t("achievementsMore")} →
           </a>
         </div>
         <div className="ach-row">

@@ -17,7 +17,7 @@ export default function Resources() {
   return (
     <section className="section">
       <div className="container">
-        <h2>{t("resources")}</h2>
+        <h2>{t("Порталы")}</h2>
         <div className="grid resources-grid" style={{ gap: 24 }}>
           <div className="grid cols-3">
             {LINKS.map((t, i) => (

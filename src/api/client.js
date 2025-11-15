@@ -106,3 +106,187 @@ export const PublicApi = {
     return apiFetch("/news", { method: "GET", auth: false });
   },
 };
+
+// Helpers for multipart uploads
+async function apiFetchMultipart(
+  path,
+  { method = "POST", formData, headers, auth = true } = {}
+) {
+  if (!(formData instanceof FormData)) {
+    throw new Error("formData must be FormData");
+  }
+  const url =
+    API_BASE_URL.replace(/\/+$/, "") + "/" + String(path).replace(/^\/+/, "");
+  const finalHeaders = { ...(headers || {}) };
+  if (auth) {
+    const token = getAuthToken();
+    if (token) finalHeaders.Authorization = `Bearer ${token}`;
+  }
+  const res = await fetch(url, {
+    method,
+    headers: finalHeaders,
+    body: formData,
+  });
+  const isJson = (res.headers.get("content-type") || "").includes(
+    "application/json"
+  );
+  const data = isJson ? await res.json().catch(() => null) : null;
+  if (!res.ok) {
+    const err = new Error(
+      (data && (data.message || data.error)) || `Request failed: ${res.status}`
+    );
+    err.status = res.status;
+    err.data = data;
+    throw err;
+  }
+  return data;
+}
+
+// Persons-related endpoints (admin + public)
+export const PersonsApi = {
+  // Public
+  async list(params) {
+    const qs = params ? "?" + new URLSearchParams(params).toString() : "";
+    return apiFetch(`/persons${qs}`, { method: "GET", auth: false });
+  },
+  async getById(id) {
+    return apiFetch(`/persons/${id}`, { method: "GET", auth: false });
+  },
+  async listCategoriesAll() {
+    return apiFetch("/persons/categories/all", { method: "GET", auth: false });
+  },
+  async listFactionsAll() {
+    return apiFetch("/persons/factions/all", { method: "GET", auth: false });
+  },
+  async listDistrictsAll() {
+    return apiFetch("/persons/districts/all", { method: "GET", auth: false });
+  },
+  async listConvocationsAll() {
+    return apiFetch("/persons/convocations/all", {
+      method: "GET",
+      auth: false,
+    });
+  },
+  async getDeclarations(id) {
+    return apiFetch(`/persons/${id}/declarations`, {
+      method: "GET",
+      auth: false,
+    });
+  },
+
+  // Admin (requires auth)
+  async create(person) {
+    return apiFetch("/persons", { method: "POST", body: person, auth: true });
+  },
+  async patch(id, partial) {
+    return apiFetch(`/persons/${id}`, {
+      method: "PATCH",
+      body: partial,
+      auth: true,
+    });
+  },
+  async put(id, full) {
+    return apiFetch(`/persons/${id}`, {
+      method: "PUT",
+      body: full,
+      auth: true,
+    });
+  },
+  async remove(id) {
+    return apiFetch(`/persons/${id}`, { method: "DELETE", auth: true });
+  },
+  async uploadMedia(id, file) {
+    const fd = new FormData();
+    fd.append("file", file);
+    return apiFetchMultipart(`/persons/${id}/media`, {
+      method: "POST",
+      formData: fd,
+      auth: true,
+    });
+  },
+  async addDeclaration(id, file, extra = {}) {
+    const fd = new FormData();
+    if (file) fd.append("file", file);
+    Object.entries(extra || {}).forEach(([k, v]) => {
+      if (v !== undefined && v !== null) fd.append(k, String(v));
+    });
+    return apiFetchMultipart(`/persons/${id}/declarations`, {
+      method: "POST",
+      formData: fd,
+      auth: true,
+    });
+  },
+  async deleteDeclaration(id, declarationId) {
+    return apiFetch(`/persons/${id}/declarations/${declarationId}`, {
+      method: "DELETE",
+      auth: true,
+    });
+  },
+
+  // Categories
+  async createCategory(body) {
+    return apiFetch("/persons/categories", {
+      method: "POST",
+      body,
+      auth: true,
+    });
+  },
+
+  // Factions
+  async createFaction(body) {
+    return apiFetch("/persons/factions", { method: "POST", body, auth: true });
+  },
+  async updateFaction(id, body) {
+    return apiFetch(`/persons/factions/${id}`, {
+      method: "PUT",
+      body,
+      auth: true,
+    });
+  },
+  async deleteFaction(id) {
+    return apiFetch(`/persons/factions/${id}`, {
+      method: "DELETE",
+      auth: true,
+    });
+  },
+
+  // Districts
+  async createDistrict(body) {
+    return apiFetch("/persons/districts", { method: "POST", body, auth: true });
+  },
+  async updateDistrict(id, body) {
+    return apiFetch(`/persons/districts/${id}`, {
+      method: "PUT",
+      body,
+      auth: true,
+    });
+  },
+  async deleteDistrict(id) {
+    return apiFetch(`/persons/districts/${id}`, {
+      method: "DELETE",
+      auth: true,
+    });
+  },
+
+  // Convocations
+  async createConvocation(body) {
+    return apiFetch("/persons/convocations", {
+      method: "POST",
+      body,
+      auth: true,
+    });
+  },
+  async updateConvocation(id, body) {
+    return apiFetch(`/persons/convocations/${id}`, {
+      method: "PUT",
+      body,
+      auth: true,
+    });
+  },
+  async deleteConvocation(id) {
+    return apiFetch(`/persons/convocations/${id}`, {
+      method: "DELETE",
+      auth: true,
+    });
+  },
+};

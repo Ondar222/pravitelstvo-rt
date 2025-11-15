@@ -50,7 +50,7 @@ const dict = {
     achievementsMore: "Достокчерилер азыраак",
     region: "Кожуун дугайында",
     government: "Күрүне",
-    authorities: "Билеелел органдар",
+    authorities: "Билеелел органнар",
     docs: "Докуметилер",
     feedback: "Дилеглерни хүлээп алыры",
     press: "Парлалга албаны",

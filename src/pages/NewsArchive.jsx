@@ -2,6 +2,7 @@ import React from "react";
 import { useData } from "../context/DataContext.jsx";
 import { useI18n } from "../context/I18nContext.jsx";
 import { Select, Space } from "antd";
+import SideNav from "../components/SideNav.jsx";
 
 export default function NewsArchive() {
   const { news } = useData();
@@ -130,61 +131,79 @@ export default function NewsArchive() {
   return (
     <section className="section">
       <div className="container">
-        <h1>{t("news")}</h1>
-        <Space size="middle" style={{ margin: "12px 0 20px" }} wrap>
-          <Select
-            value={category}
-            onChange={setCategory}
-            options={categories.map((c) => ({ value: c, label: c }))}
-            style={{ minWidth: 200 }}
-          />
-          <Select
-            value={month}
-            onChange={setMonth}
-            options={months.map((m) => ({ value: m, label: m }))}
-            style={{ minWidth: 200 }}
-          />
-        </Space>
-        <div className="grid cols-3">
-          {filtered.map((n, i) => (
-            <a
-              key={n.id}
-              className="tile"
-              href={`#/news?id=${n.id}`}
-              style={{ overflow: "hidden", padding: 0 }}
-            >
-              <div style={{ height: 180, overflow: "hidden" }}>
-                <img
-                  src={getImage(i)}
-                  alt=""
-                  loading="lazy"
-                  decoding="async"
-                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                />
-              </div>
-              <div style={{ padding: 16 }}>
-                <div
-                  style={{
-                    display: "inline-block",
-                    background: "#eef2ff",
-                    color: "#3730a3",
-                    borderRadius: 8,
-                    padding: "4px 10px",
-                    fontSize: 12,
-                    fontWeight: 700,
-                  }}
+        <div className="page-grid">
+          <div>
+            <h1>{t("news")}</h1>
+            <Space size="middle" style={{ margin: "12px 0 20px" }} wrap>
+              <Select
+                value={category}
+                onChange={setCategory}
+                options={categories.map((c) => ({ value: c, label: c }))}
+                style={{ minWidth: 200 }}
+              />
+              <Select
+                value={month}
+                onChange={setMonth}
+                options={months.map((m) => ({ value: m, label: m }))}
+                style={{ minWidth: 200 }}
+              />
+            </Space>
+            <div className="grid cols-3">
+              {filtered.map((n, i) => (
+                <a
+                  key={n.id}
+                  className="tile"
+                  href={`#/news?id=${n.id}`}
+                  style={{ overflow: "hidden", padding: 0 }}
                 >
-                  {n.category}
-                </div>
-                <div style={{ marginTop: 10, fontSize: 18, fontWeight: 700 }}>
-                  {n.title}
-                </div>
-                <div style={{ color: "#6b7280", marginTop: 6 }}>
-                  {new Date(n.date).toLocaleDateString("ru-RU")}
-                </div>
-              </div>
-            </a>
-          ))}
+                  <div style={{ height: 180, overflow: "hidden" }}>
+                    <img
+                      src={getImage(i)}
+                      alt=""
+                      loading="lazy"
+                      decoding="async"
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
+                      }}
+                    />
+                  </div>
+                  <div style={{ padding: 16 }}>
+                    <div
+                      style={{
+                        display: "inline-block",
+                        background: "#eef2ff",
+                        color: "#3730a3",
+                        borderRadius: 8,
+                        padding: "4px 10px",
+                        fontSize: 12,
+                        fontWeight: 700,
+                      }}
+                    >
+                      {n.category}
+                    </div>
+                    <div
+                      style={{ marginTop: 10, fontSize: 18, fontWeight: 700 }}
+                    >
+                      {n.title}
+                    </div>
+                    <div style={{ color: "#6b7280", marginTop: 6 }}>
+                      {new Date(n.date).toLocaleDateString("ru-RU")}
+                    </div>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+          <SideNav
+            title="Новости"
+            links={[
+              { label: "Актуальные новости", href: "#/news" },
+              { label: "Все новости", href: "#/news" },
+              { label: "Медиа", href: "#/news" },
+            ]}
+          />
         </div>
       </div>
     </section>

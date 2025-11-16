@@ -1,5 +1,6 @@
 import React from "react";
 import { useData } from "../context/DataContext.jsx";
+import SideNav from "../components/SideNav.jsx";
 
 export default function Authorities() {
   const { authorities } = useData();
@@ -53,18 +54,35 @@ export default function Authorities() {
   return (
     <section className="section">
       <div className="container">
-        <h1>Органы власти</h1>
-        <div className="grid cols-3">
-          {authorities.map((a) => (
-            <a key={a.id} className="tile" href={`#/authorities?id=${a.id}`}>
-              <div style={{ color: "#6b7280", fontSize: 13 }}>{a.type}</div>
-              <div style={{ fontWeight: 800, marginTop: 6 }}>{a.title}</div>
-              <div style={{ marginTop: 8 }}>{a.desc}</div>
-              <div className="link" style={{ marginTop: 10 }}>
-                Подробнее →
-              </div>
-            </a>
-          ))}
+        <div className="page-grid">
+          <div>
+            <h1>Органы власти</h1>
+            <div className="grid cols-3">
+              {authorities.map((a) => (
+                <a
+                  key={a.id}
+                  className="tile"
+                  href={`#/authorities?id=${a.id}`}
+                >
+                  <div style={{ color: "#6b7280", fontSize: 13 }}>{a.type}</div>
+                  <div style={{ fontWeight: 800, marginTop: 6 }}>{a.title}</div>
+                  <div style={{ marginTop: 8 }}>{a.desc}</div>
+                  <div className="link" style={{ marginTop: 10 }}>
+                    Подробнее →
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+          <SideNav
+            title="Органы власти"
+            links={[
+              { label: "Местное самоуправление", href: "#/authorities" },
+              { label: "Законодательное Собрание", href: "#/authorities" },
+              { label: "Территориальные отделения", href: "#/authorities" },
+              { label: "Руководители органов", href: "#/authorities" },
+            ]}
+          />
         </div>
       </div>
     </section>

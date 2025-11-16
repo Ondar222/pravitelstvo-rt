@@ -1,5 +1,6 @@
 import React from "react";
 import PdfPreviewModal from "../../components/PdfPreviewModal.jsx";
+import SideNav from "../../components/SideNav.jsx";
 
 const CATEGORIES = [
   {
@@ -71,46 +72,72 @@ export default function DocsPage() {
   return (
     <section className="section">
       <div className="container">
-        <h1>{cat.title}</h1>
-        <div
-          style={{
-            display: "flex",
-            gap: 12,
-            flexWrap: "wrap",
-            margin: "12px 0 20px",
-          }}
-        >
-          <input
-            className="search-input"
-            placeholder="Поиск по названию, номеру или описанию"
-            value={q}
-            onChange={(e) => setQ(e.target.value)}
-            style={{ minWidth: 320, flex: "1 1 320px" }}
-          />
-        </div>
-        <div className="law-list">
-          {filtered.map((d) => (
-            <div key={d.id || d.url} className="law-item card">
-              <div className="law-left">
-                <div className="law-ico">📄</div>
-                <div>
-                  <div className="law-title">{d.title}</div>
-                  {d.desc && <div className="law-desc">{d.desc}</div>}
-                  {d.number && <div className="law-status">№ {d.number}</div>}
-                </div>
-              </div>
-              <a
-                className="btn btn--primary"
-                href="#"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setPreview({ url: d.url, title: d.title });
-                }}
-              >
-                Открыть
-              </a>
+        <div className="page-grid">
+          <div>
+            <h1>{cat.title}</h1>
+            <div
+              style={{
+                display: "flex",
+                gap: 12,
+                flexWrap: "wrap",
+                margin: "12px 0 20px",
+              }}
+            >
+              <input
+                className="search-input"
+                placeholder="Поиск по названию, номеру или описанию"
+                value={q}
+                onChange={(e) => setQ(e.target.value)}
+                style={{ minWidth: 320, flex: "1 1 320px" }}
+              />
             </div>
-          ))}
+            <div className="law-list">
+              {filtered.map((d) => (
+                <div key={d.id || d.url} className="law-item card">
+                  <div className="law-left">
+                    <div className="law-ico">📄</div>
+                    <div>
+                      <div className="law-title">{d.title}</div>
+                      {d.desc && <div className="law-desc">{d.desc}</div>}
+                      {d.number && (
+                        <div className="law-status">№ {d.number}</div>
+                      )}
+                    </div>
+                  </div>
+                  <a
+                    className="btn btn--primary"
+                    href="#"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setPreview({ url: d.url, title: d.title });
+                    }}
+                  >
+                    Открыть
+                  </a>
+                </div>
+              ))}
+            </div>
+          </div>
+          <SideNav
+            title="Документы"
+            links={[
+              { label: "Законы Республики Тыва", href: "#/docs/laws" },
+              { label: "Постановления ВХ РТ", href: "#/docs/resolutions" },
+              {
+                label: "Законодательные инициативы",
+                href: "#/docs/initiatives",
+              },
+              {
+                label: "Законодательная инициатива гражданами",
+                href: "#/docs/civic",
+              },
+              {
+                label: "Реализация поправок в Конституцию РФ",
+                href: "#/docs/constitution",
+              },
+              { label: "Законопроекты", href: "#/docs/bills" },
+            ]}
+          />
         </div>
       </div>
       <PdfPreviewModal

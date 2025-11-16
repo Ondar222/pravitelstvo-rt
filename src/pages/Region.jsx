@@ -1,4 +1,5 @@
 import React from "react";
+import SideNav from "../components/SideNav.jsx";
 
 function RegionModal({ open, onClose, item }) {
   if (!open || !item) return null;
@@ -49,23 +50,42 @@ export default function Region() {
   return (
     <section className="section">
       <div className="container">
-        <h1>О регионе</h1>
-        <p>Краткие сведения о Республике Тыва.</p>
-        <div className="grid cols-3">
-          {cards.map((c) => (
-            <button
-              key={c.id}
-              className="tile"
-              onClick={() => setOpen(c)}
-              style={{ textAlign: "left" }}
-            >
-              <h3>{c.title}</h3>
-              <p>{c.text}</p>
-              <span className="link">Подробнее →</span>
-            </button>
-          ))}
+        <div className="page-grid">
+          <div>
+            <h1>О регионе</h1>
+            <p>Краткие сведения о Республике Тыва.</p>
+            <div className="grid cols-3">
+              {cards.map((c) => (
+                <button
+                  key={c.id}
+                  className="tile"
+                  onClick={() => setOpen(c)}
+                  style={{ textAlign: "left" }}
+                >
+                  <h3>{c.title}</h3>
+                  <p>{c.text}</p>
+                  <span className="link">Подробнее →</span>
+                </button>
+              ))}
+            </div>
+            <RegionModal
+              open={!!open}
+              onClose={() => setOpen(null)}
+              item={open}
+            />
+          </div>
+          <SideNav
+            title="О регионе"
+            links={[
+              { label: "Республика Тыва", href: "#/region" },
+              { label: "Карта области", href: "#/region" },
+              { label: "Летопись", href: "#/region" },
+              { label: "Приоритеты", href: "#/priority/01" },
+              { label: "Достижения", href: "#/achievements" },
+              { label: "Официальные символы", href: "#/region" },
+            ]}
+          />
         </div>
-        <RegionModal open={!!open} onClose={() => setOpen(null)} item={open} />
       </div>
     </section>
   );

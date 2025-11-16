@@ -9,13 +9,8 @@ import Government from "./pages/Government.jsx";
 import Authorities from "./pages/Authorities.jsx";
 import Wifi from "./pages/Wifi.jsx";
 import Committee from "./pages/Committee.jsx";
-import {
-  Feedback,
-  Press,
-  Activity,
-  Docs,
-  Contacts,
-} from "./pages/TopbarStubs.jsx";
+import { Feedback, Press, Docs, Contacts } from "./pages/TopbarStubs.jsx";
+import ActivityPage from "./pages/Activity.jsx";
 import Priority01 from "./pages/priorities/Priority01.jsx";
 import Priority02 from "./pages/priorities/Priority02.jsx";
 import Priority03 from "./pages/priorities/Priority03.jsx";
@@ -38,6 +33,7 @@ import Apparatus from "./pages/Apparatus.jsx";
 import SectionPage from "./pages/Section.jsx";
 import Breadcrumbs from "./components/Breadcrumbs.jsx";
 import DocsPage from "./pages/docs/DocsPage.jsx";
+import ActivitySectionPage from "./pages/activity/ActivitySection.jsx";
 import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
 
@@ -79,6 +75,12 @@ export default function App() {
                       "/docs/civic": DocsPage,
                       "/docs/constitution": DocsPage,
                       "/docs/bills": DocsPage,
+                      "/activity/plan": ActivitySectionPage,
+                      "/activity/national-projects": ActivitySectionPage,
+                      "/activity/reports": ActivitySectionPage,
+                      "/activity/sessions": ActivitySectionPage,
+                      "/activity/statistics": ActivitySectionPage,
+                      "/activity/schet_palata": ActivitySectionPage,
                       "/committee": Committee,
                       "/apparatus": Apparatus,
                       "/section": SectionPage,
@@ -89,7 +91,7 @@ export default function App() {
                       "/wifi": Wifi,
                       "/feedback": Feedback,
                       "/press": Press,
-                      "/activity": Activity,
+                      "/activity": ActivityPage,
                       "/docs": Docs,
                       "/contacts": Contacts,
                       "/priority/01": Priority01,

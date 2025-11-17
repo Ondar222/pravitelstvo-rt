@@ -165,7 +165,11 @@ export default function Deputies() {
                 <div className="card-title">
                   <img
                     className="avatar"
-                    src={d.photo || (d.image && d.image.link) || "/img/max.png"}
+                    src={
+                      d.photo ||
+                      (d.image && d.image.link) ||
+                      "https://www.shutterstock.com/image-vector/default-avatar-profile-icon-vector-600nw-2027875490.jpg"
+                    }
                     alt=""
                     loading="lazy"
                   />

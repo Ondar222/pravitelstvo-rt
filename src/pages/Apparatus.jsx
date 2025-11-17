@@ -82,10 +82,13 @@ export default function Apparatus() {
           {/* Руководитель + заместитель */}
           <div className="orgv2__chain">
             <div className="orgv2__line" />
-            <div className="person-card">
+            <div className="person-card person-card--round-xl">
               <img
-                className="person-card__photo person-card__photo--xl"
-                src="https://khural.rtyva.ru/upload/iblock/c37/%D0%A3%D1%81%D0%BF%D1%83%D0%BD%20%D0%9C.%D0%98..jpg"
+                className="person-card__photo"
+                src={
+                  "https://khural.rtyva.ru/upload/iblock/c37/%D0%A3%D1%81%D0%BF%D1%83%D0%BD%20%D0%9C.%D0%98..jpg" ||
+                  "https://www.shutterstock.com/image-vector/default-avatar-profile-icon-vector-600nw-2027875490.jpg"
+                }
                 alt=""
                 loading="lazy"
               />
@@ -109,10 +112,13 @@ export default function Apparatus() {
                 </a>
               </div>
             </div>
-            <div className="person-card">
+            <div className="person-card person-card--round-xl">
               <img
                 className="person-card__photo"
-                src="https://khural.rtyva.ru/upload/iblock/2d3/IMG_1348.JPG"
+                src={
+                  "https://khural.rtyva.ru/upload/iblock/2d3/IMG_1348.JPG" ||
+                  "https://www.shutterstock.com/image-vector/default-avatar-profile-icon-vector-600nw-2027875490.jpg"
+                }
                 alt=""
                 loading="lazy"
               />

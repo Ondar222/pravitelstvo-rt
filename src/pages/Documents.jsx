@@ -7,21 +7,31 @@ export default function Documents() {
   const { documents } = useData();
   const [q, setQ] = React.useState("");
   const [cat, setCat] = React.useState("Все");
+  const [year, setYear] = React.useState("Все");
   const cats = React.useMemo(
     () => ["Все", ...Array.from(new Set(documents.map((d) => d.category)))],
     [documents]
   );
+  const years = React.useMemo(() => {
+    const ys = new Set();
+    for (const d of documents) {
+      const match = String(d.date || "").match(/(20\\d{2})/);
+      if (match) ys.add(match[1]);
+    }
+    return ["Все", ...Array.from(ys).sort((a, b) => Number(b) - Number(a))];
+  }, [documents]);
   const filtered = React.useMemo(
     () =>
       documents.filter(
         (d) =>
           (cat === "Все" || d.category === cat) &&
+          (year === "Все" || String(d.date).includes(year)) &&
           (q === "" ||
             (d.title + " " + d.number + " " + d.text)
               .toLowerCase()
               .includes(q.toLowerCase()))
       ),
-    [documents, cat, q]
+    [documents, cat, year, q]
   );
 
   return (
@@ -50,17 +60,38 @@ export default function Documents() {
                 options={cats.map((c) => ({ value: c, label: c }))}
                 style={{ minWidth: 200 }}
               />
+              <Select
+                value={year}
+                onChange={setYear}
+                options={years.map((y) => ({
+                  value: y,
+                  label: y === "Все" ? "Год: Все" : `Год: ${y}`,
+                }))}
+                style={{ minWidth: 140 }}
+              />
             </div>
             <div className="law-list">
               {filtered.map((d) => (
-                <div key={d.id} className="law-item card">
+                <a
+                  key={d.id}
+                  className="law-item card"
+                  href={d.url || "#"}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <div className="law-left">
                     <div className="law-ico">📄</div>
                     <div>
                       <div className="law-title">{d.title}</div>
+                      <div className="card-subtitle">
+                        {d.number ? `${d.number} • ` : ""}
+                        {d.date || ""}
+                        {d.category ? ` • ${d.category}` : ""}
+                      </div>
                     </div>
                   </div>
-                </div>
+                  <div style={{ marginLeft: "auto", color: "#0a1f44" }}>↗</div>
+                </a>
               ))}
             </div>
           </div>

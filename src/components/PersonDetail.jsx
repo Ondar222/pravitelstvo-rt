@@ -5,7 +5,12 @@ export default function PersonDetail({ item, type, backHref }) {
   const title = item.name || item.title;
   const phone = isDeputy ? item.contacts?.phone : item.phone;
   const email = isDeputy ? item.contacts?.email : item.email;
-  const avatarSrc = item.photo || "/img/max.png";
+  const avatarSrc =
+    (isDeputy &&
+      (item.photo ||
+        "https://www.shutterstock.com/image-vector/default-avatar-profile-icon-vector-600nw-2027875490.jpg")) ||
+    item.photo ||
+    "/img/ok.png";
   const address = item.address || "г. Кызыл, ул. Ленина, 40";
   const laws = Array.isArray(item.laws) && item.laws.length ? item.laws : null;
   const incomeDocs =

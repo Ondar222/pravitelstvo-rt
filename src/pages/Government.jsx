@@ -99,12 +99,14 @@ export default function Government() {
     const committee = (committees || []).find((c) => c.id === id) || null;
     const leader = committee?.members?.[0] || null;
     if (!leader) return null;
+    const PLACEHOLDER =
+      "https://www.shutterstock.com/image-vector/default-avatar-profile-icon-vector-600nw-2027875490.jpg";
     return (
       <div className="orgv2__committee">
         <div className="person-card person-card--committee">
           <img
             className="person-card__photo"
-            src={leader.photo || "/img/max.png"}
+            src={leader.photo || PLACEHOLDER}
             alt=""
             loading="lazy"
           />
@@ -290,12 +292,16 @@ export default function Government() {
                     {[government[0], government[1]]
                       .filter(Boolean)
                       .map((p, idx) => (
-                        <div key={p.id} className="person-card">
+                        <div
+                          key={p.id}
+                          className="person-card person-card--round-xl"
+                        >
                           <img
-                            className={`person-card__photo ${
-                              idx === 0 ? "person-card__photo--xl" : ""
-                            }`}
-                            src={p.photo || "/img/ok.png"}
+                            className="person-card__photo"
+                            src={
+                              p.photo ||
+                              "https://www.shutterstock.com/image-vector/default-avatar-profile-icon-vector-600nw-2027875490.jpg"
+                            }
                             alt=""
                             loading="lazy"
                           />
@@ -491,7 +497,10 @@ export default function Government() {
                       <div className="gov-card__top">
                         <img
                           className="gov-card__avatar"
-                          src={d.photo || "/img/max.png"}
+                          src={
+                            d.photo ||
+                            "https://www.shutterstock.com/image-vector/default-avatar-profile-icon-vector-600nw-2027875490.jpg"
+                          }
                           alt=""
                           loading="lazy"
                           decoding="async"

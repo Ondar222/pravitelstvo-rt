@@ -46,11 +46,13 @@ export default function Committee() {
         (x) => (x.name || "").trim().toLowerCase() === target
       );
     }
+    const PLACEHOLDER =
+      "https://www.shutterstock.com/image-vector/default-avatar-profile-icon-vector-600nw-2027875490.jpg";
     return {
       id: m.id || d?.id || m.name,
       name: d?.name || m.name,
       role: m.role,
-      photo: d?.photo || m.photo || "/img/max.png",
+      photo: d?.photo || m.photo || PLACEHOLDER,
       phone: d?.contacts?.phone || m.phone,
       email: d?.contacts?.email || m.email,
       address: d?.address || m.address,
@@ -71,9 +73,9 @@ export default function Committee() {
             <h2 style={{ marginTop: 12 }}>Председатель</h2>
             <div className="orgv2__chain" style={{ marginTop: 8 }}>
               <div className="orgv2__line" />
-              <div className="person-card">
+              <div className="person-card person-card--committee">
                 <img
-                  className="person-card__photo person-card__photo--xl"
+                  className="person-card__photo"
                   src={leader.photo}
                   alt=""
                   loading="lazy"
@@ -105,7 +107,10 @@ export default function Committee() {
             <div className="orgv2__chain" style={{ marginTop: 8 }}>
               <div className="orgv2__line" />
               {rest.map((p, idx) => (
-                <div key={p.id || idx} className="person-card">
+                <div
+                  key={p.id || idx}
+                  className="person-card person-card--committee"
+                >
                   <img
                     className="person-card__photo"
                     src={p.photo}

@@ -87,5 +87,149 @@
       { "day": "Четверг", "time": "10:00 - 17:00" }
     ],
     "reception": "Чт 10:00-12:00"
+  },
+  {
+    "id": "dep-kuular-aidys",
+    "name": "Куулар Айдыс Леонидович",
+    "photo": "https://khural.rtyva.ru/upload/iblock/c56/rnv9gbxxcbknntci6yqcjscfkw4pp0i6/photo_2025-06-05_17-12-16.jpg",
+    "position": "Депутат Верховного Хурала"
+  },
+  {
+    "id": "dep-irgit-uzhar-ool",
+    "name": "Иргит Ужар-оол Александрович",
+    "photo": "",
+    "position": "Депутат Верховного Хурала"
+  },
+  {
+    "id": "dep-listkov-andrei",
+    "name": "Листков Андрей Георгиевич",
+    "photo": "https://khural.rtyva.ru/upload/iblock/510/wsld4pljv8bhpyxmc3mc6oyk0a73dfk2/%D0%9B%D0%B8%D1%81%D1%82%D0%BA%D0%BE%D0%B2.jpg",
+    "position": "Депутат Верховного Хурала"
+  },
+  {
+    "id": "dep-mongush-baibek",
+    "name": "Монгуш Байбек Надажапович",
+    "photo": "",
+    "position": "Депутат Верховного Хурала"
+  },
+  {
+    "id": "dep-soruktug-amir",
+    "name": "Соруктуг Амир Эдуардович",
+    "photo": "https://khural.rtyva.ru/upload/iblock/750/3cw2bqwhoza2h0o8s0y69bw59tngzig5/%D0%A1%D0%BE%D1%80%D1%83%D0%BA%D1%82%D1%83%D0%B3%20%D0%90%D0%AD.jpg",
+    "position": "Депутат Верховного Хурала"
+  },
+  {
+    "id": "dep-khuurak-eres",
+    "name": "Хуурак Эрес Михайлович",
+    "photo": "",
+    "position": "Депутат Верховного Хурала"
+  },
+  {
+    "id": "dep-kuular-lodoi-damba",
+    "name": "Куулар Лодой-Дамба Эртинеевич",
+    "photo": "https://khural.rtyva.ru/upload/iblock/499/r0adau1skylfrdnka0drct707uq66tei/%D0%9A%D1%83%D1%83%D0%BB%D0%B0%D1%80.jpg",
+    "position": "Депутат Верховного Хурала"
+  },
+  {
+    "id": "dep-dongak-buyan",
+    "name": "Донгак Буян Алеексеевич",
+    "photo": "",
+    "position": "Депутат Верховного Хурала"
+  },
+  {
+    "id": "dep-uyusov-sergey",
+    "name": "Уюсов Сергей Васильевич",
+    "photo": "",
+    "position": "Депутат Верховного Хурала"
+  },
+  {
+    "id": "dep-chambaldoo-nachyn",
+    "name": "Чамбалдоо Начын Артурович",
+    "photo": "",
+    "position": "Депутат Верховного Хурала"
+  },
+  {
+    "id": "dep-dongak-ayas",
+    "name": "Донгак Аяс Дадар-оолович",
+    "photo": "",
+    "position": "Депутат Верховного Хурала"
+  },
+  {
+    "id": "dep-oorzhak-rolan",
+    "name": "Ооржак Ролан Чадамбаевич",
+    "photo": "",
+    "position": "Депутат Верховного Хурала"
+  },
+  {
+    "id": "dep-monge-ayas",
+    "name": "Монге Аяс Норжукаевич",
+    "photo": "",
+    "position": "Депутат Верховного Хурала"
+  },
+  {
+    "id": "dep-mongush-andrei",
+    "name": "Монгуш Андрей Тэмирович",
+    "photo": "",
+    "position": "Депутат Верховного Хурала"
+  },
+  {
+    "id": "dep-tamoev-roman",
+    "name": "Тамоев Роман Телманович",
+    "photo": "",
+    "position": "Депутат Верховного Хурала"
+  },
+  {
+    "id": "dep-sanchat-ayas",
+    "name": "Санчат Аяс Сергеевич",
+    "photo": "",
+    "position": "Депутат Верховного Хурала"
+  },
+  {
+    "id": "dep-kalbak-dolaan",
+    "name": "Калбак Долаан Давааевич",
+    "photo": "",
+    "position": "Депутат Верховного Хурала"
+  },
+  {
+    "id": "dep-munge-belekmaa",
+    "name": "Мунге Белекмаа Владимировна",
+    "photo": "",
+    "position": "Депутат Верховного Хурала"
+  },
+  {
+    "id": "dep-kanchyyr-ool-anzhela",
+    "name": "Канчыыр-оол Анджела Арзылановна",
+    "photo": "",
+    "position": "Депутат Верховного Хурала"
+  },
+  {
+    "id": "dep-osmolovskaya-lyudmila",
+    "name": "Осмоловская Людмила Леонидовна",
+    "photo": "",
+    "position": "Депутат Верховного Хурала"
+  },
+  {
+    "id": "dep-shirizhik-ayan",
+    "name": "Ширижик Аян Сергеевич",
+    "photo": "",
+    "position": "Депутат Верховного Хурала"
+  },
+  {
+    "id": "dep-dudko-anatoly",
+    "name": "Дудко Анатолий Олегович",
+    "photo": "https://khural.rtyva.ru/upload/iblock/868/z8rv1i48n8rovxhaxc955drfq8h7ylnt/%D0%94%D1%83%D0%B4%D0%BA%D0%BE.jpg",
+    "position": "Депутат Верховного Хурала"
+  },
+  {
+    "id": "dep-mongush-ayana",
+    "name": "Монгуш Аяна Кан-ооловна",
+    "photo": "",
+    "position": "Депутат Верховного Хурала"
+  },
+  {
+    "id": "dep-chuldum-ool-chalym",
+    "name": "Чулдум-оол Чалым Сюндюпович",
+    "photo": "https://khural.rtyva.ru/upload/iblock/f73/ttfqcszhg0m4zho97ffj0s65pea27rd1/%D0%A7%D1%83%D0%BB%D0%B4%D1%83%D0%BC-%D0%BE%D0%BE%D0%BB.jpg",
+    "position": "Депутат Верховного Хурала"
   }
 ]

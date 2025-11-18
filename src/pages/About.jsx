@@ -7,7 +7,7 @@ export default function About() {
       <div className="container">
         <div className="page-grid">
           <div>
-            <h1>О Верховном Хурале Республики Тыва</h1>
+            <h3>О Верховном Хурале Республики Тыва</h3>
 
             <div className="tabs" style={{ marginTop: 8 }}>
               <span className="pill pill--solid" aria-current="page">
@@ -18,7 +18,7 @@ export default function About() {
               </a>
             </div>
 
-            <h2>Общие сведения</h2>
+            <h3>Общие сведения</h3>
             <p>
               8 сентября 2019 года состоялись очередные выборы в высший
               законодательный (представительный) орган государственной власти

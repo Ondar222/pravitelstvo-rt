@@ -177,7 +177,7 @@ export default function Government() {
 
             {section === "Структура" ? (
               <>
-                <h1>О Верховном Хурале Республики Тыва</h1>
+                <h3>О Верховном Хурале Республики Тыва</h3>
                 <div className="tabs" style={{ marginBottom: 10 }}>
                   <a className="pill" href="#/about">
                     Общие сведения

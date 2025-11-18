@@ -27,6 +27,7 @@ import Documents from "./pages/Documents.jsx";
 import Deputies from "./pages/Deputies.jsx";
 import Appeals from "./pages/Appeals.jsx";
 import AchievementsPage from "./pages/Achievements.jsx";
+import MapPage from "./pages/Map.jsx";
 import { ConfigProvider, theme } from "antd";
 import CookieBanner from "./components/CookieBanner.jsx";
 import Apparatus from "./pages/Apparatus.jsx";
@@ -89,6 +90,7 @@ export default function App() {
                       "/government": Government,
                       "/authorities": Authorities,
                       "/wifi": Wifi,
+                      "/map": MapPage,
                       "/feedback": Feedback,
                       "/press": Press,
                       "/activity": ActivityPage,

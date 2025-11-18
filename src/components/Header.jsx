@@ -125,7 +125,7 @@ export default function Header() {
                 onMouseEnter={() => setOpenMenu("region")}
               >
                 <a href="#/region">Республика Тыва</a>
-                <a href="#/region">Карта области</a>
+                <a href="#/map">Карта</a>
                 <a href="#/region">Летопись</a>
                 <a href="#/priority/01">Приоритеты</a>
                 <a href="#/achievements">Достопримечательности</a>
@@ -185,6 +185,9 @@ export default function Header() {
                 <a href="#/authorities">Законодательное Собрание</a>
                 <a href="#/authorities">Территориальные отделения</a>
               </div>
+            </div>
+            <div>
+              <Link to="/map">Карта</Link>
             </div>
             <div
               className={`dropdown ${openMenu === "docs" ? "open" : ""}`}
@@ -426,6 +429,7 @@ export default function Header() {
             <h3>Обратная связь</h3>
             <a href="#/feedback">Приём обращений</a>
             <a href="#/wifi">Карта WiFi</a>
+            <a href="#/map">Карта</a>
           </div>
         </div>
       </div>
@@ -562,6 +566,13 @@ export default function Header() {
             >
               {t("government")} →
             </button>
+            <Link
+              to="/map"
+              onClick={() => setMobileOpen(false)}
+              className="tile link"
+            >
+              Карта
+            </Link>
             <Link
               to="/documents"
               onClick={() => setMobileOpen(false)}

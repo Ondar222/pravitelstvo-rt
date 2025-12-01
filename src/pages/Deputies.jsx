@@ -102,6 +102,7 @@ export default function Deputies() {
         <h1>{t("deputies")}</h1>
         {/* Single-row filters from Structure */}
         <div
+          className="filters"
           style={{
             display: "flex",
             gap: 12,
@@ -123,6 +124,7 @@ export default function Deputies() {
           <Select
             value={committeeId}
             onChange={setCommitteeId}
+            dropdownMatchSelectWidth={false}
             options={committeeOptions.map((id) =>
               id === "Все"
                 ? { value: "Все", label: "По комитетам: Все" }
@@ -139,6 +141,7 @@ export default function Deputies() {
           <Select
             value={faction}
             onChange={setFaction}
+            dropdownMatchSelectWidth={false}
             options={factions.map((x) => ({
               value: x,
               label: x === "Все" ? "По фракциям: Все" : `По фракциям: ${x}`,
@@ -149,6 +152,7 @@ export default function Deputies() {
           <Select
             value={district}
             onChange={setDistrict}
+            dropdownMatchSelectWidth={false}
             options={districts.map((x) => ({
               value: x,
               label: x === "Все" ? "По округам: Все" : `По округам: ${x}`,

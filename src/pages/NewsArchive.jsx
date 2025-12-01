@@ -134,20 +134,24 @@ export default function NewsArchive() {
         <div className="page-grid">
           <div>
             <h1>{t("news")}</h1>
-            <Space size="middle" style={{ margin: "12px 0 20px" }} wrap>
-              <Select
-                value={category}
-                onChange={setCategory}
-                options={categories.map((c) => ({ value: c, label: c }))}
-                style={{ minWidth: 200 }}
-              />
-              <Select
-                value={month}
-                onChange={setMonth}
-                options={months.map((m) => ({ value: m, label: m }))}
-                style={{ minWidth: 200 }}
-              />
-            </Space>
+            <div className="filters">
+              <Space size="middle" style={{ margin: "12px 0 20px" }} wrap>
+                <Select
+                  value={category}
+                  onChange={setCategory}
+                  dropdownMatchSelectWidth={false}
+                  options={categories.map((c) => ({ value: c, label: c }))}
+                  style={{ minWidth: 200 }}
+                />
+                <Select
+                  value={month}
+                  onChange={setMonth}
+                  dropdownMatchSelectWidth={false}
+                  options={months.map((m) => ({ value: m, label: m }))}
+                  style={{ minWidth: 200 }}
+                />
+              </Space>
+            </div>
             <div className="grid cols-3">
               {filtered.map((n, i) => (
                 <a

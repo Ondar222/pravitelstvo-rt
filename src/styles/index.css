@@ -683,6 +683,17 @@ a {
     width: 100% !important;
   }
 }
+/* Show full text inside filter selects (wrap instead of truncate) */
+.filters .ant-select-selector {
+  white-space: normal !important;
+  height: auto !important;
+  min-height: 40px;
+  align-items: flex-start;
+}
+.filters .ant-select-selection-item {
+  white-space: normal !important;
+  line-height: 1.3;
+}
 .tile {
   background: #fff;
   border-radius: 16px;
@@ -1175,6 +1186,10 @@ a {
     align-items: center;
     gap: 10px;
   }
+}
+/* Ensure visible spacing between card title and extra tag (convocation) */
+.ant-card-head-wrapper {
+  gap: 8px;
 }
 
 /* Documents table responsive: keep desktop layout with horizontal scroll on mobile */

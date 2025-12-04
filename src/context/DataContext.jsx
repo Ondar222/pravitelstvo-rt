@@ -16,6 +16,19 @@ const DataContext = React.createContext({
   documents: [],
   achievements: [],
   committees: [],
+  // Setters for Admin (optional to use)
+  setSlides: () => {},
+  setNews: () => {},
+  setEvents: () => {},
+  setDeputies: () => {},
+  setFactions: () => {},
+  setDistricts: () => {},
+  setConvocations: () => {},
+  setGovernment: () => {},
+  setAuthorities: () => {},
+  setDocuments: () => {},
+  setAchievements: () => {},
+  setCommittees: () => {},
 });
 export function useData() {
   return React.useContext(DataContext);
@@ -159,6 +172,19 @@ export default function DataProvider({ children }) {
       documents,
       achievements,
       committees,
+      // Setters (for Admin)
+      setSlides,
+      setNews,
+      setEvents,
+      setDeputies,
+      setFactions,
+      setDistricts,
+      setConvocations,
+      setGovernment,
+      setAuthorities,
+      setDocuments,
+      setAchievements,
+      setCommittees,
     }),
     [
       slides,
@@ -173,6 +199,18 @@ export default function DataProvider({ children }) {
       documents,
       achievements,
       committees,
+      setSlides,
+      setNews,
+      setEvents,
+      setDeputies,
+      setFactions,
+      setDistricts,
+      setConvocations,
+      setGovernment,
+      setAuthorities,
+      setDocuments,
+      setAchievements,
+      setCommittees,
     ]
   );
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;

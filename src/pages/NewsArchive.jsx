@@ -162,7 +162,7 @@ export default function NewsArchive() {
                 >
                   <div style={{ height: 180, overflow: "hidden" }}>
                     <img
-                      src={getImage(i)}
+                      src={n.image || getImage(i)}
                       alt=""
                       loading="lazy"
                       decoding="async"

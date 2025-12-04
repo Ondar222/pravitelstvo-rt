@@ -34,9 +34,46 @@ export default function AuthProvider({ children }) {
 
   const login = React.useCallback(
     async ({ email, password }) => {
-      const res = await AuthApi.loginWithPassword({ email, password });
-      saveAuth(res || {});
-      return res;
+      // Try API first (if configured)
+      try {
+        const res = await AuthApi.loginWithPassword({ email, password });
+        // If API вернул ответ, но без токена — попробуем локальный доступ
+        const apiToken =
+          res?.token || res?.accessToken || res?.access_token || "";
+        const isLocalMatch =
+          String(email).toLowerCase() ===
+            "arslanondar2003@gmail.com".toLowerCase() &&
+          String(password) === "Tc7yf6rt!.";
+        if (!apiToken && isLocalMatch) {
+          const localUser = {
+            id: "local-admin",
+            email: "arslanondar2003@gmail.com",
+            name: "Administrator",
+            role: "admin",
+          };
+          saveAuth({ token: "local-admin-token", user: localUser });
+          return { user: localUser, token: "local-admin-token" };
+        }
+        saveAuth(res || {});
+        return res;
+      } catch (e) {
+        // Fallback: local single admin access (no backend)
+        const isLocalMatch =
+          String(email).toLowerCase() ===
+            "arslanondar2003@gmail.com".toLowerCase() &&
+          String(password) === "Tc7yf6rt!.";
+        if (isLocalMatch) {
+          const localUser = {
+            id: "local-admin",
+            email: "arslanondar2003@gmail.com",
+            name: "Administrator",
+            role: "admin",
+          };
+          saveAuth({ token: "local-admin-token", user: localUser });
+          return { user: localUser, token: "local-admin-token" };
+        }
+        throw e;
+      }
     },
     [saveAuth]
   );

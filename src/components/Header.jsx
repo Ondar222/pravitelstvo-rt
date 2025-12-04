@@ -434,6 +434,7 @@ export default function Header() {
       ></div>
       <nav className={`mobile-drawer ${mobileOpen ? "open" : ""}`}>
         <div
+          className="mobile-toolbar"
           style={{
             display: "flex",
             alignItems: "center",

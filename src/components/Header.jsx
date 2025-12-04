@@ -99,14 +99,14 @@ export default function Header() {
               <div className="brand-text">
                 <a href="/" style={{ textDecoration: "none" }}>
                   <div
-                    style={{ fontSize: 18, lineHeight: 1, color: "#6b7280" }}
+                    style={{ fontSize: 16, lineHeight: 1, color: "#6b7280" }}
                   >
-                    ВЕРХОВНЫЙ ХУРАЛ <br /> (парламент)
+                    {t("brandTop")} <br /> {t("brandParliament")}
                   </div>
                   <div
-                    style={{ fontSize: 18, lineHeight: 1.1, fontWeight: 800 }}
+                    style={{ fontSize: 16, lineHeight: 1.1, fontWeight: 800 }}
                   >
-                    РЕСПУБЛИКИ ТЫВА
+                    {t("brandBottom")}
                   </div>
                 </a>
               </div>
@@ -115,23 +115,23 @@ export default function Header() {
 
           <nav className="main-nav">
             <div>
-              <Link to="/">Главная</Link>
+              <Link to="/">{t("home")}</Link>
             </div>
             <div
               className={`dropdown ${openMenu === "vh" ? "open" : ""}`}
               onMouseEnter={() => setOpenMenu("vh")}
               onMouseLeave={() => setOpenMenu(null)}
             >
-              <Link to="/about">О Верховном Хурале ▾</Link>
+              <Link to="/about">{t("aboutVH")} ▾</Link>
               <div
                 className="dropdown__menu"
                 onMouseEnter={() => setOpenMenu("vh")}
               >
-                <a href="#/about">О Верховном Хурале</a>
-                <a href="#/section">Структура</a>
-                <a href="#/committee">Комитеты</a>
+                <a href="#/about">{t("aboutVH")}</a>
+                <a href="#/section">{t("structure")}</a>
+                <a href="#/committee">{t("committees")}</a>
                 <a href={"#/section?title=" + encodeURIComponent("Комиссии")}>
-                  Комиссии
+                  {t("commissions")}
                 </a>
                 <a
                   href={
@@ -139,7 +139,7 @@ export default function Header() {
                     encodeURIComponent("Депутатские фракции")
                   }
                 >
-                  Депутатские фракции
+                  {t("factions")}
                 </a>
                 <a
                   href={
@@ -147,31 +147,33 @@ export default function Header() {
                     encodeURIComponent("Представительство в Совете Федерации")
                   }
                 >
-                  Представительство в Совете Федерации
+                  {t("senateRep")}
                 </a>
-                <a href="#/apparatus">Аппарат</a>
-                <a href="#/contacts">Контакты</a>
+                <a href="#/apparatus">{t("apparatus")}</a>
+                <a href="#/contacts">{t("contacts")}</a>
               </div>
             </div>
             <div>
-              <Link to="/deputies">Депутаты</Link>
+              <Link to="/deputies">{t("deputies")}</Link>
             </div>
             <div
               className={`dropdown ${openMenu === "docs" ? "open" : ""}`}
               onMouseEnter={() => setOpenMenu("docs")}
               onMouseLeave={() => setOpenMenu(null)}
             >
-              <Link to="/docs/laws">Документы ▾</Link>
+              <Link to="/docs/laws">{t("documents")} ▾</Link>
               <div
                 className="dropdown__menu"
                 onMouseEnter={() => setOpenMenu("docs")}
               >
-                <a href="#/docs/laws">Законы Республики Тыва</a>
+                <a href="#/docs/laws">
+                  {t("docs")}: {t("legislation")}
+                </a>
                 <a href="#/docs/resolutions">Постановления ВХ РТ</a>
                 <a href="#/docs/initiatives">Законодательные инициативы</a>
                 <a href="#/docs/civic">Законодательная инициатива гражданами</a>
                 <a href="#/docs/constitution">
-                  Реализация принятых поправок в Конституцию РФ
+                  Реализация поправок в Конституцию РФ
                 </a>
                 <a href="#/docs/bills">Законопроекты</a>
               </div>
@@ -181,7 +183,7 @@ export default function Header() {
               onMouseEnter={() => setOpenMenu("news")}
               onMouseLeave={() => setOpenMenu(null)}
             >
-              <Link to="/news">Новости ▾</Link>
+              <Link to="/news">{t("news")} ▾</Link>
               <div
                 className="dropdown__menu"
                 onMouseEnter={() => setOpenMenu("news")}
@@ -191,14 +193,25 @@ export default function Header() {
                     <hr key={`hr-${i}`} />
                   ) : (
                     <a key={c} href="#/news">
-                      {c}
+                      {lang === "ty"
+                        ? {
+                            "Актуальные новости": t("hotNews"),
+                            "Все новости": t("allNews"),
+                            Медиа: t("media"),
+                            Сессии: t("sessions"),
+                            Законодательство: t("legislation"),
+                            "Общественные мероприятия": t("publicEvents"),
+                            Комитеты: t("committees"),
+                            "Работа с гражданами": t("workWithCitizens"),
+                          }[c] || c
+                        : c}
                     </a>
                   )
                 )}
               </div>
             </div>
             <div>
-              <Link to="/appeals">Обращения граждан</Link>
+              <Link to="/appeals">{t("appeals")}</Link>
             </div>
           </nav>
 
@@ -374,19 +387,19 @@ export default function Header() {
             </div>
           </div>
           <div className="sheet-col">
-            <h3>О Верховном Хурале</h3>
-            <a href="#/about">О Верховном Хурале</a>
-            <a href="#/section">Структура</a>
-            <a href="#/committee">Комитеты</a>
+            <h3>{t("aboutVH")}</h3>
+            <a href="#/about">{t("aboutVH")}</a>
+            <a href="#/section">{t("structure")}</a>
+            <a href="#/committee">{t("committees")}</a>
             <a href={"#/section?title=" + encodeURIComponent("Комиссии")}>
-              Комиссии
+              {t("commissions")}
             </a>
             <a
               href={
                 "#/section?title=" + encodeURIComponent("Депутатские фракции")
               }
             >
-              Депутатские фракции
+              {t("factions")}
             </a>
             <a
               href={
@@ -394,37 +407,37 @@ export default function Header() {
                 encodeURIComponent("Представительство в Совете Федерации")
               }
             >
-              Представительство в Совете Федерации
+              {t("senateRep")}
             </a>
-            <a href="#/apparatus">Аппарат</a>
-            <a href="#/contacts">Контакты</a>
+            <a href="#/apparatus">{t("apparatus")}</a>
+            <a href="#/contacts">{t("contacts")}</a>
           </div>
           <div className="sheet-col">
-            <h3>Депутаты</h3>
-            <a href="#/deputies">Депутаты</a>
-            <a href="#/deputies">Депутаты всех созывов</a>
+            <h3>{t("deputies")}</h3>
+            <a href="#/deputies">{t("deputies")}</a>
+            <a href="#/deputies">{t("deputiesAll")}</a>
           </div>
           <div className="sheet-col">
-            <h3>Новости</h3>
-            <a href="#/news">Актуальные новости</a>
-            <a href="#/news">Все новости</a>
-            <a href="#/news">Медиа</a>
+            <h3>{t("news")}</h3>
+            <a href="#/news">{t("hotNews")}</a>
+            <a href="#/news">{t("allNews")}</a>
+            <a href="#/news">{t("media")}</a>
           </div>
           <div className="sheet-col">
-            <h3>Документы</h3>
-            <a href="#/docs/laws">Законы Республики Тыва</a>
-            <a href="#/docs/resolutions">Постановления ВХ РТ</a>
-            <a href="#/docs/initiatives">Законодательные инициативы</a>
-            <a href="#/docs/civic">Инициатива гражданами</a>
-            <a href="#/docs/constitution">Поправки в Конституцию РФ</a>
-            <a href="#/docs/bills">Законопроекты</a>
+            <h3>{t("documents")}</h3>
+            <a href="#/docs/laws">{t("docsLaws")}</a>
+            <a href="#/docs/resolutions">{t("docsResolutions")}</a>
+            <a href="#/docs/initiatives">{t("docsInitiatives")}</a>
+            <a href="#/docs/civic">{t("docsCivic")}</a>
+            <a href="#/docs/constitution">{t("docsConstitution")}</a>
+            <a href="#/docs/bills">{t("docsBills")}</a>
           </div>
           <div className="sheet-col">
-            <h3>Обращения граждан</h3>
-            <a href="#/appeals">Приём обращений</a>
-            <a href="#/contacts">Контакты</a>
-            <a href="#/wifi">Карта WiFi</a>
-            <a href="#/map">Карта</a>
+            <h3>{t("appeals")}</h3>
+            <a href="#/appeals">{t("feedback")}</a>
+            <a href="#/contacts">{t("contacts")}</a>
+            <a href="#/wifi">{t("wifiMap")}</a>
+            <a href="#/map">{t("map")}</a>
           </div>
         </div>
       </div>
@@ -547,27 +560,27 @@ export default function Header() {
               onClick={() => setMobileOpen(false)}
               className="tile link"
             >
-              Главная
+              {t("home")}
             </Link>
             <button
               className="tile link"
               onClick={() => setMobileSection("vh")}
             >
-              О Верховном Хурале →
+              {t("aboutVH")} →
             </button>
             <Link
               to="/deputies"
               onClick={() => setMobileOpen(false)}
               className="tile link"
             >
-              Депутаты
+              {t("deputies")}
             </Link>
             <Link
               to="/appeals"
               onClick={() => setMobileOpen(false)}
               className="tile link"
             >
-              Обращения граждан
+              {t("appeals")}
             </Link>
             <button
               className="tile link"
@@ -657,38 +670,38 @@ export default function Header() {
         {mobileSection === "vh" && (
           <>
             <button className="btn" onClick={() => setMobileSection(null)}>
-              ← Назад
+              {t("back")}
             </button>
             <div style={{ color: "#6b7280", margin: "8px 0" }}>
-              О Верховном Хурале
+              {t("aboutVH")}
             </div>
             <a
               className="tile link"
               href="#/about"
               onClick={() => setMobileOpen(false)}
             >
-              О Верховном Хурале
+              {t("aboutVH")}
             </a>
             <a
               className="tile link"
               href="#/section"
               onClick={() => setMobileOpen(false)}
             >
-              Структура
+              {t("structure")}
             </a>
             <a
               className="tile link"
               href="#/committee"
               onClick={() => setMobileOpen(false)}
             >
-              Комитеты
+              {t("committees")}
             </a>
             <a
               className="tile link"
               href={"#/section?title=" + encodeURIComponent("Комиссии")}
               onClick={() => setMobileOpen(false)}
             >
-              Комиссии
+              {t("commissions")}
             </a>
             <a
               className="tile link"
@@ -697,7 +710,7 @@ export default function Header() {
               }
               onClick={() => setMobileOpen(false)}
             >
-              Депутатские фракции
+              {t("factions")}
             </a>
             <a
               className="tile link"
@@ -707,31 +720,31 @@ export default function Header() {
               }
               onClick={() => setMobileOpen(false)}
             >
-              Представительство в Совете Федерации
+              {t("senateRep")}
             </a>
             <a
               className="tile link"
               href="#/apparatus"
               onClick={() => setMobileOpen(false)}
             >
-              Аппарат
+              {t("apparatus")}
             </a>
             <a
               className="tile link"
               href="#/contacts"
               onClick={() => setMobileOpen(false)}
             >
-              Контакты
+              {t("contacts")}
             </a>
           </>
         )}
         {mobileSection === "auth" && (
           <>
             <button className="btn" onClick={() => setMobileSection(null)}>
-              ← Назад
+              {t("back")}
             </button>
             <div style={{ color: "#6b7280", margin: "8px 0" }}>
-              Органы власти
+              {t("authorities")}
             </div>
             <a
               className="tile link"
@@ -766,10 +779,10 @@ export default function Header() {
         {mobileSection === "activity" && (
           <>
             <button className="btn" onClick={() => setMobileSection(null)}>
-              ← Назад
+              {t("back")}
             </button>
             <div style={{ color: "#6b7280", margin: "8px 0" }}>
-              Деятельность
+              {t("activity")}
             </div>
             <a
               className="tile link"
@@ -804,53 +817,53 @@ export default function Header() {
         {mobileSection === "news" && (
           <>
             <button className="btn" onClick={() => setMobileSection(null)}>
-              ← Назад
+              {t("back")}
             </button>
-            <div style={{ color: "#6b7280", margin: "8px 0" }}>Новости</div>
+            <div style={{ color: "#6b7280", margin: "8px 0" }}>{t("news")}</div>
             <a
               className="tile link"
               href="#/news"
               onClick={() => setMobileOpen(false)}
             >
-              Актуальные новости
+              {t("hotNews")}
             </a>
             <a
               className="tile link"
               href="#/news"
               onClick={() => setMobileOpen(false)}
             >
-              Все новости
+              {t("allNews")}
             </a>
             <a
               className="tile link"
               href="#/news"
               onClick={() => setMobileOpen(false)}
             >
-              Медиа
+              {t("media")}
             </a>
           </>
         )}
         {mobileSection === "gov" && (
           <>
             <button className="btn" onClick={() => setMobileSection(null)}>
-              ← Назад
+              {t("back")}
             </button>
             <div style={{ color: "#6b7280", margin: "8px 0" }}>
-              Правительство
+              {t("government")}
             </div>
             <a
               className="tile link"
               href="#/government"
               onClick={() => setMobileOpen(false)}
             >
-              Глава
+              {t("head") || "Глава"}
             </a>
             <a
               className="tile link"
               href="#/deputies"
               onClick={() => setMobileOpen(false)}
             >
-              Депутаты
+              {t("deputies")}
             </a>
             <a
               className="tile link"
@@ -871,23 +884,25 @@ export default function Header() {
               href="#/government?type=org"
               onClick={() => setMobileOpen(false)}
             >
-              Структура
+              {t("structure")}
             </a>
             <a
               className="tile link"
               href="#/government"
               onClick={() => setMobileOpen(false)}
             >
-              Пресс‑служба
+              {t("press")}
             </a>
           </>
         )}
         {mobileSection === "docs" && (
           <>
             <button className="btn" onClick={() => setMobileSection(null)}>
-              ← Назад
+              {t("back")}
             </button>
-            <div style={{ color: "#6b7280", margin: "8px 0" }}>Документы</div>
+            <div style={{ color: "#6b7280", margin: "8px 0" }}>
+              {t("documents")}
+            </div>
             <a
               className="tile link"
               href="#/docs/laws"

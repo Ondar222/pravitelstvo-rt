@@ -148,6 +148,7 @@ a {
   display: none;
   gap: 14px;
   font-weight: 600;
+  font-size: 14px; /* slightly smaller for long TU labels */
 }
 .main-nav a,
 .main-nav a:visited {
@@ -1705,8 +1706,11 @@ h3::after {
   color: #111827;
 }
 /* Clean headings in mega menu: remove gold underline */
-.mega-sheet .sheet-col h3::after {
-  display: none;
+/* Keep yellow underline on desktop; hide only on mobile */
+@media (max-width: 959px) {
+  .mega-sheet .sheet-col h3::after {
+    display: none;
+  }
 }
 .sheet-col a {
   display: block;

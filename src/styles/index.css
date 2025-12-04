@@ -309,6 +309,11 @@ a {
     height: 44px;
     border-radius: 12px;
   }
+
+  .container_submit {
+    display: flex !important;
+    flex-direction: row !important;
+  }
 }
 .burger {
   display: grid;

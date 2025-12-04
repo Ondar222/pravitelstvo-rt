@@ -469,7 +469,7 @@ export default function Header() {
           >
             🔍
           </button>
-          <button
+          {/* <button
             className="icon-btn"
             aria-label={t("login")}
             onClick={() => {
@@ -478,8 +478,8 @@ export default function Header() {
             }}
           >
             🔐
-          </button>
-          <button
+          </button> */}
+          {/* <button
             className="icon-btn"
             aria-label={t("register")}
             onClick={() => {
@@ -488,7 +488,7 @@ export default function Header() {
             }}
           >
             ➕
-          </button>
+          </button> */}
           <button
             className="icon-btn"
             aria-label="Сменить язык"
@@ -514,10 +514,11 @@ export default function Header() {
                 style={{
                   flex: 1,
                   textAlign: "center",
-                  background: "#ffffff",
-                  border: "1px solid #003366",
-                  color: "#003366",
+                  background: "#003366",
+                  color: "#ffffff",
+
                   fontWeight: 700,
+                  padding: "20px 20px",
                 }}
               >
                 {t("login")}
@@ -529,9 +530,12 @@ export default function Header() {
                 style={{
                   flex: 1,
                   textAlign: "center",
-                  background: "#003366",
-                  color: "#ffffff",
+                  background: "#ffffff",
+                  border: "1px solid #003366",
+
+                  color: "#003366",
                   fontWeight: 700,
+                  padding: "20px 20px",
                 }}
               >
                 {t("register")}

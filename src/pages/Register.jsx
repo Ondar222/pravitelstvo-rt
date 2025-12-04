@@ -80,15 +80,17 @@ export default function Register() {
             />
           </Form.Item>
           <Form.Item>
-            <Button type="primary" htmlType="submit" loading={loading}>
-              Создать аккаунт
-            </Button>
-            <Button
-              style={{ marginLeft: 12 }}
-              onClick={() => navigate("/login")}
-            >
-              Уже есть аккаунт
-            </Button>
+            <div className="container_submit">
+              <Button type="primary" htmlType="submit" loading={loading}>
+                Создать аккаунт
+              </Button>
+              <Button
+                style={{ marginLeft: 12 }}
+                onClick={() => navigate("/login")}
+              >
+                Уже есть аккаунт
+              </Button>
+            </div>
           </Form.Item>
         </Form>
       </div>

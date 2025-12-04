@@ -58,6 +58,13 @@ const dict = {
     docsBills: "Законопроекты",
     wifiMap: "Карта WiFi",
     map: "Карта",
+    sitemap: "Карта сайта",
+    pdPolicy: "Политика обработки ПДн",
+    license: "Лицензия",
+    socials: "Соцсети",
+    vk: "ВКонтакте",
+    ok: "Одноклассники",
+    rutube: "RuTube",
   },
   ty: {
     home: "Башкы",
@@ -116,6 +123,13 @@ const dict = {
     docsBills: "Законопроекттер",
     wifiMap: "Wi‑Fi карта",
     map: "Карта",
+    sitemap: "Сайтнын картазы",
+    pdPolicy: "ЖСӨ (ПДн) политикчазы",
+    license: "Лицензия",
+    socials: "Соцсетьтер",
+    vk: "ВКонтакте",
+    ok: "Одноклассники",
+    rutube: "RuTube",
   },
 };
 

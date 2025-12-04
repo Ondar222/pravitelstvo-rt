@@ -22,10 +22,10 @@ export default function Footer() {
               </div>
               <div>
                 <div style={{ fontSize: 14, lineHeight: 1, opacity: 0.8 }}>
-                  ВЕРХОВНЫЙ ХУРАЛ <br /> (парламент)
+                  {t("brandTop")} <br /> {t("brandParliament")}
                 </div>
                 <div style={{ fontSize: 16, lineHeight: 1.1, fontWeight: 800 }}>
-                  РЕСПУБЛИКИ ТЫВА
+                  {t("brandBottom")}
                 </div>
               </div>
             </div>
@@ -38,23 +38,23 @@ export default function Footer() {
             <strong>{t("region")}</strong>
             <a href="#/government">{t("government")}</a>
             <a href="#/feedback">{t("feedback")}</a>
-            <a href="#">Sitemap</a>
+            <a href="#">{t("sitemap")}</a>
           </div>
           <div>
             <strong>{t("news")}</strong>
-            <a href="#/news">{t("news")}</a>
-            <a href="#/news">{t("news")}</a>
+            <a href="#/news">{t("hotNews")}</a>
+            <a href="#/news">{t("allNews")}</a>
           </div>
           <div>
             <strong>{t("docs")}</strong>
-            <a href="#">Политика обработки ПДн</a>
-            <a href="#">Лицензия</a>
+            <a href="#">{t("pdPolicy")}</a>
+            <a href="#">{t("license")}</a>
           </div>
           <div>
-            <strong>Соцсети</strong>
-            <a href="#">ВКонтакте</a>
-            <a href="#">Одноклассники</a>
-            <a href="#">RuTube</a>
+            <strong>{t("socials")}</strong>
+            <a href="#">{t("vk")}</a>
+            <a href="#">{t("ok")}</a>
+            <a href="#">{t("rutube")}</a>
           </div>
         </div>
       </div>

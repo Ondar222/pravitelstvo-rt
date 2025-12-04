@@ -1567,17 +1567,22 @@ h3::after {
 .social-card {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  background: #eef2f7;
+  gap: 10px;
+  background: #0d4b8f;
+  color: #ffd700;
+  align-items: center;
+  text-align: center;
 }
 .social-card__header {
   display: flex;
   align-items: center;
-  gap: 12px;
+  flex-direction: column;
+  gap: 10px;
+  text-align: center;
 }
 .social-avatar {
-  width: 70px;
-  height: 52px;
+  width: 88px;
+  height: 88px;
   border-radius: 50%;
   object-fit: cover;
 }
@@ -1585,8 +1590,14 @@ h3::after {
   font-weight: 800;
 }
 .social-card__subtitle {
-  color: #6b7280;
+  color: #ffd700;
   font-size: 14px;
+}
+/* Mobile tweaks keep consistent visuals (colors already set globally) */
+@media (max-width: 959px) {
+  .social-icons .sicon {
+    background: transparent;
+  }
 }
 .social-card__actions {
   display: flex;
@@ -1625,6 +1636,7 @@ h3::after {
 .social-icons {
   display: flex;
   gap: 10px;
+  justify-content: center;
 }
 .sicon {
   width: 36px;
@@ -1633,8 +1645,8 @@ h3::after {
   display: grid;
   place-items: center;
   /* background: #fff; */
-  border: 1px solid #e5e7eb;
-  color: #111827;
+  border: 1px solid #ffd700;
+  color: #ffd700;
   text-decoration: none;
 }
 .sicon svg {
@@ -1674,10 +1686,27 @@ h3::after {
   padding: 16px;
   box-shadow: var(--shadow);
 }
+/* Apply blue background and yellow text to the social card variant (all viewports) */
+.sheet-card.social-card {
+  background: #0d4b8f;
+  color: #ffd700;
+  padding: 14px; /* slightly more compact to reduce empty space */
+}
+/* Ensure full blue background for Head social card on mobile */
+@media (max-width: 959px) {
+  .sheet-card.social-card {
+    background: #0d4b8f;
+    color: #ffd700;
+  }
+}
 .sheet-col h3 {
   margin: 0 0 12px;
   font-size: 18px;
   color: #111827;
+}
+/* Clean headings in mega menu: remove gold underline */
+.mega-sheet .sheet-col h3::after {
+  display: none;
 }
 .sheet-col a {
   display: block;

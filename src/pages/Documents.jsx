@@ -41,6 +41,7 @@ export default function Documents() {
           <div>
             <h1>Документы</h1>
             <div
+              className="filters"
               style={{
                 display: "flex",
                 gap: 12,
@@ -52,17 +53,19 @@ export default function Documents() {
                 placeholder="Поиск по названию, номеру, тексту"
                 value={q}
                 onChange={(e) => setQ(e.target.value)}
-                style={{ minWidth: 280, maxWidth: 520 }}
+                style={{ minWidth: 280, width: "min(520px, 100%)" }}
               />
               <Select
                 value={cat}
                 onChange={setCat}
+                dropdownMatchSelectWidth={false}
                 options={cats.map((c) => ({ value: c, label: c }))}
                 style={{ minWidth: 200 }}
               />
               <Select
                 value={year}
                 onChange={setYear}
+                dropdownMatchSelectWidth={false}
                 options={years.map((y) => ({
                   value: y,
                   label: y === "Все" ? "Год: Все" : `Год: ${y}`,

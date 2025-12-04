@@ -166,6 +166,7 @@ export default function Government() {
                 <Select
                   value={section}
                   onChange={setSection}
+                  dropdownMatchSelectWidth={false}
                   options={[
                     { value: "Правительство", label: "Правительство" },
                     { value: "Депутаты", label: "Депутаты" },
@@ -475,18 +476,21 @@ export default function Government() {
                   <Select
                     value={district}
                     onChange={setDistrict}
+                    dropdownMatchSelectWidth={false}
                     options={districts.map((x) => ({ value: x, label: x }))}
                     style={{ minWidth: 200 }}
                   />
                   <Select
                     value={convocation}
                     onChange={setConvocation}
+                    dropdownMatchSelectWidth={false}
                     options={convocations.map((x) => ({ value: x, label: x }))}
                     style={{ minWidth: 200 }}
                   />
                   <Select
                     value={faction}
                     onChange={setFaction}
+                    dropdownMatchSelectWidth={false}
                     options={factions.map((x) => ({ value: x, label: x }))}
                     style={{ minWidth: 200 }}
                   />
@@ -553,12 +557,14 @@ export default function Government() {
                   <Select
                     value={agency}
                     onChange={setAgency}
+                    dropdownMatchSelectWidth={false}
                     options={agencies.map((x) => ({ value: x, label: x }))}
                     style={{ minWidth: 220 }}
                   />
                   <Select
                     value={role}
                     onChange={setRole}
+                    dropdownMatchSelectWidth={false}
                     options={roles.map((x) => ({ value: x, label: x }))}
                     style={{ minWidth: 220 }}
                   />

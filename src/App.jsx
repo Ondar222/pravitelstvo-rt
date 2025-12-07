@@ -38,7 +38,6 @@ import DocsPage from "./pages/docs/DocsPage.jsx";
 import ActivitySectionPage from "./pages/activity/ActivitySection.jsx";
 import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
-import AdminPage from "./pages/Admin.jsx";
 import Admin from "./pages/Admin.jsx";
 
 export default function App() {
@@ -94,7 +93,11 @@ export default function App() {
                       "/authorities": Authorities,
                       "/wifi": Wifi,
                       "/map": MapPage,
-                      "/admin": AdminPage,
+                      "/admin": Admin,
+                      "/admin/news": Admin,
+                      "/admin/deputies": Admin,
+                      "/admin/documents": Admin,
+                      "/admin/achievements": Admin,
                       "/feedback": Feedback,
                       "/press": Press,
                       "/activity": ActivityPage,
@@ -107,7 +110,6 @@ export default function App() {
                       "/priority/05": Priority05,
                       "/login": Login,
                       "/register": Register,
-                      "/admin": Admin,
                     }}
                   />
                 </main>

@@ -13,8 +13,11 @@ import {
   Alert,
   Popconfirm,
   Tabs as AntTabs,
+  Pagination,
 } from "antd";
 import { PersonsApi } from "../api/client.js";
+import SideNav from "../components/SideNav.jsx";
+import { useHashRoute } from "../Router.jsx";
 
 const { TextArea } = Input;
 const { Title, Paragraph } = Typography;
@@ -129,9 +132,28 @@ function JsonEditor({ title, filename, initial }) {
 export default function Admin() {
   const data = useData();
   const { isAuthenticated, login } = useAuth();
+  const { route } = useHashRoute();
+  const base = (route || "/").split("?")[0];
+  const sub = base.replace(/^\/admin\/?/, "") || "dashboard";
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [loading, setLoading] = React.useState(false);
+
+  const deleteItem = React.useCallback(
+    (collection, id) => {
+      const setter =
+        {
+          news: data.setNews,
+          deputies: data.setDeputies,
+          documents: data.setDocuments,
+          achievements: data.setAchievements,
+        }[collection] || null;
+      if (!setter) return;
+      const arr = Array.isArray(data[collection]) ? data[collection] : [];
+      setter(arr.filter((x) => x && (x.id || x._id) !== id));
+    },
+    [data]
+  );
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -146,6 +168,17 @@ export default function Admin() {
     }
   };
 
+  const adminLinks = React.useMemo(
+    () => [
+      { label: "Панель", href: "#/admin" },
+      { label: "Новости", href: "#/admin/news" },
+      { label: "Депутаты", href: "#/admin/deputies" },
+      { label: "Документы", href: "#/admin/documents" },
+      { label: "Достопримечательности", href: "#/admin/achievements" },
+    ],
+    []
+  );
+
   return (
     <section className="section">
       <div className="container">
@@ -153,91 +186,108 @@ export default function Admin() {
           Администрирование
         </Title>
         <Paragraph type="secondary" style={{ marginBottom: 16 }}>
-          Здесь вы можете редактировать данные сайта в формате JSON:
-          импортировать, изменять и экспортировать файлы для последующей
-          публикации.
+          Редактируйте данные сайта, импортируйте и экспортируйте JSON файлы.
         </Paragraph>
 
-        <div className="card" style={{ padding: 16, marginBottom: 16 }}>
-          <Title level={4} style={{ marginTop: 0 }}>
-            Авторизация API
-          </Title>
-          <Paragraph type="secondary">
-            Опционально. Если у вас есть доступ к API, выполните вход для
-            операций, требующих авторизации.
-          </Paragraph>
-          <form
-            onSubmit={handleLogin}
-            style={{ display: "grid", gap: 12, maxWidth: 420 }}
-          >
-            <Input
-              type="email"
-              placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <Input.Password
-              placeholder="Пароль"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <Button type="primary" htmlType="submit" loading={loading}>
-              Войти
-            </Button>
-          </form>
-          {isAuthenticated ? (
-            <Paragraph style={{ marginTop: 8, color: "#059669" }}>
-              Статус: авторизовано
-            </Paragraph>
-          ) : (
-            <Paragraph style={{ marginTop: 8, color: "#9ca3af" }}>
-              Статус: не авторизовано
-            </Paragraph>
-          )}
+        <div className="page-grid">
+          <div>
+            <div className="card" style={{ padding: 16, marginBottom: 16 }}>
+              <Title level={4} style={{ marginTop: 0 }}>
+                Авторизация API
+              </Title>
+              <Paragraph type="secondary">
+                Опционально. Если у вас есть доступ к API, выполните вход для
+                операций, требующих авторизации.
+              </Paragraph>
+              <form
+                onSubmit={handleLogin}
+                style={{ display: "grid", gap: 12, maxWidth: 420 }}
+              >
+                <Input
+                  type="email"
+                  placeholder="Email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+                <Input.Password
+                  placeholder="Пароль"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+                <Button type="primary" htmlType="submit" loading={loading}>
+                  Войти
+                </Button>
+              </form>
+              {isAuthenticated ? (
+                <Paragraph style={{ marginTop: 8, color: "#059669" }}>
+                  Статус: авторизовано
+                </Paragraph>
+              ) : (
+                <Paragraph style={{ marginTop: 8, color: "#9ca3af" }}>
+                  Статус: не авторизовано
+                </Paragraph>
+              )}
+            </div>
+
+            {sub === "dashboard" && (
+              <>
+                <Divider />
+                <CreateForms />
+              </>
+            )}
+
+            {sub === "news" && (
+              <AdminSectionView
+                title="Новости"
+                filename="news.json"
+                items={data.news || []}
+                onDelete={(id) => deleteItem("news", id)}
+                renderRow={(n) => (
+                  <span>
+                    {n.title} {n.image ? "• [фото]" : ""}
+                  </span>
+                )}
+              />
+            )}
+            {sub === "deputies" && (
+              <AdminSectionView
+                title="Депутаты"
+                filename="deputies.json"
+                items={data.deputies || []}
+                onDelete={(id) => deleteItem("deputies", id)}
+                renderRow={(d) => (
+                  <span>
+                    {d.name} {d.photo ? "• [фото]" : ""}
+                  </span>
+                )}
+              />
+            )}
+            {sub === "documents" && (
+              <AdminSectionView
+                title="Документы"
+                filename="documents.json"
+                items={data.documents || []}
+                onDelete={(id) => deleteItem("documents", id)}
+                renderRow={(doc) => <span>{doc.title}</span>}
+              />
+            )}
+            {sub === "achievements" && (
+              <AdminSectionView
+                title="Достопримечательности"
+                filename="achievements.json"
+                items={data.achievements || []}
+                onDelete={(id) => deleteItem("achievements", id)}
+                renderRow={(a) => (
+                  <span>
+                    {a.title} {a.images?.length ? "• [фото]" : ""}
+                  </span>
+                )}
+              />
+            )}
+          </div>
+
+          <SideNav title="Меню админки" links={adminLinks} />
         </div>
-
-        <Divider />
-
-        <CreateForms />
-
-        <Tabs
-          defaultActiveKey="news"
-          items={[
-            {
-              key: "news",
-              label: "Новости (news.json)",
-              children: (
-                <JsonEditor
-                  title="Новости"
-                  filename="news.json"
-                  initial={data.news}
-                />
-              ),
-            },
-            {
-              key: "deputies",
-              label: "Депутаты (deputies.json)",
-              children: (
-                <JsonEditor
-                  title="Депутаты"
-                  filename="deputies.json"
-                  initial={data.deputies}
-                />
-              ),
-            },
-            {
-              key: "documents",
-              label: "Документы (documents.json)",
-              children: (
-                <JsonEditor
-                  title="Документы"
-                  filename="documents.json"
-                  initial={data.documents}
-                />
-              ),
-            },
-          ]}
-        />
       </div>
     </section>
   );
@@ -592,17 +642,28 @@ function CreateForms() {
           </Button>
         </Space>
       </div>
+    </div>
+  );
+}
 
+function AdminSectionView({ title, filename, items, renderRow, onDelete }) {
+  const [page, setPage] = React.useState(1);
+  const [pageSize, setPageSize] = React.useState(10);
+  const total = items.length;
+  const start = (page - 1) * pageSize;
+  const paged = items.slice(start, start + pageSize);
+  return (
+    <div className="grid" style={{ marginBottom: 20 }}>
+      <JsonEditor title={title} filename={filename} initial={items} />
       <div className="card" style={{ padding: 16 }}>
         <Typography.Title level={4} style={{ marginTop: 0 }}>
           Текущие записи
         </Typography.Title>
         <Divider />
-        <Typography.Title level={5}>Новости</Typography.Title>
         <Space direction="vertical" style={{ width: "100%" }}>
-          {(data.news || []).map((n) => (
+          {paged.map((item) => (
             <div
-              key={n.id}
+              key={item.id}
               style={{
                 display: "flex",
                 alignItems: "center",
@@ -610,99 +671,38 @@ function CreateForms() {
                 gap: 12,
               }}
             >
-              <span>
-                {n.title} {n.image ? "• [фото]" : ""}
-              </span>
-              <Popconfirm
-                title="Удалить новость?"
-                okText="Да"
-                cancelText="Нет"
-                onConfirm={() => deleteById("news", n.id)}
-              >
-                <Button danger>Удалить</Button>
-              </Popconfirm>
-            </div>
-          ))}
-        </Space>
-        <Divider />
-        <Typography.Title level={5}>Депутаты</Typography.Title>
-        <Space direction="vertical" style={{ width: "100%" }}>
-          {(data.deputies || []).map((d) => (
-            <div
-              key={d.id}
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-                gap: 12,
-              }}
-            >
-              <span>
-                {d.name} {d.photo ? "• [фото]" : ""}
-              </span>
-              <Popconfirm
-                title="Удалить депутата?"
-                okText="Да"
-                cancelText="Нет"
-                onConfirm={() => deleteById("deputies", d.id)}
-              >
-                <Button danger>Удалить</Button>
-              </Popconfirm>
-            </div>
-          ))}
-        </Space>
-        <Divider />
-        <Typography.Title level={5}>Документы</Typography.Title>
-        <Space direction="vertical" style={{ width: "100%" }}>
-          {(data.documents || []).map((doc) => (
-            <div
-              key={doc.id}
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-                gap: 12,
-              }}
-            >
-              <span>{doc.title}</span>
-              <Popconfirm
-                title="Удалить документ?"
-                okText="Да"
-                cancelText="Нет"
-                onConfirm={() => deleteById("documents", doc.id)}
-              >
-                <Button danger>Удалить</Button>
-              </Popconfirm>
-            </div>
-          ))}
-        </Space>
-        <Divider />
-        <Typography.Title level={5}>Достопримечательности</Typography.Title>
-        <Space direction="vertical" style={{ width: "100%" }}>
-          {(data.achievements || []).map((a) => (
-            <div
-              key={a.id}
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-                gap: 12,
-              }}
-            >
-              <span>
-                {a.title} {a.images?.length ? "• [фото]" : ""}
-              </span>
+              {renderRow(item)}
               <Popconfirm
                 title="Удалить запись?"
                 okText="Да"
                 cancelText="Нет"
-                onConfirm={() => deleteById("achievements", a.id)}
+                onConfirm={() => onDelete(item.id)}
               >
                 <Button danger>Удалить</Button>
               </Popconfirm>
             </div>
           ))}
+          {total === 0 && (
+            <Typography.Paragraph type="secondary">
+              Нет записей
+            </Typography.Paragraph>
+          )}
         </Space>
+        <div
+          style={{ display: "flex", justifyContent: "flex-end", marginTop: 16 }}
+        >
+          <Pagination
+            current={page}
+            pageSize={pageSize}
+            total={total}
+            showSizeChanger
+            pageSizeOptions={["5", "10", "20", "50"]}
+            onChange={(p, ps) => {
+              setPage(p);
+              setPageSize(ps);
+            }}
+          />
+        </div>
       </div>
     </div>
   );

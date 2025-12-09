@@ -30,7 +30,8 @@ export default function Footer() {
               </div>
             </div>
             <div style={{ marginTop: 16, color: "#cbd5e1" }}>
-              © 2025 Верховный Хурал РТ
+            © 2025 ВЕРХОВНЫЙ ХУРАЛ РТ.<br />
+            ВСЕ ПРАВА ЗАЩИЩЕНЫ. <br />Разработано Lana Soft
             </div>
           </div>
 

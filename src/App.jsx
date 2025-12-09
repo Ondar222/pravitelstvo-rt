@@ -33,6 +33,7 @@ import { ConfigProvider, theme } from "antd";
 import CookieBanner from "./components/CookieBanner.jsx";
 import Apparatus from "./pages/Apparatus.jsx";
 import SectionPage from "./pages/Section.jsx";
+import Commission from "./pages/Commission.jsx";
 import Breadcrumbs from "./components/Breadcrumbs.jsx";
 import DocsPage from "./pages/docs/DocsPage.jsx";
 import ActivitySectionPage from "./pages/activity/ActivitySection.jsx";
@@ -85,6 +86,7 @@ export default function App() {
                       "/activity/statistics": ActivitySectionPage,
                       "/activity/schet_palata": ActivitySectionPage,
                       "/committee": Committee,
+                      "/commission": Commission,
                       "/apparatus": Apparatus,
                       "/section": SectionPage,
                       "/deputies": Deputies,

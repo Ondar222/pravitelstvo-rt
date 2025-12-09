@@ -61,6 +61,46 @@ export default function Breadcrumbs() {
       crumbs.push({ label: "Депутаты" });
       return crumbs;
     }
+    // Handle commission pages
+    if (base === "/commission") {
+      crumbs.push({ label: "Структура", href: "#/section" });
+      try {
+        const sp = new URLSearchParams((route || "").split("?")[1]);
+        const id = sp.get("id");
+        // Import commission titles mapping
+        const COMMISSION_IDS = {
+          "nagradnaya": "Наградная комиссия Верховного Хурала (парламента) Республики Тыва",
+          "kontrol-dostovernost": "Комиссия Верховного Хурала (парламента) Республики Тыва по контролю за достоверностью сведений о доходах, об имуществе и обязательствах имущественного характера, представляемых депутатами Верховного Хурала (парламента) Республики Тыва",
+          "schetnaya": "Счетная комиссия Верховного Хурала",
+          "reglament-etika": "Комиссия Верховного Хурала (парламента) Республики Тыва по Регламенту Верховного Хурала (парламента) Республики Тыва и депутатской этике",
+          "reabilitatsiya": "Республиканская комиссия по восстановлению прав реабилитированных жертв политических репрессий",
+          "svo-podderzhka": "Комиссия Верховного Хурала (парламента) Республики Тыва по поддержке участников специальной военной операции и их семей",
+          "smi-obshestvo": "Комитет Верховного Хурала (парламента) Республики Тыва по взаимодействию со средствами массовой информации и общественными организациями",
+          "mezhregionalnye-svyazi": "Комитет Верховного Хурала (парламента) Республики Тыва по межрегиональным и международным связям",
+        };
+        if (id && COMMISSION_IDS[id]) {
+          crumbs.push({ label: "Комиссии", href: "#/section?title=" + encodeURIComponent("Комиссии") });
+          crumbs.push({ label: COMMISSION_IDS[id] });
+          return crumbs;
+        }
+      } catch {}
+      crumbs.push({ label: "Комиссии", href: "#/section?title=" + encodeURIComponent("Комиссии") });
+      crumbs.push({ label: "Комиссия" });
+      return crumbs;
+    }
+    // Handle section pages with specific titles
+    if (base === "/section") {
+      try {
+        const sp = new URLSearchParams((route || "").split("?")[1]);
+        const sectionTitle = sp.get("title");
+        if (sectionTitle) {
+          const decodedTitle = decodeURIComponent(sectionTitle);
+          crumbs.push({ label: "Структура", href: "#/section" });
+          crumbs.push({ label: decodedTitle });
+          return crumbs;
+        }
+      } catch {}
+    }
     // Default: show just page title
     const title = titles[base];
     if (title && base !== "/") {

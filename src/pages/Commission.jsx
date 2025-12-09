@@ -96,7 +96,7 @@ export default function Commission() {
       <div className="container">
         <div className="page-grid">
           <div>
-            <h1>{commission.title}</h1>
+            <h3>{commission.title}</h3>
             {Page ? (
               <Page />
             ) : (

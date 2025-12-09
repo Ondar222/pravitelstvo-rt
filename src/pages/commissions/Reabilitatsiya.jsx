@@ -3,10 +3,9 @@ import React from "react";
 export default function Reabilitatsiya() {
   return (
     <div>
-      <p>
-        Здесь будет содержимое страницы «Республиканская комиссия по
-        восстановлению прав реабилитированных жертв политических репрессий».
-      </p>
+     <a href="https://khural.rtyva.ru/struct/komissii/266/6290/">
+Постановление №482 ПВХ-III
+</a>
     </div>
   );
 }

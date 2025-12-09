@@ -236,7 +236,7 @@ export default function Nagradnaya() {
                 Скачать положение
               </a>
             </li>
-            <li style={{ marginBottom: "1rem" }}>
+            <li style={{ marginBottom: "1rem", display: "flex", flexDirection: "column" }}>
               <a
                 href="#"
                 onClick={(e) => {
@@ -245,6 +245,14 @@ export default function Nagradnaya() {
                 }}
               >
                 Бланк Наградного листа
+              </a>
+              <a
+                href="https://khural.rtyva.ru/images/%D0%9E%D0%B1%D1%80%D0%B0%D0%B7%D0%B5%D1%86%20%D0%BD%D0%B0%D0%B3%D1%80%D0%B0%D0%B4%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%BB%D0%B8%D1%81%D1%82%D0%B0.doc"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ marginLeft: "1rem" }}
+              >
+                Скачать бланк
               </a>
             </li>
           </ul>

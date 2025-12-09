@@ -3,13 +3,50 @@ import GosWidget from "./GosWidget.jsx";
 import { useI18n } from "../context/I18nContext.jsx";
 
 const LINKS = [
-  "Портал государственных услуг Республики Тыва",
-  "АНО Региональный центр поддержки цифровых технологий",
-  "Единая платформа предоставления субсидий",
-  "Оценка регулирующего воздействия",
-  "Военный комиссариат Республики Тыва",
-  "Финансовая грамотность. Республика Тыва",
-  "Портал помощи в переезде и поиске работы",
+  {
+    label: "НОРМАТИВНО-ПРАВОВЫЕ АКТЫ В РОССИЙСКОЙ ФЕДЕРАЦИИ",
+    href: "http://pravo.minjust.ru/",
+  },
+  {
+    label: "ПРАВИТЕЛЬСТВО РЕСПУБЛИКИ ТЫВА",
+    href: "http://gov.tuva.ru/", 
+  },
+  {
+    label: "ОФИЦИАЛЬНЫЙ ИНТЕРНЕТ-ПОРТАЛ ПРАВОВОЙ ИНФОРМАЦИИ",
+    href: "http://pravo.gov.ru/",
+  },
+  {
+    label: "ОБЩЕСТВЕННАЯ ПАЛАТА РЕСПУБЛИКИ ТЫВА",
+    href: "http://palata.tuva.ru/",
+  },
+  {
+    label: "ФЕДЕРАЛЬНЫЙ ПОРТАЛ ПРОЕКТОВ НОРМАТИВНЫХ ПРАВОВЫХ АКТОВ",
+    href: "http://regulation.gov.ru/",
+  },
+  {
+    label: "ГАС ЗАКОНОТВОРЧЕСТВО ",
+    href: "http://parliament.gov.ru/",
+  },
+  {
+    label: "ПОРТАЛ ГОСУДАРСТВЕННЫХ УСЛУГ",
+    href: "http://gosuslugi.ru/",
+  },
+  {
+    label: "МИНИСТЕРСТВО ЮСТИЦИИ РОССИЙСКОЙ ФЕДЕРАЦИИ",
+    href: "http://minjust.ru/",
+  },
+  {
+    label: "ФЕДЕРАЛЬНЫЙ ПОРТАЛ УПРАВЛЕНЧЕСКИХ КАДРОВ",
+    href: "http://gossluzhba.gov.ru/",
+  },
+  {
+    label: "УПОЛНОМЕЧЕННЫЙ ПО ЗАЩИТЕ ПРАВ ПРЕДПРИНИМАТЕЛЕЙ В РЕСПУБЛИКЕ ТЫВА ",
+    href: "http://upp.rtyva.ru/",
+  },
+  {
+    label: "ИЗБИРАТЕЛЬНАЯ КОММИССИЯ РЕСПУБЛИКИ ТЫВА ",
+    href: "http://www.tyva.izbirkom.ru/",
+  },
 ];
 
 export default function Resources() {
@@ -20,9 +57,16 @@ export default function Resources() {
         <h2>{t("Порталы")}</h2>
         <div className="grid resources-grid" style={{ gap: 24 }}>
           <div className="grid cols-3">
-            {LINKS.map((t, i) => (
-              <a key={i} className="tile link" href="#" style={{ height: 120 }}>
-                <span style={{ maxWidth: 260 }}>{t}</span>
+            {LINKS.map(({ label, href }, i) => (
+              <a
+                key={i}
+                className="tile link"
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ height: 120 }}
+              >
+                <span style={{ maxWidth: 260 }}>{label}</span>
                 <span>→</span>
               </a>
             ))}

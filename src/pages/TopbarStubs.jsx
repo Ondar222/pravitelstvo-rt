@@ -2,7 +2,7 @@ import React from "react";
 
 export function Feedback() {
   return (
-    <section className="section">
+    <section className="section" id="#section">
       <div className="container">
         <h1>Прием обращений</h1>
         <div>

@@ -73,8 +73,8 @@ export default function Header() {
           <a href="#/feedback">{t("feedback")}</a>
           <a href="#/press">{t("press")}</a>
           <a href="#/activity">{t("activity")}</a>
-          <a href="#/docs">{t("docs")}</a>
-          <a href="#/deputies">{t("deputies")}</a>
+          
+          
           <span style={{ marginLeft: "auto", display: "flex", gap: 12 }}>
             <a href="#/login">{t("login")}</a>
             <a href="#/register">{t("register")}</a>

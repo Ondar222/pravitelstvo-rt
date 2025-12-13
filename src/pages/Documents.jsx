@@ -1,11 +1,10 @@
 import React from "react";
 import { useData } from "../context/DataContext.jsx";
-import { Input, Select } from "antd";
+import { Select } from "antd";
 import SideNav from "../components/SideNav.jsx";
 
 export default function Documents() {
   const { documents } = useData();
-  const [q, setQ] = React.useState("");
   const [cat, setCat] = React.useState("Все");
   const [year, setYear] = React.useState("Все");
   const cats = React.useMemo(
@@ -25,13 +24,9 @@ export default function Documents() {
       documents.filter(
         (d) =>
           (cat === "Все" || d.category === cat) &&
-          (year === "Все" || String(d.date).includes(year)) &&
-          (q === "" ||
-            (d.title + " " + d.number + " " + d.text)
-              .toLowerCase()
-              .includes(q.toLowerCase()))
+          (year === "Все" || String(d.date).includes(year))
       ),
-    [documents, cat, year, q]
+    [documents, cat, year]
   );
 
   return (
@@ -49,12 +44,6 @@ export default function Documents() {
                 margin: "12px 0 20px",
               }}
             >
-              <Input.Search
-                placeholder="Поиск по названию, номеру, тексту"
-                value={q}
-                onChange={(e) => setQ(e.target.value)}
-                style={{ minWidth: 280, width: "min(520px, 100%)" }}
-              />
               <Select
                 value={cat}
                 onChange={setCat}

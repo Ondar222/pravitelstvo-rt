@@ -146,7 +146,6 @@ export default function Admin() {
           news: data.setNews,
           deputies: data.setDeputies,
           documents: data.setDocuments,
-          achievements: data.setAchievements,
         }[collection] || null;
       if (!setter) return;
       const arr = Array.isArray(data[collection]) ? data[collection] : [];
@@ -174,7 +173,6 @@ export default function Admin() {
       { label: "Новости", href: "#/admin/news" },
       { label: "Депутаты", href: "#/admin/deputies" },
       { label: "Документы", href: "#/admin/documents" },
-      { label: "Достопримечательности", href: "#/admin/achievements" },
     ],
     []
   );
@@ -271,19 +269,6 @@ export default function Admin() {
                 renderRow={(doc) => <span>{doc.title}</span>}
               />
             )}
-            {sub === "achievements" && (
-              <AdminSectionView
-                title="Достопримечательности"
-                filename="achievements.json"
-                items={data.achievements || []}
-                onDelete={(id) => deleteItem("achievements", id)}
-                renderRow={(a) => (
-                  <span>
-                    {a.title} {a.images?.length ? "• [фото]" : ""}
-                  </span>
-                )}
-              />
-            )}
           </div>
 
           <SideNav title="Меню админки" links={adminLinks} />
@@ -315,11 +300,6 @@ function CreateForms() {
     imageFile: null,
     imageUrl: "",
   });
-  const [achForm, setAchForm] = React.useState({
-    title: "",
-    imageFile: null,
-    imageUrl: "",
-  });
   const [submitting, setSubmitting] = React.useState(false);
 
   const handleDepPhoto = async (file) => {
@@ -333,15 +313,6 @@ function CreateForms() {
   };
   const handleNewsImage = async (file) => {
     setNewsForm((f) => ({
-      ...f,
-      imageFile: file,
-      imageUrl: URL.createObjectURL(file),
-    }));
-    message.success("Изображение выбрано: " + file.name);
-    return false;
-  };
-  const handleAchImage = async (file) => {
-    setAchForm((f) => ({
       ...f,
       imageFile: file,
       imageUrl: URL.createObjectURL(file),
@@ -433,28 +404,12 @@ function CreateForms() {
     });
   };
 
-  const createAchievement = async () => {
-    if (!achForm.title || !achForm.imageUrl) {
-      message.error("Укажите название и изображение");
-      return;
-    }
-    const item = {
-      id: Math.random().toString(36).slice(2),
-      title: achForm.title,
-      images: [achForm.imageUrl],
-    };
-    data.setAchievements([...(data.achievements || []), item]);
-    message.success("Достопримечательность создана");
-    setAchForm({ title: "", imageFile: null, imageUrl: "" });
-  };
-
   const deleteById = (collection, id) => {
     const setter =
       {
         news: data.setNews,
         deputies: data.setDeputies,
         documents: data.setDocuments,
-        achievements: data.setAchievements,
       }[collection] || null;
     if (!setter) return;
     const arr = Array.isArray(data[collection]) ? data[collection] : [];
@@ -613,32 +568,6 @@ function CreateForms() {
           ) : null}
           <Button type="primary" onClick={createNews}>
             Создать новость
-          </Button>
-        </Space>
-      </div>
-
-      <div className="card" style={{ padding: 16 }}>
-        <Typography.Title level={4} style={{ marginTop: 0 }}>
-          Создать достопримечательность
-        </Typography.Title>
-        <Space direction="vertical" size="middle" style={{ width: "100%" }}>
-          <Input
-            value={achForm.title}
-            onChange={(e) =>
-              setAchForm((f) => ({ ...f, title: e.target.value }))
-            }
-            placeholder="Название"
-          />
-          <Upload
-            accept="image/*"
-            maxCount={1}
-            beforeUpload={handleAchImage}
-            showUploadList={!!achForm.imageFile}
-          >
-            <Button>Изображение</Button>
-          </Upload>
-          <Button type="primary" onClick={createAchievement}>
-            Создать
           </Button>
         </Space>
       </div>

@@ -43,7 +43,6 @@ async function fetchJson(path) {
 
 export default function DocsPage() {
   const [docs, setDocs] = React.useState([]);
-  const [q, setQ] = React.useState("");
   const [preview, setPreview] = React.useState(null); // {url, title}
 
   const slug = React.useMemo(() => {
@@ -59,40 +58,14 @@ export default function DocsPage() {
     fetchJson(cat.data).then(setDocs);
   }, [cat.data]);
 
-  const filtered = React.useMemo(() => {
-    const s = q.trim().toLowerCase();
-    if (!s) return docs;
-    return docs.filter((d) =>
-      (d.title + " " + (d.number || "") + " " + (d.desc || ""))
-        .toLowerCase()
-        .includes(s)
-    );
-  }, [docs, q]);
-
   return (
     <section className="section">
       <div className="container">
         <div className="page-grid">
           <div>
             <h1>{cat.title}</h1>
-            <div
-              style={{
-                display: "flex",
-                gap: 12,
-                flexWrap: "wrap",
-                margin: "12px 0 20px",
-              }}
-            >
-              <input
-                className="search-input"
-                placeholder="Поиск по названию, номеру или описанию"
-                value={q}
-                onChange={(e) => setQ(e.target.value)}
-                style={{ minWidth: 320, flex: "1 1 320px" }}
-              />
-            </div>
             <div className="law-list">
-              {filtered.map((d) => (
+              {docs.map((d) => (
                 <div key={d.id || d.url} className="law-item card">
                   <div className="law-left">
                     <div className="law-ico">📄</div>

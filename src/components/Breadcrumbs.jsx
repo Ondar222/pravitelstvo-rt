@@ -18,7 +18,6 @@ export default function Breadcrumbs() {
     "/region": "Регион",
     "/about": "О парламенте",
     "/news": "Новости",
-    "/achievements": "Достижения",
     "/calendar": "Календарь",
     "/documents": "Документы",
     "/committee": "Комитеты",

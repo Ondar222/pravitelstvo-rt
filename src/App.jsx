@@ -12,11 +12,6 @@ import Committee from "./pages/Committee.jsx";
 import { Feedback, Press, Docs } from "./pages/TopbarStubs.jsx";
 import Contacts from "./pages/Contacts.jsx";
 import ActivityPage from "./pages/Activity.jsx";
-import Priority01 from "./pages/priorities/Priority01.jsx";
-import Priority02 from "./pages/priorities/Priority02.jsx";
-import Priority03 from "./pages/priorities/Priority03.jsx";
-import Priority04 from "./pages/priorities/Priority04.jsx";
-import Priority05 from "./pages/priorities/Priority05.jsx";
 import Footer from "./components/Footer.jsx";
 import DataProvider from "./context/DataContext.jsx";
 import AuthProvider from "./context/AuthContext.jsx";
@@ -27,7 +22,6 @@ import About from "./pages/About.jsx";
 import Documents from "./pages/Documents.jsx";
 import Deputies from "./pages/Deputies.jsx";
 import Appeals from "./pages/Appeals.jsx";
-import AchievementsPage from "./pages/Achievements.jsx";
 import MapPage from "./pages/Map.jsx";
 import { ConfigProvider, theme } from "antd";
 import CookieBanner from "./components/CookieBanner.jsx";
@@ -70,7 +64,6 @@ export default function App() {
                       "/region": Region,
                       "/about": About,
                       "/news": NewsArchive,
-                      "/achievements": AchievementsPage,
                       "/calendar": CalendarPage,
                       "/documents": Documents,
                       "/docs/laws": DocsPage,
@@ -99,17 +92,11 @@ export default function App() {
                       "/admin/news": Admin,
                       "/admin/deputies": Admin,
                       "/admin/documents": Admin,
-                      "/admin/achievements": Admin,
                       "/feedback": Feedback,
                       "/press": Press,
                       "/activity": ActivityPage,
                       "/docs": Docs,
                       "/contacts": Contacts,
-                      "/priority/01": Priority01,
-                      "/priority/02": Priority02,
-                      "/priority/03": Priority03,
-                      "/priority/04": Priority04,
-                      "/priority/05": Priority05,
                       "/login": Login,
                       "/register": Register,
                     }}

@@ -80,8 +80,6 @@ export default function Region() {
               { label: "Республика Тыва", href: "#/region" },
               { label: "Карта области", href: "#/region" },
               { label: "Летопись", href: "#/region" },
-              { label: "Приоритеты", href: "#/priority/01" },
-              { label: "Достижения", href: "#/achievements" },
               { label: "Официальные символы", href: "#/region" },
             ]}
           />

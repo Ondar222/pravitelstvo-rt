@@ -14,7 +14,6 @@ const DataContext = React.createContext({
   government: [],
   authorities: [],
   documents: [],
-  achievements: [],
   committees: [],
   // Setters for Admin (optional to use)
   setSlides: () => {},
@@ -27,7 +26,6 @@ const DataContext = React.createContext({
   setGovernment: () => {},
   setAuthorities: () => {},
   setDocuments: () => {},
-  setAchievements: () => {},
   setCommittees: () => {},
 });
 export function useData() {
@@ -58,7 +56,6 @@ export default function DataProvider({ children }) {
   const [government, setGovernment] = React.useState([]);
   const [authorities, setAuthorities] = React.useState([]);
   const [documents, setDocuments] = React.useState([]);
-  const [achievements, setAchievements] = React.useState([]);
   const [committees, setCommittees] = React.useState([]);
 
   React.useEffect(() => {
@@ -153,7 +150,6 @@ export default function DataProvider({ children }) {
     fetchJson("/data/government.json").then(setGovernment);
     fetchJson("/data/authorities.json").then(setAuthorities);
     fetchJson("/data/documents.json").then(setDocuments);
-    fetchJson("/data/achievements.json").then(setAchievements);
     if (!committees.length)
       fetchJson("/data/committees.json").then(setCommittees);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
@@ -170,7 +166,6 @@ export default function DataProvider({ children }) {
       government,
       authorities,
       documents,
-      achievements,
       committees,
       // Setters (for Admin)
       setSlides,
@@ -183,7 +178,6 @@ export default function DataProvider({ children }) {
       setGovernment,
       setAuthorities,
       setDocuments,
-      setAchievements,
       setCommittees,
     }),
     [
@@ -197,7 +191,6 @@ export default function DataProvider({ children }) {
       government,
       authorities,
       documents,
-      achievements,
       committees,
       setSlides,
       setNews,
@@ -209,7 +202,6 @@ export default function DataProvider({ children }) {
       setGovernment,
       setAuthorities,
       setDocuments,
-      setAchievements,
       setCommittees,
     ]
   );

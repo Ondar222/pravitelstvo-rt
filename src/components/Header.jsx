@@ -314,36 +314,86 @@ export default function Header() {
             ✕
           </button>
         </div>
-        <div className="sheet-grid container">
-          <div className="sheet-card social-card">
-            <div className="social-card__header">
-              <img
-                className="social-avatar"
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Vladislav_Khovalyg_portrait.jpg/250px-Vladislav_Khovalyg_portrait.jpg"
-                alt=""
-              />
-              <div>
-                <div className="social-card__title">
-                  {t("socialNetworksHead")}
-                </div>
-                <div className="social-card__subtitle">{t("subscribe")}</div>
+        <div className="container" style={{ marginBottom: 24 }}>
+          <div
+            className="sheet-card social-card"
+            style={{
+              width: "100%",
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              gap: 24,
+              padding: "20px 24px",
+            }}
+          >
+            <img
+              className="social-avatar"
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Vladislav_Khovalyg_portrait.jpg/250px-Vladislav_Khovalyg_portrait.jpg"
+              alt=""
+              style={{
+                width: 90,
+                height: 90,
+                borderRadius: "50%",
+                objectFit: "cover",
+                flexShrink: 0,
+                border: "3px solid rgba(255, 215, 0, 0.3)",
+              }}
+            />
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <div
+                className="social-card__title"
+                style={{ marginBottom: 4, fontSize: "18px", lineHeight: 1.3 }}
+              >
+                {t("Социальные сети")}
+              </div>
+              <div
+                className="social-card__subtitle"
+                style={{ fontSize: "14px", opacity: 0.9 }}
+              >
+                {t("Подписывайтесь")}
               </div>
             </div>
-            <div className="social-icons">
+            <div
+              className="social-icons"
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: 16,
+                flexShrink: 0,
+              }}
+            >
               <a
                 className="sicon"
                 href="https://vk.com"
                 target="_blank"
                 rel="noreferrer"
                 aria-label="VK"
+                style={{
+                  width: 44,
+                  height: 44,
+                  borderRadius: "50%",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  transition: "transform 0.2s ease, opacity 0.2s ease",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = "scale(1.1)";
+                  e.currentTarget.style.opacity = "0.9";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = "scale(1)";
+                  e.currentTarget.style.opacity = "1";
+                }}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   x="0px"
                   y="0px"
-                  width="100"
-                  height="100"
+                  width="24"
+                  height="24"
                   viewBox="0 0 48 48"
+                  style={{ width: "24px", height: "24px" }}
                 >
                   <path
                     fill="#1976d2"
@@ -362,14 +412,32 @@ export default function Header() {
                 target="_blank"
                 rel="noreferrer"
                 aria-label="Telegram"
+                style={{
+                  width: 44,
+                  height: 44,
+                  borderRadius: "50%",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  transition: "transform 0.2s ease, opacity 0.2s ease",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = "scale(1.1)";
+                  e.currentTarget.style.opacity = "0.9";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = "scale(1)";
+                  e.currentTarget.style.opacity = "1";
+                }}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   x="0px"
                   y="0px"
-                  width="100"
-                  height="100"
+                  width="24"
+                  height="24"
                   viewBox="0 0 48 48"
+                  style={{ width: "24px", height: "24px" }}
                 >
                   <path
                     fill="#29b6f6"
@@ -391,6 +459,8 @@ export default function Header() {
               </a>
             </div>
           </div>
+        </div>
+        <div className="sheet-grid container">
           <div className="sheet-col">
             <h3>{t("aboutVH")}</h3>
             <a href="#/about">{t("aboutVH")}</a>

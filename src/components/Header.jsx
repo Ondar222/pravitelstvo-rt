@@ -84,7 +84,7 @@ export default function Header() {
               <a
                 href="/"
                 className="logo"
-                aria-label="На главную"
+                aria-label={t("goHome")}
                 style={{ textDecoration: "none" }}
               >
                 <img
@@ -167,13 +167,13 @@ export default function Header() {
                 <a href="#/docs/laws">
                   {t("docs")}: {t("legislation")}
                 </a>
-                <a href="#/docs/resolutions">Постановления ВХ РТ</a>
-                <a href="#/docs/initiatives">Законодательные инициативы</a>
-                <a href="#/docs/civic">Законодательная инициатива гражданами</a>
+                <a href="#/docs/resolutions">{t("docsResolutions")}</a>
+                <a href="#/docs/initiatives">{t("docsInitiatives")}</a>
+                <a href="#/docs/civic">{t("docsCivic")}</a>
                 <a href="#/docs/constitution">
-                  Реализация поправок в Конституцию РФ
+                  {t("docsConstitution")}
                 </a>
-                <a href="#/docs/bills">Законопроекты</a>
+                <a href="#/docs/bills">{t("docsBills")}</a>
               </div>
             </div>
             <div
@@ -216,21 +216,32 @@ export default function Header() {
           <div className="header-actions">
             <button
               className="icon-btn"
-              aria-label="Версия для слабовидящих"
+              aria-label={t("accessibilityVersion")}
               onClick={cycleMode}
             >
               👁️
             </button>
             <button
               className="icon-btn"
-              aria-label="Сменить язык"
-              onClick={() => setLang(lang === "ru" ? "ty" : "ru")}
+              aria-label={t("changeLanguage")}
+              onClick={() => {
+                const newLang = lang === "ru" ? "ty" : "ru";
+                setLang(newLang);
+                // Сохраняем текущий маршрут при смене языка
+                const currentRoute = window.location.hash;
+                if (currentRoute) {
+                  // Небольшая задержка для обновления состояния языка
+                  setTimeout(() => {
+                    window.location.hash = currentRoute;
+                  }, 0);
+                }
+              }}
             >
               {lang.toUpperCase()}
             </button>
             <button
               className="icon-btn"
-              aria-label="Меню"
+              aria-label={t("menu")}
               onClick={handleBurger}
             >
               <span className="burger">
@@ -257,7 +268,7 @@ export default function Header() {
           <a
             href="/"
             className="logo"
-            aria-label="На главную"
+            aria-label={t("goHome")}
             onClick={() => setSheetOpen(false)}
             style={{
               marginRight: "auto",
@@ -273,22 +284,32 @@ export default function Header() {
           </a>
           <button
             className="icon-btn"
-            aria-label="Версия для слабовидящих"
+            aria-label={t("accessibilityVersion")}
             onClick={cycleMode}
           >
             👁️
           </button>
           <button
             className="icon-btn"
-            aria-label="Сменить язык"
-            onClick={() => setLang(lang === "ru" ? "ty" : "ru")}
+            aria-label={t("changeLanguage")}
+            onClick={() => {
+              const newLang = lang === "ru" ? "ty" : "ru";
+              setLang(newLang);
+              // Сохраняем текущий маршрут при смене языка
+              const currentRoute = window.location.hash;
+              if (currentRoute) {
+                setTimeout(() => {
+                  window.location.hash = currentRoute;
+                }, 0);
+              }
+            }}
           >
             {lang.toUpperCase()}
           </button>
           <button
             className="icon-btn"
             onClick={() => setSheetOpen(false)}
-            aria-label="Закрыть"
+            aria-label={t("close")}
           >
             ✕
           </button>
@@ -303,9 +324,9 @@ export default function Header() {
               />
               <div>
                 <div className="social-card__title">
-                  Социальные сети Главы Республики Тыва
+                  {t("socialNetworksHead")}
                 </div>
-                <div className="social-card__subtitle">Подписывайтесь</div>
+                <div className="social-card__subtitle">{t("subscribe")}</div>
               </div>
             </div>
             <div className="social-icons">
@@ -442,7 +463,7 @@ export default function Header() {
           <a
             href="/"
             className="logo"
-            aria-label="На главную"
+            aria-label={t("goHome")}
             onClick={() => setMobileOpen(false)}
             style={{ textDecoration: "none" }}
           >
@@ -483,14 +504,24 @@ export default function Header() {
           <button
             className="icon-btn"
             aria-label="Сменить язык"
-            onClick={() => setLang(lang === "ru" ? "ty" : "ru")}
+            onClick={() => {
+              const newLang = lang === "ru" ? "ty" : "ru";
+              setLang(newLang);
+              // Сохраняем текущий маршрут при смене языка
+              const currentRoute = window.location.hash;
+              if (currentRoute) {
+                setTimeout(() => {
+                  window.location.hash = currentRoute;
+                }, 0);
+              }
+            }}
           >
             {lang.toUpperCase()}
           </button>
           <button
             className="icon-btn"
             onClick={() => setMobileOpen(false)}
-            aria-label="Закрыть"
+            aria-label={t("close")}
           >
             ✕
           </button>
@@ -578,7 +609,7 @@ export default function Header() {
                   src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Vladislav_Khovalyg_portrait.jpg/250px-Vladislav_Khovalyg_portrait.jpg"
                   alt=""
                 />
-                <div className="social-card__title">Социальные сети Главы</div>
+                <div className="social-card__title">{t("socialNetworksHead")}</div>
               </div>
               <div className="social-icons">
                 <a
@@ -728,28 +759,28 @@ export default function Header() {
               href="#/authorities"
               onClick={() => setMobileOpen(false)}
             >
-              Местное самоуправление
+              {t("localSelfGovernment")}
             </a>
             <a
               className="tile link"
               href="#/authorities"
               onClick={() => setMobileOpen(false)}
             >
-              Законодательное Собрание
+              {t("legislativeAssembly")}
             </a>
             <a
               className="tile link"
               href="#/authorities"
               onClick={() => setMobileOpen(false)}
             >
-              Территориальные отделения
+              {t("territorialDepartments")}
             </a>
             <a
               className="tile link"
               href="#/authorities"
               onClick={() => setMobileOpen(false)}
             >
-              Руководители органов
+              {t("headsOfBodies")}
             </a>
           </>
         )}
@@ -766,28 +797,28 @@ export default function Header() {
               href="#/government"
               onClick={() => setMobileOpen(false)}
             >
-              Стратегия
+              {t("strategy")}
             </a>
             <a
               className="tile link"
               href="#/government"
               onClick={() => setMobileOpen(false)}
             >
-              Планы и прогнозы
+              {t("plansAndForecasts")}
             </a>
             <a
               className="tile link"
               href="#/government"
               onClick={() => setMobileOpen(false)}
             >
-              Итоги и отчёты
+              {t("resultsAndReports")}
             </a>
             <a
               className="tile link"
               href="#/government"
               onClick={() => setMobileOpen(false)}
             >
-              Объявления
+              {t("announcements")}
             </a>
           </>
         )}
@@ -847,14 +878,14 @@ export default function Header() {
               href="#/government"
               onClick={() => setMobileOpen(false)}
             >
-              Состав Правительства
+              {t("governmentComposition")}
             </a>
             <a
               className="tile link"
               href="#/government"
               onClick={() => setMobileOpen(false)}
             >
-              Исполнительные органы
+              {t("executiveBodies")}
             </a>
             <a
               className="tile link"
@@ -885,42 +916,42 @@ export default function Header() {
               href="#/docs/laws"
               onClick={() => setMobileOpen(false)}
             >
-              Законы Республики Тыва
+              {t("docsLaws")}
             </a>
             <a
               className="tile link"
               href="#/docs/resolutions"
               onClick={() => setMobileOpen(false)}
             >
-              Постановления ВХ РТ
+              {t("docsResolutions")}
             </a>
             <a
               className="tile link"
               href="#/docs/initiatives"
               onClick={() => setMobileOpen(false)}
             >
-              Законодательные инициативы
+              {t("docsInitiatives")}
             </a>
             <a
               className="tile link"
               href="#/docs/civic"
               onClick={() => setMobileOpen(false)}
             >
-              Законодательная инициатива гражданами
+              {t("docsCivic")}
             </a>
             <a
               className="tile link"
               href="#/docs/constitution"
               onClick={() => setMobileOpen(false)}
             >
-              Реализация поправок в Конституцию РФ
+              {t("docsConstitution")}
             </a>
             <a
               className="tile link"
               href="#/docs/bills"
               onClick={() => setMobileOpen(false)}
             >
-              Законопроекты
+              {t("docsBills")}
             </a>
           </>
         )}

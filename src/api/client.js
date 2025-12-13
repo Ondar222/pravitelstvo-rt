@@ -105,6 +105,39 @@ export const PublicApi = {
   async listNews() {
     return apiFetch("/news", { method: "GET", auth: false });
   },
+  async translate(text, from, to) {
+    // Пробуем разные варианты формата запроса
+    try {
+      // Вариант 1: стандартный формат
+      const result = await apiFetch("/translate", {
+        method: "POST",
+        body: { text, from, to },
+        auth: false,
+      });
+      return result;
+    } catch (error) {
+      // Вариант 2: альтернативный формат
+      try {
+        const result = await apiFetch("/api/translate", {
+          method: "POST",
+          body: { text, source: from, target: to },
+          auth: false,
+        });
+        return result;
+      } catch (error2) {
+        // Вариант 3: query параметры
+        try {
+          const result = await apiFetch(`/translate?text=${encodeURIComponent(text)}&from=${from}&to=${to}`, {
+            method: "GET",
+            auth: false,
+          });
+          return result;
+        } catch (error3) {
+          throw error;
+        }
+      }
+    }
+  },
 };
 
 // Helpers for multipart uploads

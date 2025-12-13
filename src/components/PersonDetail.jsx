@@ -1,6 +1,8 @@
 import React from "react";
+import { useI18n } from "../context/I18nContext.jsx";
 
 export default function PersonDetail({ item, type, backHref }) {
+  const { t } = useI18n();
   const isDeputy = type === "dep";
   const title = item.name || item.title;
   const phone = isDeputy ? item.contacts?.phone : item.phone;
@@ -73,7 +75,7 @@ export default function PersonDetail({ item, type, backHref }) {
       <div className="container">
         {backHref && (
           <a className="btn" href={backHref} style={{ marginBottom: 12 }}>
-            ← К списку
+            {t("back")}
           </a>
         )}
 

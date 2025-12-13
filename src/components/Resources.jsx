@@ -8,7 +8,7 @@ const LINKS = [
     href: "http://pravo.minjust.ru/",
   },
   {
-    label: "ПРАВИТЕЛЬСТВО РЕСПУБЛИКИ ТЫВА",
+    label: "ПАРЛАМЕНТ РЕСПУБЛИКИ ТЫВА",
     href: "http://gov.tuva.ru/", 
   },
   {

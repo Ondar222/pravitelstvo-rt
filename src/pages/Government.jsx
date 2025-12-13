@@ -20,7 +20,7 @@ export default function Government() {
     const t = sp.get("type");
     if (t === "dep") return "Депутаты";
     if (t === "org") return "Структура";
-    return "Правительство";
+    return "Парламент";
   });
 
   const [agency, setAgency] = React.useState("Все");
@@ -43,7 +43,7 @@ export default function Government() {
       const t = sp.get("type");
       if (t === "dep") setSection("Депутаты");
       else if (t === "org") setSection("Структура");
-      else setSection("Правительство");
+      else setSection("Парламент");
       setSelected(id || null);
     };
     window.addEventListener("hashchange", onHash);
@@ -141,11 +141,13 @@ export default function Government() {
     const dataset = section === "Депутаты" ? deputies : government;
     const item = dataset.find((p) => p.id === selected);
     if (!item) return null;
+    // Для депутатов ведем на страницу списка депутатов, для остальных - на government
+    const backHref = section === "Депутаты" ? "#/deputies" : `#/government?type=${section === "Парламент" ? "gov" : "org"}`;
     return (
       <PersonDetail
         item={item}
         type={section === "Депутаты" ? "dep" : "gov"}
-        backHref={`#/government?type=${section === "Депутаты" ? "dep" : "gov"}`}
+        backHref={backHref}
       />
     );
   }
@@ -155,7 +157,7 @@ export default function Government() {
       <div className="container">
         <div className="page-grid">
           <div>
-            <h1>Правительство</h1>
+            <h1>Парламент</h1>
             {section !== "Структура" && (
               <Space
                 className="filters"
@@ -168,7 +170,7 @@ export default function Government() {
                   onChange={setSection}
                   dropdownMatchSelectWidth={false}
                   options={[
-                    { value: "Правительство", label: "Правительство" },
+                    { value: "Парламент", label: "Парламент" },
                     { value: "Депутаты", label: "Депутаты" },
                   ]}
                   style={{ minWidth: 220 }}
@@ -628,7 +630,7 @@ export default function Government() {
             )}
           </div>
           <SideNav
-            title="Правительство"
+            title="Парламент"
             links={[
               { label: "Глава", href: "#/government" },
               { label: "Депутаты", href: "#/deputies" },
